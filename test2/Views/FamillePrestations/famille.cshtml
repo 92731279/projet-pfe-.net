@@ -1,0 +1,562 @@
+﻿@model test2.Models.Famille
+
+@{
+    ViewBag.Title = "famille";
+    Layout = "~/Views/shared/_LayoutPage3.cshtml";
+
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+    /* CSS pour le sélecteur de taille de page */
+    #pageSizeSelect {
+        width: 50px; /* Largeur du sélecteur */
+        padding: 5px; /* Espacement interne */
+        font-size: 16px; /* Taille de la police */
+        border-radius: 5px; /* Coins arrondis */
+        border: 1px solid #ccc; /* Bordure */
+        background-color: #fff; /* Couleur de fond */
+        appearance: none; /* Suppression de l'apparence native */
+        -webkit-appearance: none; /* Pour certains navigateurs WebKit */
+        -moz-appearance: none; /* Pour certains navigateurs Firefox */
+        text-align: center;
+    }
+
+        /* Style lorsque le sélecteur est survolé */
+        #pageSizeSelect:hover {
+            border-color: rgba(0, 123, 255, 0.5);
+            /* Changement de couleur de la bordure */
+        }
+
+        /* Style lorsque le sélecteur est actif ou focus */
+        #pageSizeSelect:focus {
+            outline: none; /* Suppression de l'outline */
+            border-color: #007bff; /* Changement de couleur de la bordure */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre portée */
+        }
+
+    .required::before {
+        content: '*';
+        color: red;
+        margin-right: 5px;
+    }
+</style>
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+        <div class="logo">
+            <!-- Uncomment below if you prefer to use a text logo -->
+            <!-- <h1><a href="index.html">NewBiz</a></h1> -->
+            <a href="~/Account/Index"><img src="~/assets/img/Tunisair_(logo).svg" alt="" class="img-fluid" style="max-height: 100px;"></a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="~/Account/Index">Accueil</a></li>
+                <li><a class="nav-link scrollto" href="~/Account/Index/#about">À propos</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="~/TauxChange/taux">Gestion Taux de Change</a></li>
+                        <li><a href="~/Home/Index">Gestion Bulletin de Soin</a></li>
+                        <li><a href="~/Adhesion/adhesionPersonnel">Gestion Adhésion Personnel</a></li>
+                        <li><a href="#">Gestion Libellé des Prestations</a></li>
+                        <li><a href="~/SousFamille/sousFamille">Gestion des prestations  </a></li>
+
+
+                    </ul>
+                </li>
+                <li><a class="nav-link scrollto" href="~/Account/Index/#testimonials">Equipe</a></li>
+                <li><a class="nav-link scrollto" href="~/Account/Index/#contact">Contact</a></li>
+            </ul>
+            <div>
+                <a href="~/Account/Login" class="btn-log-out" style="border: 2px solid #004289; color: #004289; margin-left: 100px; border-radius: 50px; text-align: center; padding: 5px 20px 5px 20px; " onmouseover="this.style.background='#004289'; this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#1549c2';">Déconnexion</a>
+            </div>
+
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- #header -->
+
+<body style="background-color:#fff; ">
+
+    <div class="container" style="margin-top: 10%">
+        <h4 style="text-align: center; font-family: initial; color: #3a78d3; margin-top: 2%;">Les Familles des prestations du tableau de remboursement <i class="bi bi-receipt-cutoff" style="color: #3a78d3; "></i></h4>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <a href="#" class="btn primary-btn" onclick="AddFamille(0)" style="background-color: #e9ecef; -bs-btn-color: #000; --bs-btn-bg: #dee2e6; --bs-btn-border-color: rgba(13, 110, 253, .25); --bs-btn-hover-color: #000; --bs-btn-hover-bg: #dee2e6; --bs-btn-hover-border-color: #2b2b2b; --bs-btn-focus-shadow-rgb: #fff; --bs-btn-active-bg: #e9ecef; --bs-btn-active-border-color: #e9ecef; ">Ajouter</a>
+            </div>
+        </div>
+        <div class="row mt-3" style="max-height: 300px; overflow-y: auto;">
+            <div class="col-md-12">
+                <table id="bsTable" class="table table-hover" style="text-align: center; border-color: #2b2b2b;">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Libellé des Prestations</th>
+                            <th>Observations</th>
+                            <th colspan="3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyTable">
+                        <tr id="loadingStatus" style="color: red"></tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+            <div style="display:flex; justify-content:space-between;">
+                <label for="pageSizeSelect" style="margin-top:20px">Nombre d'éléments par page:</label>
+                <select id="pageSizeSelect" class="form-control" style="height: 35px; margin-top: 15px; margin-left: 15px;">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+
+
+                    <!-- Ajoutez d'autres options de taille de page si nécessaire -->
+                </select>
+            </div>
+            <nav aria-label="Page navigation example" class="d-flex justify-content-end" style="margin-top: 20px; margin-right:80px; margin-bottom:20%;">
+                <ul class="pagination">
+                    <li class="page-item" id="previousPage">
+                        <a class="page-link" href="javascript:;" aria-label="Previous">
+                            <span aria-hidden="true">&laquo; Précédent</span>
+                        </a>
+                    </li>
+                    <li class="page-item" id="nextPage">
+                        <a class="page-link" href="javascript:;" aria-label="Next">
+                            <span aria-hidden="true">Suivant &raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="MyModal">
+        <div class="modal-dialog modal-dialog-scrollable" id="Modal" style="height:400px">
+            <div class="modal-content">
+                <!-- Header -->
+                <div class="modal-header">
+                    <h4 id="ModalTitle"></h4>
+                    <a href="famille" class="close" data-dismiss="modal" style="margin-top: -30;">&times;</a>
+                </div>
+
+                <!-- Body -->
+                <div class="modal-body">
+                    <form id="form">
+                        <fieldset id="SubmitForm">
+                            <div class="form-group">
+                                @Html.HiddenFor(m => m.idFamille, new { @id = "idFa" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nomFa" class="required">Libellé des Prestations:</label>
+                                @Html.TextBoxFor(m => m.nomFamille, new { @id = "nomFa", @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label for="obsFa">Observations:</label>
+                                @Html.TextBoxFor(m => m.obsFamille, new { @id = "obsFa", @class = "form-control" })
+                            </div>
+                            <!-- Indication des champs obligatoires -->
+                            <p style="color: red; margin-top: 10px;">[ * ] : Champs obligatoires à remplir ! </p>
+
+
+                        </fieldset>
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                <a href="famille" class="btn btn-danger" data-dismiss="modal">Annuler</a>
+                                <a href="#" class="btn btn-success" id="SaveFamilleRecord">Enregistrer</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="DeleteConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 style="font-weight: bold; color: #000; margin: 0 auto;"><i class="bi bi-circle-fill" style="color:red;"></i> Supprimer Famille des prestations</h4>
+
+                    <a href="famille" class="close" data-dismiss="modal" style="margin-top: -30;">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <h5> Etes-vous sûr ? Vous souhaitez supprimer cet enregistrement.</h5>
+                </div>
+                <div class="modal-footer">
+                    <a href="famille" class="btn btn-primary" data-dismiss="modal">Annuler</a>
+                    <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirmer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>
+
+    $(document).ready(function () {
+        // Désactiver l'autocomplétion pour chaque balise
+        $("input, select, textarea").attr("autocomplete", "off");
+
+    });
+
+    $("#loadingStatus").html("Loading ...");
+
+    $.get("/FamillePrestations/GetFamilleList", null, function (familleList) {
+        // Fonction appelée lorsque les données JSON sont reçues avec succès
+        DataBind(familleList);
+    });
+
+    function DataBind(familleList) {
+        var SetData = $("#bodyTable");
+        for (var i = 0; i < familleList.length; i++) {
+
+
+            var Data = "<tr class='row_" + familleList[i].idFamille + "'>" +
+                "<td>" + familleList[i].idFamille + "</td>" +
+                "<td>" + familleList[i].nomFamille + "</td>" +
+                "<td>" + familleList[i].obsFamille + "</td>" +
+
+                "<td><a href='#' class='btn btn-warning' onclick='EditFamille(" + familleList[i].idFamille + ")'><i class='fas fa-edit small-icon text-white'></i></a></td>" +
+                "<td><a href='#' class='btn btn-danger' onclick='DeleteFamilleRecord(" + familleList[i].idFamille + ")'><i class='fas fa-trash-alt small-icon text-white'></i></a></td>" +
+                "<td><a href='#' class='btn btn-info' onclick='ShowFamilleDetails(" + familleList[i].idFamille + ")'><i class='fas fa-info-circle small-icon text-white'></i></a></td>" +
+                "</tr>";
+            SetData.append(Data);
+        }
+
+        $("#loadingStatus").html(" ");
+    }
+
+
+    // pagination element par page
+    (function () {
+        // Gestionnaire d'événements pour le sélecteur de taille de page
+        $('#pageSizeSelect').change(function () {
+            // Récupérer la nouvelle valeur sélectionnée
+            var newPageSize = $(this).val();
+
+            // Appeler la fonction pour récupérer et afficher les données avec la nouvelle taille de page
+            fetchDataWithPageSize(1, newPageSize); // Commencer à partir de la première page après le changement de taille
+        });
+
+        // Fonction pour récupérer et afficher les données avec une nouvelle taille de page
+        function fetchDataWithPageSize(page, pageSize) {
+            $.get("/FamillePrestations/GetFamilleList", { page: page, pageSize: pageSize }, function (familleList) {
+                // Appeler la fonction de liaison des données avec la nouvelle liste de bulletins de soin
+                $("#bodyTable").empty();
+                DataBind(familleList);
+            });
+        }
+        // Fonction pour récupérer et afficher les données
+        function loadData(page, pageSize) {
+            $.ajax({
+                url: '/SousFamille/GetFamilleList',
+                type: 'GET',
+                data: { page: page, pageSize: pageSize },
+                dataType: 'json',
+                success: function (data) {
+                    // Mettre à jour votre tableau HTML avec les données récupéréesn
+                    // Ici, 'data' contient les données renvoyées par votre méthode backend
+                    // Vous pouvez itérer sur 'data' pour construire les lignes de votre tableau
+                    // et les ajouter à votre tableau existant
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('Error:', textStatus, errorThrown);
+                }
+            });
+        }
+        // Charger les données lors du chargement initial de la page avec la taille de page par défaut
+        var defaultPageSize = $('#pageSizeSelect').val();
+        loadData(1, defaultPageSize); // Charger les données pour la première page avec la taille de page par défaut
+    })();
+
+    // pagination precedent & suivant
+
+    $(document).ready(function () {
+        var currentPage = 1;
+        var pageSize = 5; // Taille de la page par défaut
+        var totalPages = 10; // Nombre total de pages
+
+        // Fonction pour charger les données de la page spécifiée et mettre à jour l'interface utilisateur
+        function loadData2(page, pageSize) {
+            // Faites une requête AJAX pour récupérer les données de la page spécifiée
+            $.get("/FamillePrestations/GetFamilleList2", { page: page, pageSize: pageSize }, function (response) {
+                // Mettez à jour votre tableau HTML avec les données récupérées
+                $('#bodyTable').empty(); // Videz d'abord le contenu existant du tableau
+                var data = response.data; // Assurez-vous que votre backend renvoie les données dans un objet 'data'
+                $.each(data, function (index, item) {
+                    // Générez la ligne HTML pour chaque élément de données et ajoutez-la à la table
+                    var row = '<tr>' +
+                        '<td>' + item.idFamille + '</td>' +
+                        '<td>' + item.nomFamille + '</td>' +
+                        '<td>' + item.obsFamille + '</td>' +
+
+                        '<td><a href="#" class="btn btn-warning" onclick="EditFamille(' + item.idFamille + ')"><i class="fas fa-edit small-icon text-white"></i></a></td>' +
+                        '<td><a href="#" class="btn btn-danger" onclick="DeleteFamilleRecord(' + item.idFamille + ')"><i class="fas fa-trash-alt small-icon text-white"></i></a></td>' +
+                        '<td><a href="#" class="btn btn-info" onclick="ShowFamilleDetails(' + item.idFamille + ')"><i class="fas fa-info-circle small-icon text-white"></i></a></td>' +
+                        '</tr>';
+                    $('#bodyTable').append(row);
+                });
+                // Mettre à jour le nombre total de pages après avoir obtenu les données
+                totalPages = Math.ceil(response.totalRecords / pageSize);
+                // Mettre à jour l'état des boutons de pagination
+                updatePaginationButtons();
+            });
+        }
+
+        // Fonction pour mettre à jour l'état des boutons de pagination
+        function updatePaginationButtons() {
+            // Désactiver le bouton "Précédent" s'il n'y a pas de page précédente
+            $('#previousPage').prop('disabled', currentPage <= 1);
+            // Désactiver le bouton "Suivant" s'il n'y a pas de page suivante
+            $('#nextPage').prop('disabled', currentPage >= totalPages);
+        }
+
+        // Gestionnaire d'événements pour le bouton Précédent
+        $('#previousPage').click(function () {
+            if (currentPage > 1) {
+                currentPage--;
+                loadData2(currentPage, pageSize);
+            }
+        });
+
+        // Gestionnaire d'événements pour le bouton Suivant
+        $('#nextPage').click(function () {
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadData2(currentPage, pageSize);
+            }
+        });
+
+        // Gestionnaire d'événements pour le sélecteur de taille de page
+        $('#pageSizeSelect').change(function () {
+            // Récupérer la nouvelle valeur sélectionnée
+            pageSize = $(this).val();
+            // Recharger les données avec la nouvelle taille de page
+            loadData(1, pageSize);
+        });
+
+        // Appel initial pour charger les données de la première page
+        loadData(currentPage, pageSize);
+    });
+
+
+    function AddFamille(idFamille) {
+        $("#form")[0].reset();
+        $("#ModalTitle").html("Ajouter nouveau libellé ");
+        $("#MyModal").modal("show");
+
+        $("#idFa").val("");
+        $("#nomFa").val("");
+        $("#obsFa").val("");
+
+    }
+
+    /* function EditFamille(idFamille) {
+         var url = "/FamillePrestations/GetFamilleById?id=" + idFamille;
+
+         $("#ModalTitle").html("Modifier Libellé de prestation");
+         $("#MyModal").modal("show");
+         $.ajax({
+             type: "GET",
+             url: url,
+             success: function (data) {
+                 var obj = JSON.parse(data);
+                 $("#idFa").val(obj.idFamille);
+                 $("#nomFa").val(obj.nomFamille);
+                 $("#obsFa").val(obj.obsFamille);
+
+             }
+         });
+     }
+     */
+    function EditFamille(idFamille) {
+        var url = "/FamillePrestations/GetFamilleById?id=" + idFamille;
+
+        $("#ModalTitle").html("Modifier Libellé des prestations");
+        $("#MyModal").modal("show");
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                $("#idFa").val(data.idFamille);
+                $("#nomFa").val(data.nomFamille);
+                $("#obsFa").val(data.obsFamille);
+            },
+            error: function () {
+                // Gérer les erreurs si nécessaire
+            }
+        });
+    }
+
+
+    $("#SaveFamilleRecord").click(function () {
+        var data = $("#SubmitForm").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/FamillePrestations/SaveDataInDatabase",
+            data: data,
+            success: function (response) {
+                if (response.success) {
+                    alert("Success!");
+                    window.location.href = "/FamillePrestations/famille";
+                    $("#MyModal").modal("hide");
+                } else {
+                    alert("Erreur lors de l'enregistrement des données: " + response.errors);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de l'envoi des données au serveur. Statut: " + status + ", Erreur: " + error);
+            }
+        });
+    });
+
+
+    /* function ShowFamilleDetails(idFamille) {
+         var url = "/FamillePrestations/GetFamilleById?id=" + idFamille;
+         $("#ModalTitle").html("Détailles de Libellé de prestation");
+         $("#MyModal").modal("show");
+         $("#SaveFamilleRecord").hide();
+         $.ajax({
+             type: "GET",
+             url: url,
+             success: function (data) {
+                 var obj = JSON.parse(data);
+                 $("#idFa").val(obj.idFamille).prop('disabled', true);
+                 $("#nomFa").val(obj.nomFamille).prop('disabled', true);
+                 $("#obsFa").val(obj.obsFamille).prop('disabled', true);
+
+             }
+         });
+     }
+     */
+    function ShowFamilleDetails(idFamille) {
+        var url = "/FamillePrestations/GetFamilleById?id=" + idFamille;
+
+        $("#ModalTitle").html("Détails de Libellé des prestations");
+        $("#MyModal").modal("show");
+        $("#SaveFamilleRecord").hide();
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                $("#idFa").val(data.idFamille).prop('disabled', true);
+                $("#nomFa").val(data.nomFamille).prop('disabled', true);
+                $("#obsFa").val(data.obsFamille).prop('disabled', true);
+            },
+            error: function () {
+                // Gérer les erreurs si nécessaire
+            }
+        });
+    }
+    function DeleteFamilleRecord(idFamille) {
+        $("#idFa").val(idFamille);
+        $("#DeleteConfirmation").modal("show");
+    }
+
+    function ConfirmDelete() {
+        var idFamille = $("#idFa").val(); // Utilisation de idFamille au lieu de id
+        $.ajax({
+            type: "POST",
+            url: "/FamillePrestations/DeleteFamilleRecord?idFamille=" + idFamille, // Correction du nom de la méthode
+            success: function (result) {
+                $("#DeleteConfirmation").modal("hide");
+                if (result) {
+                    $(".row_" + idFamille).remove();
+                } else {
+                    alert("Failed to delete famille record."); // Correction du message d'alerte
+                }
+            },
+            error: function () {
+                alert("An error occurred while deleting the famille record."); // Correction du message d'alerte
+            }
+        });
+    }
+</script>
+
+
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-info">
+                    <h3>TUNISAIR</h3>
+                    <p>fondée en 1948, forte de plus <br />de 75 ans d'expérience dans <br />le secteur de l'aviation,<br /> est la compagnie aérienne <br />nationale de la Tunisie.</p>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About us</a></li>
+                        <li><a href="#services">Services</a></li>
+
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>
+                        <i class="bi bi-pin-map-fill"></i> Rue Aéroport Tunis-Carthage  <br>Charguia 2, Ariana <br>Siège Tunisair <br>
+                        <i class="bi bi-telephone-fill"></i> <strong>Phone:</strong> +216 1789 55488 55<br>
+                        <i class="bi bi-envelope-at-fill"></i><strong> Email:</strong> info@Tunisair.com.tn<br>
+                        <i class="bi bi-browser-chrome"></i> <strong>Site Officiel: </strong>www.tunisair.com <br />
+                    </p>
+
+
+                    <div class="social-links">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong>TUNISAIR</strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+            -->
+            Designed by <a href="https://bootstrapmade.com/">DCSI</a>
+        </div>
+    </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="~/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="~/assets/vendor/aos/aos.js"></script>
+<script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="~/assets/vendor/php-email-form/validate.js"></script>
+<!-- Template Main JS File -->
+<script src="~/assets/js/main.js"></script>

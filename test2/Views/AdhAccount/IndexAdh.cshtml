@@ -1,0 +1,45 @@
+﻿@model test2.Models.Adherent
+@{
+    ViewBag.Title = "IndexAdh";
+}
+
+<h2>IndexAdh</h2>
+<div class="form-group">
+    <label for="DropDwn">  <small>Choisir un ID Adherent </small></label>
+    @Html.DropDownListFor(m => m.idAdherent, ViewBag.ListOfAdh as SelectList, new { @id = "DropDwn", @class = "form-control" })
+
+
+    <h2>Détails de l'Adhérent</h2>
+
+    <div class="btn btn-primary" id="check_details">CLICK</div>
+
+    <div class="form-group">
+        <label for="NOM">Nom Adhérent:</label>
+        @Html.TextBoxFor(m => m.nomAdh, new { @id = "NOM", @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label for="PNOM">Prénom Adhérent:</label>
+        @Html.TextBoxFor(m => m.prenomAdh, new { @id = "PNOM", @class = "form-control" })
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#check_details').click(function () {
+            var selectedId = $('#DropDwn').val();
+            $.ajax({
+                url: '@Url.Action("AdherentDetails", "AdhAccount")',
+                type: 'GET',
+                data: { id: selectedId },
+                success: function (result) {
+                    $('#NOM').val(result.nomAdh);
+                    $('#PNOM').val(result.prenomAdh);
+                },
+                error: function () {
+                    alert('Une erreur s\'est produite lors de la récupération des détails de l\'adhérent.');
+                }
+            });
+        });
+    });
+</script>

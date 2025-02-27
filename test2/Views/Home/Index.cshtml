@@ -1,0 +1,3475 @@
+﻿@model test2.Models.BulletinSoin
+
+@{
+    ViewBag.Title = "Gestion BS";
+
+    Layout = "~/Views/shared/_LayoutPage1.cshtml";
+
+}
+
+<!-- Inclure jQuery -->
+<script src="~/Scripts/jquery-3.7.1.min.js"></script>
+<!-- Inclure DataTables -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+<link href="~/CSS/styles.css" rel="stylesheet" />
+<!-- Inclure le fichier CSS de DataTables via CDN -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+
+<!-- Inclure jQuery via CDN (nécessaire pour DataTables) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Inclure le fichier JavaScript de DataTables via CDN -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/datatables.net/js/jquery.dataTables.min.js"></script>
+
+<!-- Inclure Bootstrap -->
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<!-- Inclure Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Inclure jQuery UI (Datepicker) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Vos autres scripts -->
+!<!--<script src="~/Scripts/jquery.dataTables.js"></script>-->
+
+<link href="~/CSS/StyleSheet1.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+
+
+<!-- Favicons -->
+<link href="~/assets/img/favicon.png" rel="icon">
+<link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+
+
+<!-- Template Main CSS File -->
+<link href="~/assets/css/style.css" rel="stylesheet">
+
+<!-- Ajoutez ces scripts dans votre fichier HTML -->
+<script>
+    $(function () {
+        // Initialisez le Datepicker sur les champs de date
+        $("#daterub1").datepicker({
+            dateFormat: "yy-mm-dd" // Format de date souhaité
+
+        });
+
+        $("#DE").datepicker({
+            dateFormat: "yy-mm-dd" // Format de date souhaité
+
+        });
+        $("#DS").datepicker({
+            dateFormat: "yy-mm-dd" // Format de date souhaité
+
+        });
+        $("#dateRub3").datepicker({
+            dateFormat: "yy-mm-dd" // Format de date souhaité
+
+        });
+    });
+</script>
+
+<style>
+    /* CSS pour le sélecteur de taille de page */
+    #pageSizeSelect {
+        width: 50px; /* Largeur du sélecteur */
+        padding: 5px; /* Espacement interne */
+        font-size: 16px; /* Taille de la police */
+        border-radius: 5px; /* Coins arrondis */
+        border: 1px solid #ccc; /* Bordure */
+        background-color: #fff; /* Couleur de fond */
+        appearance: none; /* Suppression de l'apparence native */
+        -webkit-appearance: none; /* Pour certains navigateurs WebKit */
+        -moz-appearance: none; /* Pour certains navigateurs Firefox */
+        text-align: center;
+    }
+
+        /* Style lorsque le sélecteur est survolé */
+        #pageSizeSelect:hover {
+            border-color: rgba(0, 123, 255, 0.5);
+            /* Changement de couleur de la bordure */
+        }
+
+        /* Style lorsque le sélecteur est actif ou focus */
+        #pageSizeSelect:focus {
+            outline: none; /* Suppression de l'outline */
+            border-color: #007bff; /* Changement de couleur de la bordure */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre portée */
+        }
+    /* CSS pour le sélecteur de taille de page */
+    #pageSizeSelectNew {
+        width: 50px; /* Largeur du sélecteur */
+        padding: 5px; /* Espacement interne */
+        font-size: 16px; /* Taille de la police */
+        border-radius: 5px; /* Coins arrondis */
+        border: 1px solid #ccc; /* Bordure */
+        background-color: #fff; /* Couleur de fond */
+        appearance: none; /* Suppression de l'apparence native */
+        -webkit-appearance: none; /* Pour certains navigateurs WebKit */
+        -moz-appearance: none; /* Pour certains navigateurs Firefox */
+        text-align: center;
+    }
+
+        /* Style lorsque le sélecteur est survolé */
+        #pageSizeSelectNew:hover {
+            border-color: rgba(0, 123, 255, 0.5);
+            /* Changement de couleur de la bordure */
+        }
+
+        /* Style lorsque le sélecteur est actif ou focus */
+        #pageSizeSelectNew:focus {
+            outline: none; /* Suppression de l'outline */
+            border-color: #007bff; /* Changement de couleur de la bordure */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre portée */
+        }
+    /* Style pour le conteneur des rubriques */
+    #rubriquesContent {
+        margin-top: 20px;
+    }
+
+    /* Style pour chaque rubrique */
+    .rubrique-info-edit {
+        margin-bottom: 50px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Style pour les étiquettes */
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+
+
+    /* Style pour le bouton de sauvegarde */
+    .save-button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+        margin-top: 17px;
+    }
+
+        .save-button:hover {
+            background-color: #45a049;
+        }
+    /* Style du conteneur */
+    #exTab1 {
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+    }
+
+        /* Style de la liste de navigation */
+        #exTab1 .nav-pills {
+            margin-bottom: 20px;
+        }
+
+            /* Style des éléments de la liste de navigation */
+            #exTab1 .nav-pills li {
+                display: inline;
+            }
+
+                /* Style des liens dans les éléments de la liste de navigation */
+                #exTab1 .nav-pills li a {
+                    padding: 10px 15px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    background-color: #fff;
+                    color: #333;
+                    text-decoration: none;
+                    transition: background-color 0.3s ease;
+                }
+
+                /* Style des liens actifs */
+                #exTab1 .nav-pills li.active a {
+                    background-color: #337ab7;
+                    color: #fff;
+                    border-color: #337ab7;
+                }
+
+    .custom-text-right {
+        text-align: right;
+    }
+
+    .modal-dialog {
+        max-width: 60%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /* Appliquer flexbox pour organiser les éléments en ligne */
+    .nav.nav-pills {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        white-space: normal; /* Centrer les éléments horizontalement */
+    }
+
+        /* Ajuster la largeur des éléments de la liste */
+        .nav.nav-pills > li {
+            flex: 0 0 auto;
+        }
+
+            /* Ajouter un peu de marge au bas des éléments pour l'espace */
+            .nav.nav-pills > li a {
+                margin-bottom: 5px;
+            }
+
+
+    /* Style pour le conteneur principal */
+    div.inner-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+        /* Style pour tous les composants de l'inner form */
+        div.inner-form .input-field {
+            height: 50px; /* Ajustez la hauteur selon vos besoins */
+        }
+
+        /* Style pour le champ de sélection */
+        div.inner-form .input-select select {
+            width: 300px; /* Largeur personnalisée */
+            padding: 10px; /* Espace interne */
+            border: 1px solid #ccc; /* Bordure */
+            border-radius: 5px; /* Coins arrondis */
+            font-size: 16px; /* Taille de la police */
+            cursor: pointer; /* Curseur */
+            appearance: none; /* Supprime l'apparence par défaut */
+        }
+
+        /* Style pour le champ de texte */
+        div.inner-form .input-field input[type="text"] {
+            width: 200px; /* Largeur personnalisée */
+            padding: 10px 20px; /* Espace interne */
+            border: 1px solid #ccc; /* Bordure */
+            border-radius: 5px; /* Coins arrondis */
+            font-size: 16px; /* Taille de la police */
+        }
+
+        /* Style pour le bouton de recherche */
+        div.inner-form .input-field button {
+            padding: 10px 20px; /* Espace interne */
+            background-color: #007bff; /* Couleur de fond */
+            color: #fff; /* Couleur du texte */
+            border: none; /* Supprime la bordure */
+            border-radius: 5px; /* Coins arrondis */
+            font-size: 16px; /* Taille de la police */
+            cursor: pointer; /* Curseur */
+        }
+
+            /* Style pour l'icône de recherche */
+            div.inner-form .input-field button i {
+                font-size: 18px; /* Taille de l'icône */
+            }
+
+            /* Style au survol du bouton de recherche */
+            div.inner-form .input-field button:hover {
+                background-color: #0056b3;
+            }
+
+    /* Style pour l'icône de sélection */
+    .select-icon {
+        position: absolute; /* Position absolue pour la placer à côté du champ de sélection */
+        right: 10px; /* Ajustement de la position à droite */
+        top: 40%; /* Centre verticalement */
+        transform: translateY(-50%); /* Centre verticalement */
+        color: #555; /* Couleur de l'icône */
+        pointer-events: none; /* Empêche l'icône d'être cliquable */
+    }
+
+    .required::before {
+        content: '*';
+        color: red;
+        margin-right: 5px;
+    }
+
+    /* Pour masquer la barre de défilement sur le côté droit tout en permettant le défilement */
+    #Modal {
+        overflow-y: scroll; /* Assurez-vous que le défilement vertical est activé */
+        scrollbar-width: none; /* Pour les navigateurs basés sur Firefox */
+    }
+
+        #Modal::-webkit-scrollbar {
+            width: 0; /* Pour les navigateurs basés sur Webkit */
+        }
+</style>
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+
+        <div class="logo">
+
+            <a href="~/Account/Index"><img src="~/assets/img/Tunisair_(logo).svg" alt="" class="img-fluid" style="max-height: 100px;"></a>
+
+        </div>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="~/Account/Index">Accueil</a></li>
+                <li><a class="nav-link scrollto" href="#about">À propos</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="~/TauxChange/taux">Gestion Taux de Change</a></li>
+                        <li><a href="#">Gestion Bulletin de Soin</a></li>
+                        <li><a href="~/Adhesion/adhesionPersonnel">Gestion Adhésion Personnel</a></li>
+                        <li><a href="~/FamillePrestations/famille">Gestion Familles des Prestations</a></li>
+                        <li><a href="~/SousFamille/sousfamille">Gestion des Prestations </a></li>
+
+                    </ul>
+
+                </li>
+                <li><a class="nav-link scrollto" href="~/Account/Index/#testimonials">Equipe</a></li>
+
+                <li><a class="nav-link scrollto" href= "~/Account/Index/#contact">Contact</a></li>
+            </ul>
+            <div>
+                <a href="~/Account/Login" class="btn-log-out" style="border: 2px solid #004289; color: #004289; margin-left: 100px;
+                    border-radius: 50px; text-align: center; padding: 5px 20px 5px 20px; " onmouseover="this.style.background = '#004289';
+                    this.style.color = '#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#1549c2';">Déconnexion</a>
+            </div>
+
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+    </div>
+</header><!-- #header -->
+
+<body style="background-color:#fff; ">
+
+
+    <div class="container" style="margin-top: 3%">
+
+
+        <div>
+            <form>
+                <div class="inner-form" style="justify-content: right;  margin-top: 10%;">
+                    <div class="input-field first-wrap" style="position: relative;">
+                        <div class="input-select" style="border-radius: 5px;">
+                            <!-- Icône de flèche vers le bas -->
+                            <select id="searchType" data-trigger="" name="choices-single-defaul">
+                                <option value="bs">Recherche par Numéro de BS</option>
+                                <option value="adh">Recherche par ID Adhérent</option>
+                            </select>
+                        </div>
+                        <span class="select-icon">&#9660;</span> <!-- Déplacement de l'icône ici -->
+                    </div>
+
+
+                    <div class="input-field second-wrap">
+                        <input id="search" type="text" placeholder="Rechercher ?" />
+                    </div>
+                    <div class="input-field third-wrap">
+                        <button class="btn-search" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div style="text-align: left;">
+            <div class="btn btn" style="border: 1px solid #b1d6ff; color: #2e5ca0; font-weight: initial; margin-top: 20px;"
+                 onmouseover="this.style.background='#b1d6ff'; this.style.color='#fff';" onmouseout="this.style.background='#fff'; this.style.color='#0079ff';">
+                <i class="bi bi-arrow-bar-left"></i> <a href="~/Home/index2">Les Nouveaux Bulletins de Soins Reçus </a>
+            </div>
+        </div>
+
+        <h4 style="text-align: center; font-family: initial; color:forestgreen; margin-top:2%;">Les Bulletins de soin Validés  <i class="bi bi-check2-circle" style="color: forestgreen;"></i></h4>
+        <div class="row mt-3" style="text-align: right;">
+            <div class="col-md-12">
+                <a href="#" class="btn btn-info" onclick="AddNewBS(0)" style="-bs-btn-color: #000; --bs-btn-bg: #dee2e6; --bs-btn-border-color: rgba(13, 110, 253, .25); --bs-btn-hover-color: #000; --bs-btn-hover-bg: #dee2e6; --bs-btn-hover-border-color: #2b2b2b; --bs-btn-focus-shadow-rgb: 11, 172, 204; --bs-btn-active-bg: #e9ecef; --bs-btn-active-border-color: #e9ecef; ">Ajouter</a>
+            </div>
+        </div>
+        <div class="row mt-3" style="max-height: 300px; overflow-y: auto;">
+            <div class="col-md-12">
+                <table id="bsTable" class="table table-hover" style="text-align: center; border-color: #2b2b2b;">
+                    <thead style="font-weight: bold;">
+                        <tr>
+
+                            <th>Numéro Bulletin</th>
+                            <th>Id Adhérent</th>
+                            <th>Nom Adhérent</th>
+                            <th>Prénom Adhérent</th>
+
+                            <th>Code Prestataire</th>
+                            <th colspan="3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="setbsList">
+                        <tr id="loadingStatus" style="color: red"></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+            <div style="display:flex; justify-content:space-between;">
+                <label for="pageSizeSelect" style="margin-top:20px">Nombre d'éléments par page:</label>
+                <select id="pageSizeSelect" class="form-control" style="height: 35px; margin-top: 15px; margin-left: 15px;">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+
+
+                    <!-- Ajoutez d'autres options de taille de page si nécessaire -->
+                </select>
+            </div>
+            <nav aria-label="Page navigation example" class="d-flex justify-content-end" style="margin-top: 20px; margin-right:80px; margin-bottom:20%;">
+                <ul class="pagination">
+                    <li class="page-item" id="previousPage">
+                        <a class="page-link" href="javascript:;" aria-label="Previous">
+                            <span aria-hidden="true">&laquo; Précédent</span>
+                        </a>
+                    </li>
+                    <li class="page-item" id="nextPage">
+                        <a class="page-link" href="javascript:;" aria-label="Next">
+                            <span aria-hidden="true">Suivant &raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="MyModal">
+        <div class="modal-dialog modal-dialog-scrollable" id="Modal" style="overflow-y: auto;">
+            <div class="modal-content" style="width:1000px;">
+                <!-- Header -->
+                <div class="modal-header">
+                    <h4 id="ModalTitle"></h4>
+                    <a href="Index" class="close" data-dismiss="modal" style="margin-top: -30;">&times;</a>
+                </div>
+
+                <!-- Body -->
+                <div class="modal-body">
+                    <form id="form" class="adherent-info">
+                        <fieldset id="SubmitForm">
+                            <!-- Form fields -->
+                            <!-- Ajout d'un champ caché pour stocker l'ID du bulletin de soin -->
+                            <div class="form-group">
+                                <input type="hidden" id="buId" name="idBs" />
+                            </div>
+                            <div id="exTab1" class="container" style="margin-left:0;">
+                                <ul class="nav nav-pills">
+                                    <li class="active mr-md-3 mb-3">
+                                        <a href="#1a" data-toggle="tab">Adhérent</a>
+                                    </li>
+                                    <li class="mr-md-3 mb-3">
+                                        <a href="#2a" data-toggle="tab">Medecins & Praticiens</a>
+                                    </li>
+                                    <li class="mr-md-3 mb-3">
+                                        <a href="#3a" data-toggle="tab">Etablissement hospitalier</a>
+                                    </li>
+                                    <li class="mb-3">
+                                        <a href="#4a" data-toggle="tab">Soins & prothèses dentaires</a>
+                                    </li>
+
+
+                                </ul>
+
+                                <div class="tab-content clearfix">
+                                    <div class="tab-pane active" id="1a">
+
+                                        <div class="input-group">
+
+                                            <div class="form-group">
+                                                <label for="num" class="required" required="">Numéro BS:</label>
+                                                @Html.TextBoxFor(m => m.numBs, new { @id = "num", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="adhId" class="required" required="">Id Adhérent:</label>
+                                                @Html.TextBoxFor(m => m.idAdherent, new { @id = "adhId", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nomAdh" class="required" required="">Nom Adhérent:</label>
+                                                @Html.TextBoxFor(m => m.nomAdh, new { @id = "nomAdh", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pnomAdh" class="required" required="">Prénom Adhérent:</label>
+                                                @Html.TextBoxFor(m => m.prenomAdh, new { @id = "pnomAdh", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+
+                                            <div class="form-group">
+                                                <label for="matCnam">Matricule CNAM:</label>
+                                                @Html.TextBoxFor(m => m.matriculeCnam, new { @id = "matCnam", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cin_pass">CIN/PASS:</label>
+                                                @Html.TextBoxFor(m => m.CIN_PASS, new { @id = "cin_pass", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="adressA">Adresse Adhérent:</label>
+                                                @Html.TextBoxFor(m => m.adressAdh, new { @id = "adressA", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="DropDwn" class="required" required="">Prestataire:</label>
+                                                @Html.DropDownListFor(m => m.idPrestataire, ViewBag.ListOfPrestataire as SelectList, new { @id = "DropDwn", @class = "form-control" })
+
+                                            </div>
+                                            <div>
+                                                <small>[00 ]: Adhérent - [99] :conjoint - [01] : Enfant 1er - [02]: 2e -[03] : 3e ... etc</small>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            <!-- Indication des champs obligatoires -->
+                                            <p style="color: red; margin-top: 10px;">[ * ] : Champs obligatoires à remplir ! </p>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane" id="2a">
+                                        <div class="rubrique-info">
+                                            <!-- Ajout de la ligne "Rubrique Medecins & Pharmacie" -->
+                                            <div style="text-align: center; color: #2572e2; margin-bottom: 20px "><b>Réservé aux Medecins & Praticiens - خاص بالاطباءو الممارسين </b></div>
+                                            <div class="input-group">
+                                                <div class="form-group">
+
+                                                    <label for="daterub1">date:</label>
+                                                    @Html.TextBoxFor(m => m.Rubrique1.dateRub1, new { @id = "daterub1", @class = "form-control" })
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="idSousFa">Désignation:</label>
+                                                    @Html.DropDownListFor(m => m.Rubrique1.idSousFamille, ViewBag.ListOfPrestation as SelectList, new { @id = "idSousFa", @class = "form-control" })
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="matfiscal1">Matricule Fiscal:</label>
+                                                    @Html.TextBoxFor(m => m.Rubrique1.matriculeFisacalRub1, new { @id = "matfiscal1", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="input-group">
+                                                <div class="form-group">
+                                                    <label for="honorub1">Honoraires:</label>
+                                                    @Html.TextBoxFor(m => m.Rubrique1.honorairesRub1, new { @id = "honorub1", @class = "form-control" })
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="deviserub1">Devise:</label>
+                                                    @Html.DropDownListFor(m => m.Rubrique1.deviseRub1, new SelectList(new[] { "TND", "EUR", "GBP", "CHF", "SAR", "CAD", "LYD", "EGP", "LBP", "MAD", "MRU", "DZD", "TRY", "GNF", "XOF" }), new { @id = "deviserub1", @class = "form-control" })
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="montantchan">  Montant Après Conversion:</label>
+                                                    <div class="input-group">
+                                                        @Html.TextBoxFor(m => m.Rubrique1.montant_change, new { @id = "montantchan", @class = "form-control" })
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" style="background-color: #dcd6d6;">TND</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="width:200px;">
+                                                    <label for="montantEstimé">Montant Estimé :</label>
+                                                    <div class="input-group">
+                                                        @Html.TextBoxFor(m => m.Rubrique1.montant_estimé, new { @id = "montantEstimé", @class = "form-control" })
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" style="background-color: #dcd6d6;">TND</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="messageMax" style="color: red; text-align: right;"></div>
+
+
+
+                                            <div class="form-group" style="display: flex; justify-content: space-between;margin-top:5%">
+                                                <p style="text-align: left; width: 50%;">En cas de chirurgie ou de traitements spéciaux, il faut joindre au bulletin de soins la nature de l'acte pratiqué sous pli confidentiel.</p>
+                                                <p style="text-align: right; width: 35%;">في حالات الجراحة او العلاج الخاص يجب مصاحبة بنوع العمل المنجز في ظرف سري</p>
+                                            </div>
+
+                                            <!-- Bouton pour ajouter une autre itération de la rubrique -->
+                                            <div class="form-group">
+                                                <a href="#" class="btn btn-primary" id="AddOther" onclick="addOtherRubrique()">Ajouter Autre</a>
+                                            </div>
+                                            <div class="form-group" style="margin-top:10%;">
+                                                <a href="#" class="btn btn-primary" id="AddOtherEdit" onclick="addRubriqueEditToTable()">Ajouter</a>
+                                            </div>
+
+                                        </div>
+
+                                        <!--    tableau-->
+
+                                        <div id="tableContainer" style="display: none; margin-top:20px;overflow:scroll;">
+                                            <table id="rubriquesTable" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th style="padding: 10px;">Désignation</th>
+                                                        <th style="padding: 10px;">Date</th>
+                                                        <th style="padding: 10px;">Honoraires</th>
+                                                        <th style="padding: 10px;">Devise</th>
+                                                        <th style="padding: 10px;">Montant Converti</th>
+                                                        <th style="padding: 10px;">Montant Estimé</th>
+
+                                                        <th style="padding: 10px;">Matricule Fiscal</th>
+                                                        <th style="padding: 10px;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="rubriquesBody">
+                                                    <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div id="tableContainerEdit" style="display: none; margin-top:20px;overflow:scroll;">
+                                            <table id="rubriquesTableEdit" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th style="padding: 10px;">Désignation</th>
+                                                        <th style="padding: 10px;">Date </th>
+                                                        <th style="padding: 10px;">Honoraires</th>
+                                                        <th style="padding: 10px;">Devise</th>
+                                                        <th style="padding: 10px;">Montant Converti</th>
+                                                        <th style="padding: 10px;">Montant Estimé</th>
+
+                                                        <th style="padding: 10px;">Matricule Fiscal</th>
+                                                        <th style="padding: 10px;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="rubriquesBodyEdit">
+                                                    <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="tab-pane" id="3a">
+                                        <div class="rubrique-info">
+                                            <div style="text-align: center; color: #2572e2; margin-bottom: 20px "><b>  Réservé à l'établissement hospitalier - خاص بالمؤسسة الاستشفائية </b></div>
+                                            <div class="input-group">
+
+                                                <div class="form-group">
+
+                                                    <label for="DE">Date d'Entrée:</label>
+                                                    @Html.TextBoxFor(m => m.Rubrique2.DE, new { @id = "DE", @class = "form-control" })
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="DS">Date de Sortie:</label>
+                                                    @Html.TextBoxFor(m => m.Rubrique2.DS, new { @id = "DS", @class = "form-control" })
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="matriculeFiscalRub2">Matricule Fiscal :</label>
+                                                    @Html.TextBoxFor(m => m.Rubrique2.matriculeFiscalRub2, new { @id = "matriculeFiscalRub2", @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                            <div class="input-group">
+                                                <div class="form-group">
+
+                                                    <label for="montantFrais">Montant Frais:</label>
+                                                    @Html.TextBoxFor(m => m.Rubrique2.montantFrais, new { @id = "montantFrais", @class = "form-control" })
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="deviseRub2">Devise :</label>
+                                                    @Html.DropDownListFor(m => m.Rubrique2.deviseRub2, new SelectList(new[] { "TND", "EUR", "GBP", "CHF", "SAR", "CAD", "LYD", "EGP", "LBP", "MAD", "MRU", "DZD", "TRY", "GNF", "XOF" }), new { @id = "deviseRub2", @class = "form-control" })
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="montantchan">Montant après conversion:</label>
+                                                    <div class="input-group">
+                                                        @Html.TextBoxFor(m => m.Rubrique2.montant_change2, new { @id = "montantchan2", @class = "form-control" })
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">TND</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="montantchan">Montant Estimé:</label>
+                                                    <div class="input-group">
+                                                        @Html.TextBoxFor(m => m.Rubrique2.montant_estimé2, new { @id = "montantEstimé2", @class = "form-control" })
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">TND</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" style="margin-top:10%;">
+                                                <a href="#" class="btn btn-primary" id="AddOtherEdit2" onclick="addRubrique2EditToTable()">Ajouter</a>
+                                            </div>
+                                        </div>
+                                        <div id="tableContainerEdit2" style="display:none; margin-top: 20px; overflow: scroll;">
+                                            <table id="rubriquesTableEdit2" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th style="padding: 10px;">Date Entrée</th>
+                                                        <th style="padding: 10px;">Date Sortie</th>
+                                                        <th style="padding: 10px;">Montant Frais</th>
+                                                        <th style="padding: 10px;">Devise</th>
+                                                        <th style="padding: 10px;">Montant Converti</th>
+                                                        <th style="padding: 10px;">Montant estimé</th>
+
+                                                        <th style="padding: 10px;">Matricule Fiscal</th>
+                                                        <th style="padding: 10px;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="rubriquesBodyEdit2">
+                                                    <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane" id="4a">
+                                        <div class="rubrique-info">
+                                            <div class="form-group">
+                                                <div style="text-align: center; color: #2572e2; margin-bottom: 20px "><b>Soins Et prothèses dentaires - علاج و تركيب الاسنان <b></b></b></div>
+                                                <div class="input-group">
+                                                    <div class="form-group">
+                                                        <label for="dateRub3">Date :</label>
+                                                        @Html.TextBoxFor(m => m.Rubrique3.dateRub3, new { @id = "dateRub3", @class = "form-control" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="dents">Dents:</label>
+                                                        @Html.TextBoxFor(m => m.Rubrique3.dents, new { @id = "dents", @class = "form-control" })
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="actMedical">Act Medical:</label>
+                                                        @Html.TextBoxFor(m => m.Rubrique3.actMedical, new { @id = "actMedical", @class = "form-control" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="type">Type:</label>
+                                                        @Html.DropDownListFor(m => m.Rubrique3.type, new SelectList(new[] { "Soin Dentaire", "Prothèse Dentaire" }), new { @id = "dev", @class = "form-control" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="input-group">
+
+                                                    <div class="form-group">
+                                                        <label for="honorairesRub3">Honoraires :</label>
+                                                        @Html.TextBoxFor(m => m.Rubrique3.honorairesRub3, new { @id = "honorairesRub3", @class = "form-control" })
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="deviseRub3">Devise :</label>
+                                                        @Html.DropDownListFor(m => m.Rubrique3.deviseRub3, new SelectList(new[] { "TND", "EUR", "GBP", "CHF", "SAR", "CAD", "LYD", "EGP", "LBP", "MAD", "MRU", "DZD", "TRY", "GNF", "XOF" }), new { @id = "deviseRub3", @class = "form-control" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="montantchan">Montant Converti:</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBoxFor(m => m.Rubrique3.montant_change3, new { @id = "montantchan3", @class = "form-control" })
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">TND</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="montantchan">Montant Estimé:</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBoxFor(m => m.Rubrique3.montant_estimé3, new { @id = "montantEstimé3", @class = "form-control" })
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">TND</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+
+                                                        <div class="form-group">
+                                                            <label for="matriculeFiscalRub3">Matricule Fiscal :</label>
+                                                            @Html.TextBoxFor(m => m.Rubrique3.matriculeFiscalRub3, new { @id = "matriculeFiscalRub3", @class = "form-control" })
+                                                        </div>
+
+
+
+                                                    </div>
+                                                    <div class="form-group" style="margin-top:10%;">
+                                                        <a href="#" class="btn btn-primary" id="AddOtherEdit3" onclick="addRubrique3EditToTable()">Ajouter</a>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <a href="#" class="btn btn-primary" id="AddOther3" onclick="addOtherRubrique3()">Ajouter Autre</a>
+                                                </div>
+                                                <div id="tableContainer3" style="display: none; margin-top:20px;overflow:scroll;">
+                                                    <table id="rubriquesTable3" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                        <thead class="thead-dark">
+                                                            <tr>
+                                                                <th style="padding: 10px;">Date</th>
+                                                                <th style="padding: 10px;">Dents</th>
+                                                                <th style="padding: 10px;">Act Medical</th>
+                                                                <th style="padding: 10px;">Honoraires</th>
+                                                                <th style="padding: 10px;">Devise</th>
+                                                                <th style="padding: 10px;">Montant converti</th>
+                                                                <th style="padding: 10px;">Montant estimé</th>
+
+                                                                <th style="padding: 10px;">Matricule Fiscal</th>
+                                                                <th style="padding: 10px;">Type</th>
+                                                                <th style="padding: 10px;">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="rubriquesBody3">
+                                                            <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div id="tableContainerEdit3" style="display: none; margin-top: 20px; overflow: scroll;">
+                                                    <table id="rubriquesTableEdit3" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                        <thead class="thead-dark">
+                                                            <tr>
+                                                                <th style="padding: 10px;">Date</th>
+                                                                <th style="padding: 10px;">Dents</th>
+                                                                <th style="padding: 10px;">Act Medical</th>
+                                                                <th style="padding: 10px;">Honoraires</th>
+                                                                <th style="padding: 10px;">Devise</th>
+                                                                <th style="padding: 10px;">Montant converti</th>
+                                                                <th style="padding: 10px;">Montant estimé</th>
+
+                                                                <th style="padding: 10px;">Matricule Fiscal</th>
+                                                                <th style="padding: 10px;">Type</th>
+                                                                <th style="padding: 10px;">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="rubriquesBodyEdit3">
+                                                            <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <a href="Index" class="btn btn-danger" data-dismiss="modal">Fermer</a>
+                        <a href="#" class="btn btn-success" id="SaveBSRecord">Enregistrer</a>
+                        <a href="#" class="btn btn-success" id="SaveAll">Enregistrer</a>
+
+                        <!-- Vous pouvez ajouter d'autres boutons d'action ici -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade" id="DeleteConfirmation" style="max-width: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); ">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 style="font-weight: bold; color: #000; margin: 0 auto;"><i class="bi bi-circle-fill" style="color:red;"></i> Supprimer BS</h4>
+
+                    <a href="Index" class="close" data-dismiss="modal" style="margin-top: -30;">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <h5>Êtes-vous sûr de vouloir supprimer cet enregistrement ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="Index" class="btn btn-primary" data-dismiss="modal">Annuler</a>
+                    <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirmer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+        // Désactiver l'autocomplétion pour chaque balise
+        $("input, select, textarea").attr("autocomplete", "off");
+
+    });
+    $("#loadingStatus").html("Loading ...");
+
+
+    $.get("/Home/GetbsList", function (bsList) {
+        // Fonction appelée lorsque les données JSON sont reçues avec succès
+        DataBind(bsList);
+    });
+    // Fonction pour rechercher les bulletins de soins par ID
+    function searchBsById(numBs) {
+        $.ajax({
+            type: "GET",
+            url: "/Home/FilterBsById?numBs=" + numBs,
+            success: function (bsList) {
+                // Effacez la table actuelle et affichez la liste filtrée
+                $("#setbsList").empty();
+                DataBind(bsList);
+            },
+            error: function () {
+                alert("Une erreur s'est produite lors de la recherche des bulletins de soins.");
+            }
+        });
+    }
+
+    // Fonction pour rechercher les bulletins de soins par ID adhérent
+    function searchBsByAdherentId(idAdherent) {
+        $.ajax({
+            type: "GET",
+            url: "/Home/FilterBsByAdherentId?idAdherent=" + idAdherent,
+            success: function (bsList) {
+                // Effacez la table actuelle et affichez la liste filtrée
+                $("#setbsList").empty();
+                DataBind(bsList);
+            },
+            error: function () {
+                alert("Une erreur s'est produite lors de la recherche des bulletins de soins par adhérent.");
+            }
+        });
+    }
+
+    // Fonction pour déclencher la recherche en fonction du type sélectionné
+    function searchBs() {
+        var searchTerm = $("#search").val();
+        var searchType = $("#searchType").val();
+
+        if (searchType === "bs") {
+            searchBsById(searchTerm);
+        } else if (searchType === "adh") {
+            searchBsByAdherentId(searchTerm);
+        } else {
+            alert("Type de recherche non valide.");
+        }
+    }
+
+    // Ajouter un écouteur d'événements au bouton de recherche
+    $('.btn-search').on('click', function () {
+        searchBs();
+    });
+
+
+
+    function DataBind(bsList) {
+
+        var SetData = $("#setbsList");
+        SetData.empty(); // Vide le contenu précédent avant d'ajouter de nouvelles données
+
+        for (var i = 0; i < bsList.length; i++) {
+
+            var Data = "<tr class='row_" + bsList[i].idBs + "'>" +
+                "<td>" + bsList[i].numBs + "</td>" +
+
+                "<td>" + bsList[i].idAdherent + "</td>" +
+                "<td>" + bsList[i].nomAdh + "</td>" +
+                "<td>" + bsList[i].prenomAdh + "</td>" +
+
+                "<td>" + bsList[i].codePrestataire + "</td>" +
+                "<td><button class='btn btn-warning' onclick='EditbsRecord(" + bsList[i].idBs + ")'><i class='far fa-edit small-icon text-white'></i> </button></td>" +
+                "<td><button class='btn btn-danger' onclick='DeletebsRecord(" + bsList[i].idBs + ")'><i class='fas fa-trash-alt small-icon text-white'></i> </button></td>" +
+                "<td><button class='btn btn-info' onclick='ShowbsDetails(" + bsList[i].idBs + ")'><i class='fas fa-info-circle small-icon text-white'></i></button></td>";
+            "</tr>";
+            SetData.append(Data);
+        }
+        $("#loadingStatus").html(" ");
+
+    }
+
+    //--------------------------------------------------------------------------New bs
+    $.get("/Home/GetbsListNew", function (bsListNew) {
+        // Fonction appelée lorsque les données JSON sont reçues avec succès
+        DataBindNew(bsListNew);
+    });
+
+    function DataBindNew(bsListNew) {
+
+        var SetData = $("#setbsListNew");
+        SetData.empty(); // Vide le contenu précédent avant d'ajouter de nouvelles données
+
+        for (var i = 0; i < bsListNew.length; i++) {
+
+            var Data = "<tr class='row_" + bsListNew[i].idBs + "'>" +
+                "<td>" + bsListNew[i].numBs + "</td>" +
+                "<td>" + bsListNew[i].idAdherent + "</td>" +
+                "<td>" + bsListNew[i].nomAdh + "</td>" +
+                "<td>" + bsListNew[i].prenomAdh + "</td>" +
+
+                "<td>" + bsListNew[i].codePrestataire + "</td>" +
+                "<td><button class='btn btn-success' onclick='valider(" + bsListNew[i].idBs + ")'><i class='far fa-check-circle small-icon text-white'></i></button></td>" +
+                "<td><button class='btn btn-danger' onclick='rejeter(" + bsListNew[i].idBs + ")'><i class='fas fa-times-circle small-icon text-white'></i></button></td>" +
+                "<td><button class='btn btn-info' onclick='voirPlus(" + bsListNew[i].idBs + ")'><i class='fas fa-eye small-icon text-white'></i></button></td>" +
+
+                "</tr>";
+            SetData.append(Data);
+        }
+        $("#loadingStatus").html(" ");
+
+    }
+
+
+    function valider(idBs) {
+        $.post("/Home/ValiderBulletin", { idBs: idBs })
+            .done(function (response) {
+                if (response.success) {
+                    alert("Le bulletin de soin a été validé avec succès.");
+                    // Actualiser la liste des bulletins de soin après la validation
+                    $.get("/Home/GetbsListNew", function (bsListNew) {
+                        DataBindNew(bsListNew);
+                    });
+                } else {
+                    alert("Erreur : " + response.error);
+                }
+            })
+            .fail(function () {
+                alert("Une erreur s'est produite lors de la validation du bulletin de soin.");
+            });
+    }
+    function rejeter(idBs) {
+        $.post("/Home/RejeterBulletin", { idBs: idBs })
+            .done(function (response) {
+                if (response.success) {
+                    alert("Le bulletin de soin a été rejeté avec succès.");
+                    // Actualiser la liste des bulletins de soin après le rejet
+                    $.get("/Home/GetbsListNew", function (bsListNew) {
+                        DataBindNew(bsListNew);
+                    });
+                } else {
+                    alert("Erreur : " + response.error);
+                }
+            })
+            .fail(function () {
+                alert("Une erreur s'est produite lors du rejet du bulletin de soin.");
+            });
+    }
+    function voirPlus(idBs) {
+        var url = "/Home/GetbsNewById?idBs=" + idBs;
+        $("#ModalTitle").html("Détails de Bulletin de Soin");
+        $("#MyModal").modal("show");
+        $("#SaveBSRecord").hide();
+        $("#AddOther").hide();
+        $("#editOther").hide();
+        $("#AddOther3").hide();
+        $("#editOther3").hide();
+
+
+        $("#AddOtherEdit").hide();
+        $("#AddOtherEdit3").hide();
+        $("#AddOtherEdit2").hide();
+
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                // Remplir les champs du formulaire avec les données récupérées
+                $("#buId").val(data.idBs).prop('disabled', true);
+                $("#num").val(data.numBs).prop('disabled', true);
+
+                $("#adhId").val(data.idAdherent).prop('disabled', true);
+                $("#nomAdh").val(data.nomAdh).prop('disabled', true);
+                $("#pnomAdh").val(data.prenomAdh).prop('disabled', true);
+                $("#matCnam").val(data.matriculeCnam).prop('disabled', true);
+                $("#cin_pass").val(data.CIN_PASS).prop('disabled', true);
+                $("#adressA").val(data.adressAdh).prop('disabled', true);
+                $("#DropDwn").val(data.idPrestataire).prop('disabled', true);
+                // Extraire uniquement le chemin relatif de l'image
+                var imagePath = data.path.substring(data.path.lastIndexOf("\\images\\"));
+
+                // Afficher le chemin relatif de l'image dans la console pour le débogage
+                console.log("Chemin relatif de l'image :", imagePath);
+
+                // Définir l'attribut src de l'élément img sur le chemin relatif de l'image
+                $("#bsPhoto").attr("src", imagePath);
+
+                // Afficher le chemin de l'image dans la console pour le débogage
+                console.log("Chemin de l'image :", data.path);
+                // Extraire uniquement le nom de fichier de l'image
+                var fileName = imagePath.substring(imagePath.lastIndexOf("\\") + 1);
+
+
+
+                $("#path").val(fileName).prop('disabled', true);
+                // Appel de la fonction getRubriquesByIdBs avec l'identifiant de bulletin de soin
+                getRubriquesByIdBsDetails(data.idBs);
+                // Cacher la colonne "Action" du tableau
+                $("#tableContainerEdit th:last-child, #tableContainerEdit td:last-child").hide();
+
+                $("#daterub1").val("").prop('disabled', true);
+                $("#idSousFa").val("").prop('disabled', true);
+                $("#honorub1").val("").prop('disabled', true);
+                $("#deviserub1").val("").prop('disabled', true);
+                $("#montantchan").val("").prop('disabled', true);
+                $("#matfiscal1").val("").prop('disabled', true);
+
+                getRubriques2ByIdBsDetails(data.idBs);
+                $("#tableContainerEdit2 th:last-child, #tableContainerEdit2 td:last-child").hide();
+
+
+                $("#DE").val("").prop('disabled', true);
+                $("#DS").val("").prop('disabled', true);
+                $("#montantFrais").val("").prop('disabled', true);
+                $("#deviseRub2").val("").prop('disabled', true);
+                $("#montantchan2").val("").prop('disabled', true);
+
+                $("#matriculeFiscalRub2").val("").prop('disabled', true);
+
+
+                getRubriques3ByIdBsDetails(data.idBs);
+                $("#tableContainerEdit3 th:last-child, #tableContainerEdit3 td:last-child").hide();
+
+
+                $("#dateRub3").val("").prop('disabled', true);
+                $("#dents").val("").prop('disabled', true);
+                $("#actMedical").val("").prop('disabled', true);
+                $("#honorairesRub3").val("").prop('disabled', true);
+                $("#deviseRub3").val("").prop('disabled', true);
+                $("#montantchan3").val("").prop('disabled', true);
+
+                $("#matriculeFiscalRub3").val("").prop('disabled', true);
+                $("#dev").val("").prop('disabled', true);
+            },
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des données.");
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+        $('#bsTable').DataTable({
+            "scrollY": "100px", // Spécifie la hauteur du scroll vertical
+            "scrollCollapse": true, // Active le scroll vertical
+            "paging": true // Active la pagination
+        });
+    });
+
+
+    // pagination element par page
+    (function () {
+        // Gestionnaire d'événements pour le sélecteur de taille de page
+        $('#pageSizeSelect').change(function () {
+            // Récupérer la nouvelle valeur sélectionnée
+            var newPageSize = $(this).val();
+
+            // Appeler la fonction pour récupérer et afficher les données avec la nouvelle taille de page
+            fetchDataWithPageSize(1, newPageSize); // Commencer à partir de la première page après le changement de taille
+        });
+
+        // Fonction pour récupérer et afficher les données avec une nouvelle taille de page
+        function fetchDataWithPageSize(page, pageSize) {
+            $.get("/Home/GetbsList", { page: page, pageSize: pageSize }, function (bsList) {
+                // Appeler la fonction de liaison des données avec la nouvelle liste de bulletins de soin
+                $("#setbsList").empty();
+                DataBind(bsList);
+            });
+        }
+
+        // Fonction pour récupérer et afficher les données lors du chargement initial de la page
+        function loadData(page, pageSize) {
+            $.ajax({
+                url: '/Home/GetbsList',
+                type: 'GET',
+                data: { page: page, pageSize: pageSize },
+                dataType: 'json',
+                success: function (data) {
+                    // Mettre à jour votre tableau HTML avec les données récupérées
+                    // Ici, 'data' contient les données renvoyées par votre méthode backend
+                    // Vous pouvez itérer sur 'data' pour construire les lignes de votre tableau
+                    // et les ajouter à votre tableau existant
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('Error:', textStatus, errorThrown);
+                }
+            });
+        }
+
+        // Charger les données lors du chargement initial de la page avec la taille de page par défaut
+        var defaultPageSize = $('#pageSizeSelect').val();
+        loadData(1, defaultPageSize); // Charger les données pour la première page avec la taille de page par défaut
+    })();
+
+    // code pour page suivante et precedente
+    $(document).ready(function () {
+        var currentPage = 1;
+        var pageSize = 5; // Taille de la page par défaut
+        var totalPages = 10; // Nombre total de pages
+
+        // Fonction pour charger les données de la page spécifiée et mettre à jour l'interface utilisateur
+        function loadData2(page, pageSize) {
+            // Faites une requête AJAX pour récupérer les données de la page spécifiée
+            $.get("/Home/GetbsList2", { page: page, pageSize: pageSize }, function (response) {
+                // Mettez à jour votre tableau HTML avec les données récupérées
+                $('#setbsList').empty(); // Videz d'abord le contenu existant du tableau
+                var data = response.data; // Assurez-vous que votre backend renvoie les données dans un objet 'data'
+                $.each(data, function (index, item) {
+                    // Générez la ligne HTML pour chaque élément de données et ajoutez-la à la table
+                    var row = '<tr>' +
+                        '<td>' + item.numBs + '</td>' +
+                        '<td>' + item.idAdherent + '</td>' +
+                        '<td>' + item.nomAdh + '</td>' +
+                        '<td>' + item.prenomAdh + '</td>' +
+
+                        '<td>' + item.codePrestataire + '</td>' +
+                        '<td><a href="#" class="btn btn-warning" onclick="EditbsRecord(' + item.idBs + ')"><i class="fas fa-edit small-icon text-white"></i></a></td>' +
+                        '<td><a href="#" class="btn btn-danger" onclick="DeletebsRecord(' + item.idBs + ')"><i class="fas fa-trash-alt small-icon text-white"></i></a></td>' +
+                        '<td><a href="#" class="btn btn-info" onclick="ShowbsDetails(' + item.idBs + ')"><i class="fas fa-info-circle small-icon text-white"></i></a></td>' +
+                        '</tr>';
+                    $('#setbsList').append(row);
+                });
+                // Mettre à jour le nombre total de pages après avoir obtenu les données
+                totalPages = Math.ceil(response.totalRecords / pageSize);
+                // Mettre à jour l'état des boutons de pagination
+                updatePaginationButtons();
+            });
+        }
+
+        // Fonction pour mettre à jour l'état des boutons de pagination
+        function updatePaginationButtons() {
+            // Désactiver le bouton "Précédent" s'il n'y a pas de page précédente
+            $('#previousPage').prop('disabled', currentPage <= 1);
+            // Désactiver le bouton "Suivant" s'il n'y a pas de page suivante
+            $('#nextPage').prop('disabled', currentPage >= totalPages);
+        }
+
+        // Gestionnaire d'événements pour le bouton Précédent
+        $('#previousPage').click(function () {
+            if (currentPage > 1) {
+                currentPage--;
+                loadData2(currentPage, pageSize);
+            }
+        });
+
+        // Gestionnaire d'événements pour le bouton Suivant
+        $('#nextPage').click(function () {
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadData2(currentPage, pageSize);
+            }
+        });
+
+        // Gestionnaire d'événements pour le sélecteur de taille de page
+        $('#pageSizeSelect').change(function () {
+            // Récupérer la nouvelle valeur sélectionnée
+            pageSize = $(this).val();
+            // Recharger les données avec la nouvelle taille de page
+            loadData(1, pageSize);
+        });
+
+        // Appel initial pour charger les données de la première page
+        loadData(currentPage, pageSize);
+    });
+
+
+
+
+
+
+
+
+    //pour les nouveaux bs
+
+
+    // pagination element par page
+    (function () {
+        // Gestionnaire d'événements pour le sélecteur de taille de page
+        $('#pageSizeSelectNew').change(function () {
+            // Récupérer la nouvelle valeur sélectionnée
+            var newPageSize = $(this).val();
+
+            // Appeler la fonction pour récupérer et afficher les données avec la nouvelle taille de page
+            fetchDataWithPageSizeNew(1, newPageSize); // Commencer à partir de la première page après le changement de taille
+        });
+
+        // Fonction pour récupérer et afficher les données avec une nouvelle taille de page
+        function fetchDataWithPageSizeNew(page, pageSize) {
+            $.get("/Home/GetbsListNew", { page: page, pageSize: pageSize }, function (bsListNew) {
+                // Appeler la fonction de liaison des données avec la nouvelle liste de bulletins de soin
+                $("#setbsListNew").empty();
+                DataBindNew(bsListNew);
+            });
+        }
+
+        // Fonction pour récupérer et afficher les données lors du chargement initial de la page
+        function loadDataNew(page, pageSize) {
+            $.ajax({
+                url: '/Home/GetbsListNew',
+                type: 'GET',
+                data: { page: page, pageSize: pageSize },
+                dataType: 'json',
+                success: function (data) {
+                    // Mettre à jour votre tableau HTML avec les données récupérées
+                    // Ici, 'data' contient les données renvoyées par votre méthode backend
+                    // Vous pouvez itérer sur 'data' pour construire les lignes de votre tableau
+                    // et les ajouter à votre tableau existant
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('Error:', textStatus, errorThrown);
+                }
+            });
+        }
+
+        // Charger les données lors du chargement initial de la page avec la taille de page par défaut
+        var defaultPageSize = $('#pageSizeSelect').val();
+        loadDataNew(1, defaultPageSize); // Charger les données pour la première page avec la taille de page par défaut
+    })();
+
+    // code pour page suivante et precedente
+    $(document).ready(function () {
+        var currentPage = 1;
+        var pageSize = 5; // Taille de la page par défaut
+        var totalPages = 10; // Nombre total de pages
+
+        // Fonction pour charger les données de la page spécifiée et mettre à jour l'interface utilisateur
+        function loadData2New(page, pageSize) {
+            // Faites une requête AJAX pour récupérer les données de la page spécifiée
+            $.get("/Home/GetbsList2New", { page: page, pageSize: pageSize }, function (response) {
+                // Mettez à jour votre tableau HTML avec les données récupérées
+                $('#setbsListNew').empty(); // Videz d'abord le contenu existant du tableau
+                var data = response.data; // Assurez-vous que votre backend renvoie les données dans un objet 'data'
+                $.each(data, function (index, itemNew) {
+                    // Générez la ligne HTML pour chaque élément de données et ajoutez-la à la table
+                    var row = '<tr>' +
+                        '<td>' + itemNew.numBs + '</td>' +
+                        '<td>' + itemNew.idAdherent + '</td>' +
+                        '<td>' + itemNew.nomAdh + '</td>' +
+                        '<td>' + itemNew.prenomAdh + '</td>' +
+                        '<td>' + itemNew.codePrestataire + '</td>' +
+                        '<td><a href="#" class="btn btn-success" onclick="valider(' + itemNew.idBs + ')"><i class="far fa-check-circle small-icon text-white"></i></a></td>' +
+                        '<td><a href="#" class="btn btn-danger" onclick="rejeter(' + itemNew.idBs + ')"><i class="fas fa-times-circle small-icon text-white"></i></a></td>' +
+                        '<td><a href="#" class="btn btn-info" onclick="voirPlus(' + itemNew.idBs + ')"><i class="fas fa-eye small-icon text-white"></i></a></td>' +
+                        '</tr>';
+                    $('#setbsListNew').append(row);
+                });
+                // Mettre à jour le nombre total de pages après avoir obtenu les données
+                totalPages = Math.ceil(response.totalRecords / pageSize);
+                // Mettre à jour l'état des boutons de pagination
+                updatePaginationButtonsNew();
+            });
+        }
+
+        // Fonction pour mettre à jour l'état des boutons de pagination
+        function updatePaginationButtonsNew() {
+            // Désactiver le bouton "Précédent" s'il n'y a pas de page précédente
+            $('#previousPageNew').prop('disabled', currentPage <= 1);
+            // Désactiver le bouton "Suivant" s'il n'y a pas de page suivante
+            $('#nextPageNew').prop('disabled', currentPage >= totalPages);
+        }
+
+        // Gestionnaire d'événements pour le bouton Précédent
+        $('#previousPageNew').click(function () {
+            if (currentPage > 1) {
+                currentPage--;
+                loadData2New(currentPage, pageSize);
+            }
+        });
+
+        // Gestionnaire d'événements pour le bouton Suivant
+        $('#nextPageNew').click(function () {
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadData2New(currentPage, pageSize);
+            }
+        });
+
+        // Gestionnaire d'événements pour le sélecteur de taille de page
+        $('#pageSizeSelectNew').change(function () {
+            // Récupérer la nouvelle valeur sélectionnée
+            pageSize = $(this).val();
+            // Recharger les données avec la nouvelle taille de page
+            loadData2New(1, pageSize);
+        });
+
+        // Appel initial pour charger les données de la première page
+        loadData2New(currentPage, pageSize);
+    });
+
+
+
+
+
+    function AddNewBS(idBs) {
+
+        // Désactiver le lien en ajoutant l'événement click
+
+        $("#form")[0].reset();
+        $("#ModalTitle").html("Ajouter nouveau BS");
+        $("#MyModal").modal("show");
+        $("#editOther").hide();
+        $("#details").hide();
+        $("#editOther3").hide();
+        $("#details3").hide();
+
+
+        $("#AddOtherEdit").hide();
+        $("#SaveAll").hide()
+        $("#AddOtherEdit3").hide();
+        $("#AddOtherEdit2").hide();
+
+
+        // Réinitialiser les champs de la rubrique actuelle pour permettre une nouvelle saisie
+        $("#DropDwn").val("");
+        $("#idSousFa").val("");
+        $("#honorub1").val("");
+        $("#montantchan").val("");
+        $("#matfiscal1").val("");
+
+        $(document).ready(function () {
+            // Obtenir la date actuelle
+            var currentDate = new Date();
+
+            // Formater la date au format YYYY-MM-DD pour le champ de date
+            var formattedDate = currentDate.toISOString().split('T')[0];
+
+            // Définir la date formatée comme valeur du champ de date
+            $("#daterub1").val(formattedDate);
+        });
+
+        // Réinitialiser les champs de la rubrique actuelle pour permettre une nouvelle saisie
+        $(document).ready(function () {
+            // Obtenir la date actuelle
+            var currentDate = new Date();
+
+            // Formater la date au format YYYY-MM-DD pour le champ de date
+            var formattedDate = currentDate.toISOString().split('T')[0];
+
+            // Définir la date formatée comme valeur du champ de date
+            $("#DE").val(formattedDate);
+        });
+        $(document).ready(function () {
+            // Obtenir la date actuelle
+            var currentDate = new Date();
+
+            // Formater la date au format YYYY-MM-DD pour le champ de date
+            var formattedDate = currentDate.toISOString().split('T')[0];
+
+            // Définir la date formatée comme valeur du champ de date
+            $("#DS").val(formattedDate);
+        });
+        $("#montantFrais").val("");
+        $("#montantchan2").val("");
+
+        $("#matriculeFiscalRub2").val("");
+        // Réinitialiser les champs de la rubrique actuelle pour permettre une nouvelle saisie
+        $(document).ready(function () {
+            // Obtenir la date actuelle
+            var currentDate = new Date();
+
+            // Formater la date au format YYYY-MM-DD pour le champ de date
+            var formattedDate = currentDate.toISOString().split('T')[0];
+
+            // Définir la date formatée comme valeur du champ de date
+            $("#dateRub3").val(formattedDate);
+        });
+        $("#dents").val("");
+        $("#actMedical").val("");
+        $("#honorairesRub3").val("");
+        $("#montantchan3").val("");
+
+        $("#matriculeFiscalRub3").val("");
+        $("#dev").val("");
+
+    }
+
+    // Fonction pour récupérer et remplir les données d'un enregistrement BS pour la modification
+    function EditbsRecord(idBs) {
+        var url = "/Home/GetbsById?idBs=" + idBs;
+        $("#ModalTitle").html("Modifier BS");
+        $("#MyModal").modal("show");
+        $("#AddOther").hide();
+        $("#details").hide();
+        $("#AddOther3").hide();
+        $("#details3").hide();
+        $("#SaveBSRecord").hide()
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                // Remplir les champs du formulaire avec les données récupérées
+                $("#buId").val(data.idBs).prop('disabled', true);
+                $("#num").val(data.numBs);
+
+                $("#adhId").val(data.idAdherent)
+                $("#nomAdh").val(data.nomAdh);
+                $("#pnomAdh").val(data.prenomAdh);
+                $("#matCnam").val(data.matriculeCnam);
+                $("#cin_pass").val(data.CIN_PASS);
+                $("#adressA").val(data.adressAdh);
+                $("#DropDwn").val(data.idPrestataire);
+
+
+                // Appel de la fonction getRubriquesByIdBs avec l'identifiant de bulletin de soin
+                getRubriquesByIdBs(data.idBs);
+
+                $("#daterub1").val("");
+                $("#idSousFa").val("");
+                $("#honorub1").val("");
+                $("#montantchan").val("");
+                $("#montantEstimé").val("");
+
+                $("#matfiscal1").val("");
+
+                getRubriques2ByIdBs(data.idBs);
+
+
+                $("#DE").val("");
+                $("#DS").val("");
+                $("#montantFrais").val("");
+                $("#montantchan2").val("");
+                $("#montantEstimé2").val("");
+
+                $("#matriculeFiscalRub2").val("");
+
+
+                getRubriques3ByIdBs(data.idBs);
+
+
+                $("#dateRub3").val("");
+                $("#dents").val("");
+                $("#actMedical").val("");
+                $("#honorairesRub3").val("");
+                $("#montantchan3").val("");
+                $("#montantEstimé3").val("");
+
+                $("#matriculeFiscalRub3").val("");
+                $("#dev").val("");
+            },
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des données.");
+            }
+        });
+    }
+
+    function DeletebsRecord(idBs) {
+        $("#buId").val(idBs);
+        $("#DeleteConfirmation").modal("show");
+    }
+
+    function ConfirmDelete() {
+        var idBs = $("#buId").val();
+        $.ajax({
+            type: "POST",
+            url: "/Home/DeletebsRecord?idBs=" + idBs,
+            success: function (result) {
+                $("#DeleteConfirmation").modal("hide");
+                alert("BS supprimé!");
+                window.location.href = "/Home/Index";
+                reloadData();  // Rafraîchir les données après modification
+
+                if (result) {
+                    $(".row_" + idBs).remove();
+                    reloadData();  // Rafraîchir les données après suppression
+
+                } else {
+                    alert("Failed to delete BS record.");
+                }
+            },
+            error: function () {
+                alert("An error occurred while deleting the BS record.");
+            }
+        });
+    }
+    function ShowbsDetails(idBs) {
+        var url = "/Home/GetbsById?idBs=" + idBs;
+        $("#ModalTitle").html("Détails de Bulletin de Soin");
+        $("#MyModal").modal("show");
+        $("#SaveBSRecord").hide();
+        $("#SaveAll").hide();
+
+        $("#AddOther").hide();
+        $("#editOther").hide();
+        $("#AddOther3").hide();
+        $("#editOther3").hide();
+
+
+        $("#AddOtherEdit").hide();
+        $("#AddOtherEdit3").hide();
+        $("#AddOtherEdit2").hide();
+
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                // Remplir les champs du formulaire avec les données récupérées
+                $("#buId").val(data.idBs).prop('disabled', true);
+                $("#num").val(data.numBs).prop('disabled', true);
+
+                $("#adhId").val(data.idAdherent).prop('disabled', true);
+                $("#nomAdh").val(data.nomAdh).prop('disabled', true);
+                $("#pnomAdh").val(data.prenomAdh).prop('disabled', true);
+                $("#matCnam").val(data.matriculeCnam).prop('disabled', true);
+                $("#cin_pass").val(data.CIN_PASS).prop('disabled', true);
+                $("#adressA").val(data.adressAdh).prop('disabled', true);
+                $("#DropDwn").val(data.idPrestataire).prop('disabled', true);
+
+                // Appel de la fonction getRubriquesByIdBs avec l'identifiant de bulletin de soin
+                getRubriquesByIdBsDetails(data.idBs);
+                // Cacher la colonne "Action" du tableau
+                $("#tableContainerEdit th:last-child, #tableContainerEdit td:last-child").hide();
+
+                $("#daterub1").val("").prop('disabled', true);
+                $("#idSousFa").val("").prop('disabled', true);
+                $("#honorub1").val("").prop('disabled', true);
+                $("#deviserub1").val("TND").prop('disabled', true);
+                $("#montantchan").val("").prop('disabled', true);
+                $("#matfiscal1").val("").prop('disabled', true);
+                $("#montantEstimé").val("").prop('disabled', true);
+
+                getRubriques2ByIdBsDetails(data.idBs);
+                $("#tableContainerEdit2 th:last-child, #tableContainerEdit2 td:last-child").hide();
+
+
+                $("#DE").val("").prop('disabled', true);
+                $("#DS").val("").prop('disabled', true);
+                $("#montantFrais").val("").prop('disabled', true);
+                $("#deviseRub2").val("TND").prop('disabled', true);
+                $("#montantchan2").val("").prop('disabled', true);
+                $("#montantEstimé2").val("").prop('disabled', true);
+
+                $("#matriculeFiscalRub2").val("").prop('disabled', true);
+
+
+                getRubriques3ByIdBsDetails(data.idBs);
+                $("#tableContainerEdit3 th:last-child, #tableContainerEdit3 td:last-child").hide();
+
+
+                $("#dateRub3").val("").prop('disabled', true);
+                $("#dents").val("").prop('disabled', true);
+                $("#actMedical").val("").prop('disabled', true);
+                $("#honorairesRub3").val("").prop('disabled', true);
+                $("#deviseRub3").val("TND").prop('disabled', true);
+                $("#montantchan3").val("").prop('disabled', true);
+                $("#montantEstimé3").val("").prop('disabled', true);
+
+                $("#matriculeFiscalRub3").val("").prop('disabled', true);
+                $("#dev").val("").prop('disabled', true);
+            },
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des données.");
+            }
+        });
+    }
+
+
+
+    // ------------------------------------------------------------------------------------------------------- AJOUTER RUBs --------------
+
+    // Variable pour stocker les rubriques
+    var rubriquesData = [];
+    // Fonction pour ajouter une nouvelle itération de la rubrique 1 dans le formulaire
+    function addOtherRubrique() {
+        if ($("#daterub1").val() && $("#idSousFa").val() && $("#honorub1").val() && $("#deviserub1").val() && $("#matfiscal1").val()) {
+
+            // Collecter les données de la rubrique actuelle
+            var rubrique = {
+                idBs: $("#buId").val(),// Ajout de l'idBs ici
+                dateRub1: $("#daterub1").val(),
+                idSousFamille: $("#idSousFa").val(),
+                honorairesRub1: $("#honorub1").val(),
+                deviseRub1: $("#deviserub1").val(),
+                montant_change: $("#montantchan").val(),
+                montant_estimé: $("#montantEstimé").val(),
+
+                matriculeFisacalRub1: $("#matfiscal1").val()
+
+
+            };
+
+
+            // Ajouter les données de la rubrique actuelle dans la variable
+            rubriquesData.push(rubrique);
+
+            // Réinitialiser les champs de la rubrique actuelle pour permettre une nouvelle saisie
+            $(document).ready(function () {
+                // Obtenir la date actuelle
+                var currentDate = new Date();
+
+                // Formater la date au format YYYY-MM-DD pour le champ de date
+                var formattedDate = currentDate.toISOString().split('T')[0];
+
+                // Définir la date formatée comme valeur du champ de date
+                $("#daterub1").val(formattedDate);
+            });
+            $("#idSousFa").val("");
+            $("#honorub1").val("");
+            $("#montantchan").val("");
+            $("#matfiscal1").val("");
+
+            // Afficher le message "Ligne sauvegardée"
+            alert("Ligne de Rub1 sauvegardée");
+
+            displayRubriquesData();
+
+        }
+    }
+    function displayRubriquesData() {
+        var tbody = $("#rubriquesBody");
+        tbody.empty();
+
+        rubriquesData.forEach(function (rubrique) {
+            var row = $("<tr>");
+
+            // Ajouter les valeurs de désignation à la ligne du tableau
+            var designationText = $("#idSousFa option[value='" + rubrique.idSousFamille + "']").text();
+            var designationCell = $("<td>").text(designationText);
+            designationCell.css({
+                "padding": "8px",
+                "border": "1px solid #333"
+            });
+            row.append(designationCell);
+
+            // Parcourir les autres clés de rubrique
+            Object.keys(rubrique).slice(1).forEach(function (key) {
+                if (key !== "idSousFamille") { // Ne pas inclure la désignation dans les autres cellules
+                    var cell = $("<td>").text(rubrique[key]);
+                    cell.css({
+                        "padding": "8px",
+                        "border": "1px solid #333",
+                    });
+                    row.append(cell);
+                }
+            });
+
+            // Ajouter une colonne pour la suppression avec une icône de corbeille
+
+            var deleteCell = $("<td>");
+            var deleteIcon = $("<i>").addClass("fa fa-trash");
+            deleteIcon.css({
+                "color": "red",
+                "cursor": "pointer"
+
+            });
+            deleteCell.css({
+                "border": "1px solid #333"
+            });
+            deleteCell.append(deleteIcon);
+            row.append(deleteCell);
+
+            // Attacher un gestionnaire d'événements pour supprimer la ligne
+            deleteIcon.click(function () {
+                row.remove(); // Supprimer la ligne du tableau
+                // Supprimer la ligne correspondante de rubriquesData (si nécessaire)
+                var index = rubriquesData.indexOf(rubrique);
+                if (index !== -1) {
+                    rubriquesData.splice(index, 1);
+                }
+                alert("ligne supprimé");
+
+            });
+
+            tbody.append(row);
+        });
+
+        // Afficher le tableau pendant un court laps de temps
+        $("#tableContainer").show();
+    }
+    // Variable pour stocker les rubriques 2
+    var rubriquesData2 = [];
+    // Fonction pour ajouter une nouvelle itération de la rubrique 2 dans le formulaire
+    function addOtherRubrique2() {
+        if ($("#DE").val() && $("#DS").val() && $("#montantFrais").val() && $("#deviseRub2").val() && $("#matriculeFiscalRub2").val()) {
+
+            // Collecter les données de la rubrique actuelle
+            var rubrique2 = {
+                idBs: $("#buId").val(), // Ajout de l'idBs ici
+                DE: $("#DE").val(),
+                DS: $("#DS").val(),
+                montantFrais: $("#montantFrais").val(),
+                deviseRub2: $("#deviseRub2").val(),
+                montant_change2: $("#montantchan2").val(),
+                montant_estimé2: $("#montantEstimé2").val(),
+
+                matriculeFiscalRub2: $("#matriculeFiscalRub2").val()
+            };
+
+            // Ajouter les données de la rubrique actuelle dans la variable
+            rubriquesData2.push(rubrique2);
+
+            // Réinitialiser les champs de la rubrique actuelle pour permettre une nouvelle saisie
+            $(document).ready(function () {
+                // Obtenir la date actuelle
+                var currentDate = new Date();
+
+                // Formater la date au format YYYY-MM-DD pour le champ de date
+                var formattedDate = currentDate.toISOString().split('T')[0];
+
+                // Définir la date formatée comme valeur du champ de date
+                $("#DE").val(formattedDate);
+            });
+            $(document).ready(function () {
+                // Obtenir la date actuelle
+                var currentDate = new Date();
+
+                // Formater la date au format YYYY-MM-DD pour le champ de date
+                var formattedDate = currentDate.toISOString().split('T')[0];
+
+                // Définir la date formatée comme valeur du champ de date
+                $("#DS").val(formattedDate);
+            });
+            $("#deviseRub2").val("");
+            $("#montantchan2").val("");
+            $("#matriculeFiscalRub2").val("");
+
+            // Afficher le message "Ligne sauvegardée"
+        }
+
+    }
+    // Variable pour stocker les rubriques 3
+    var rubriquesData3 = [];
+    // Fonction pour ajouter une nouvelle itération de la rubrique 3 dans le formulaire
+    function addOtherRubrique3() {
+        if ($("#dateRub3").val() && $("#dents").val() && $("#actMedical").val() && $("#honorairesRub3").val() && $("#deviseRub3").val() && $("#matriculeFiscalRub3").val() && $("#dev").val()) {
+
+            // Collecter les données de la rubrique actuelle
+            var rubrique3 = {
+                idBs: $("#buId").val(), // Ajout de l'idBs ici
+                dateRub3: $("#dateRub3").val(),
+                dents: $("#dents").val(),
+                actMedical: $("#actMedical").val(),
+                honorairesRub3: $("#honorairesRub3").val(),
+                deviseRub3: $("#deviseRub3").val(),
+                montant_change3: $("#montantchan3").val(),
+                montant_estimé3: $("#montantEstimé3").val(),
+
+                matriculeFiscalRub3: $("#matriculeFiscalRub3").val(),
+                type: $("#dev").val()
+            };
+
+            // Ajouter les données de la rubrique actuelle dans la variable
+            rubriquesData3.push(rubrique3);
+
+            // Réinitialiser les champs de la rubrique actuelle pour permettre une nouvelle saisie
+            $(document).ready(function () {
+                // Obtenir la date actuelle
+                var currentDate = new Date();
+
+                // Formater la date au format YYYY-MM-DD pour le champ de date
+                var formattedDate = currentDate.toISOString().split('T')[0];
+
+                // Définir la date formatée comme valeur du champ de date
+                $("#dateRub3").val(formattedDate);
+            });
+            $("#dents").val("");
+            $("#actMedical").val("");
+            $("#honorairesRub3").val("");
+            $("#montantchan3").val("");
+
+            $("#matriculeFiscalRub3").val("");
+            $("#dev").val("");
+
+            alert("Ligne de rub 3 sauvegardée");
+            displayRubriquesData3();
+        }
+    }
+    function displayRubriquesData3() {
+        var tbody = $("#rubriquesBody3");
+        tbody.empty();
+
+        rubriquesData3.forEach(function (rubrique3) {
+            var row = $("<tr>");
+
+            // Parcourir les clés de rubrique 3 en ignorant la première clé correspondant à #buId
+            Object.keys(rubrique3).slice(1).forEach(function (key) {
+                var cell = $("<td>").text(rubrique3[key]);
+                cell.css({
+                    "padding": "8px",
+                    "border": "1px solid #333",
+                });
+                row.append(cell);
+            });
+
+            // Ajouter une colonne pour la suppression avec une icône de corbeille
+            var deleteCell = $("<td>");
+            var deleteIcon = $("<i>").addClass("fa fa-trash");
+            deleteIcon.css({
+                "color": "red",
+                "cursor": "pointer"
+
+            });
+            deleteCell.css({
+                "border": "1px solid #333"
+            });
+            deleteCell.append(deleteIcon);
+            row.append(deleteCell);
+
+            // Attacher un gestionnaire d'événements pour supprimer la ligne
+            deleteIcon.click(function () {
+                row.remove(); // Supprimer la ligne du tableau
+                // Supprimer la ligne correspondante de rubriquesData (si nécessaire)
+                var index = rubriquesData3.indexOf(rubrique3);
+                if (index !== -1) {
+                    rubriquesData3.splice(index, 1);
+                }
+                alert("ligne supprimé");
+            });
+
+            tbody.append(row);
+        });
+
+        // Afficher le tableau pendant un court laps de temps
+        $("#tableContainer3").show();
+    }
+    $("#SaveBSRecord").click(function () {
+        addOtherRubrique();
+        addOtherRubrique2();
+        addOtherRubrique3();
+
+
+        // Collecter les données générales
+        var dataToSend = {
+            idBs: $("#buId").val(),
+            numBs: $("#num").val(),
+
+            idAdherent: $("#adhId").val(),
+            nomAdh: $("#nomAdh").val(),
+            prenomAdh: $("#pnomAdh").val(),
+            matriculeCnam: $("#matCnam").val(),
+            CIN_PASS: $("#cin_pass").val(),
+            adressAdh: $("#adressA").val(),
+            idPrestataire: $("#DropDwn").val(),
+
+        };
+        // Vérifier si des rubriques 1 ont été ajoutées
+        if (rubriquesData.length > 0) {
+            dataToSend.Rubriques = rubriquesData;
+        }
+
+        // Vérifier si des rubriques 2 ont été ajoutées
+        if (rubriquesData2.length > 0) {
+            dataToSend.Rubriques2 = rubriquesData2;
+        }
+
+        // Vérifier si des rubriques 3 ont été ajoutées
+        if (rubriquesData3.length > 0) {
+            dataToSend.Rubriques3 = rubriquesData3;
+        }
+
+
+        // Envoyer les données au serveur
+        $.ajax({
+            type: "POST",
+            url: "/Home/SaveDataInDatabase",
+            data: dataToSend,
+            success: function (response) {
+                if (response.success) {
+                    alert("Success!");
+                    window.location.href = "/Home/Index";
+                    $("#MyModal").modal("hide");
+                } else {
+                    alert("Erreur lors de l'enregistrement des données.");
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de l'envoi des données au serveur.");
+            }
+        });
+    });
+
+
+
+
+
+    ///------------------------------------------------------------------------------Edit RUB1---------------------------
+
+
+    // Fonction pour récupérer les rubriques par idBs
+    function getRubriquesByIdBs() {
+        var idBs = $("#buId").val();
+
+        $.ajax({
+            type: "GET",
+            url: "/Home/GetRubriquesByIdBs",
+            data: { idBs: idBs },
+            success: function (response) {
+                if (response && response.length > 0) {
+                    response.forEach(function (rubrique) {
+                        if (rubrique.date) {
+                            rubrique.date = formatDate(rubrique.date);
+                        }
+                    });
+                    displayRubriquesEdit(response);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des rubriques.");
+            }
+        });
+    }
+
+    function formatDate(dateString) {
+        var date = new Date(dateString);
+        var day = String(date.getDate()).padStart(2, '0');
+        var month = String(date.getMonth() + 1).padStart(2, '0');
+        var year = date.getFullYear();
+        return day + '/' + month + '/' + year;
+    }
+
+    // Fonction pour afficher les rubriques dans le tableau d'édition
+    function displayRubriquesEdit(rubriques) {
+        var tbody = $("#rubriquesBodyEdit");
+        tbody.empty();
+
+        rubriques.forEach(function (rubrique) {
+            var row = $("<tr>");
+
+            // Ajouter l'ID Rub1 (caché)
+            var idRub1Cell = $("<td>").text(rubrique.idRub1);
+            idRub1Cell.css("display", "none"); // Cacher la colonne
+            row.append(idRub1Cell);
+
+            // Ajouter les valeurs de désignation à la ligne du tableau
+            var designationCell = $("<td>").text(rubrique.codeNom + " - " + rubrique.nomSousFamille);
+            designationCell.css({
+                "padding": "10px",
+                "border": "1px solid #333"
+            });
+            row.append(designationCell);
+
+            // Ajouter les autres cellules avec les données de la rubrique
+            var dateMilliseconds = parseInt(rubrique.dateRub1.substr(6));
+            var date = new Date(dateMilliseconds);
+            var formattedDateRub1 = formatDate(date);
+
+            // Ajouter la cellule contenant le champ de date
+            var dateCell = $("<td>").text(formattedDateRub1);
+            row.append(dateCell);
+
+            // Ajouter les autres cellules
+            var honorairesCell = $("<td>").text(rubrique.honorairesRub1);
+            var deviseCell = $("<td>").text(rubrique.deviseRub1);
+            var montantConvertiCell = $("<td>").text(rubrique.montant_change);
+            var montantEstiméCell = $("<td>").text(rubrique.montant_estimé);
+            var matriculeCell = $("<td>").text(rubrique.matriculeFisacalRub1);
+
+            [honorairesCell, deviseCell, montantConvertiCell, montantEstiméCell, matriculeCell].forEach(function (cell) {
+                cell.css({
+                    "padding": "10px",
+                    "border": "1px solid #333"
+                });
+                row.append(cell);
+            });
+
+            // Ajouter une colonne pour la suppression avec une icône de corbeille
+            var deleteCell = $("<td>");
+            var deleteIcon = $("<i>").addClass("fa fa-trash");
+            deleteIcon.css({
+                "color": "red",
+                "cursor": "pointer"
+            });
+            deleteCell.css({
+                "border": "1px solid #333"
+            });
+            deleteCell.append(deleteIcon);
+            row.append(deleteCell);
+
+            // Attacher un gestionnaire d'événements pour supprimer la ligne et la rubrique de la base de données
+            deleteIcon.click(function () {
+                var idRubrique = $(this).closest("tr").find("td:first").text(); // Lire l'ID Rub1 depuis la première colonne cachée
+                deleteRubriqueFromDatabase(idRubrique); // Supprimer la rubrique de la base de données
+                row.remove(); // Supprimer la ligne du tableau
+            });
+
+            tbody.append(row);
+        });
+
+        // Afficher le tableau une fois que toutes les lignes ont été ajoutées
+        $("#tableContainerEdit").show();
+    }
+
+    var rubriquesDataEdit = []; // Variable pour stocker toutes les rubriques ajoutées
+
+    // Variable pour stocker les rubriques à envoyer au serveur
+    var rubriquesDataToSend = [];
+
+    // Fonction pour ajouter une nouvelle rubrique à partir d'un objet rubriqueEdit
+    function addRubriqueEditToTable(rubriqueEdit) {
+        if ($("#daterub1").val() && $("#idSousFa").val() && $("#honorub1").val() && $("#deviserub1").val() && $("#matfiscal1").val()) {
+            // Collecter les données de la rubrique actuelle
+            var rubriqueEdit = {
+                idBs: $("#buId").val(), // Ajout de l'idBs ici
+                dateRub1: $("#daterub1").val(),
+                idSousFamille: $("#idSousFa").val(),
+                honorairesRub1: $("#honorub1").val(),
+                deviseRub1: $("#deviserub1").val(),
+                montant_change: $("#montantchan").val(),
+                montant_estimé: $("#montantEstimé").val(),
+
+                matriculeFisacalRub1: $("#matfiscal1").val(),
+                deleted: false // par défaut, l'entrée n'est pas supprimée
+
+            };
+
+            // Ajouter les données de la rubrique actuelle dans la variable rubriquesDataEdit
+            rubriquesDataEdit.push(rubriqueEdit);
+
+            // Ajouter les données de la rubrique actuelle dans la variable rubriquesDataToSend pour l'envoi au serveur
+            rubriquesDataToSend.push(rubriqueEdit);
+
+            // Réinitialiser les champs de la rubrique actuelle pour permettre une nouvelle saisie
+            $("#daterub1").val("");
+            $("#idSousFa").val("");
+            $("#honorub1").val("");
+            $("#montantchan").val("");
+            $("#montantEstimé").val("");
+
+            $("#matfiscal1").val("");
+
+            // Afficher les rubriques dans le tableau
+            displayRubriquesEditTable();
+        }
+
+        // Stocker les rubriquesDataEdit dans le stockage local après modification
+        storeRubriquesDataEditLocally();
+    }
+    // Fonction pour afficher les rubriques dans le tableau rubriquesBodyEdit
+    function displayRubriquesEditTable() {
+        var tbody = $("#rubriquesBodyEdit");
+
+        rubriquesDataEdit.forEach(function (rubriqueEdit, index) {
+            var row = $("<tr>");
+
+            // Ajouter la désignation
+            var designationText = $("#idSousFa option[value='" + rubriqueEdit.idSousFamille + "']").text();
+            var designationCell = $("<td>").text(designationText);
+
+            designationCell.css({
+                "padding": "8px",
+                "border": "1px solid #333"
+            });
+            row.append(designationCell);
+
+            // Ajouter les autres cellules de la ligne
+            var formattedDateRub1 = new Date(rubriqueEdit.dateRub1).toISOString().substr(0, 10);
+            var dateCell = $("<td>").text(formattedDateRub1);
+            var honorairesCell = $("<td>").text(rubriqueEdit.honorairesRub1);
+            var deviseCell = $("<td>").text(rubriqueEdit.deviseRub1);
+
+            var montantConvertiCell = $("<td>").text(rubriqueEdit.montant_change);
+            var montantEstiméCell = $("<td>").text(rubriqueEdit.montant_estimé);
+
+            var matriculeCell = $("<td>").text(rubriqueEdit.matriculeFisacalRub1);
+
+            [dateCell, honorairesCell, deviseCell, montantConvertiCell, montantEstiméCell, matriculeCell].forEach(function (cell) {
+                cell.css({
+                    "padding": "10px",
+                    "border": "1px solid #333"
+                });
+                row.append(cell);
+            });
+
+            // Ajouter une colonne pour la suppression avec une icône de corbeille
+            var deleteCell = $("<td>");
+            var deleteIcon = $("<i>").addClass("fa fa-trash");
+            deleteIcon.css({
+                "color": "red",
+                "cursor": "pointer"
+            });
+            deleteCell.css({
+                "border": "1px solid #333"
+            });
+            deleteCell.append(deleteIcon);
+            row.append(deleteCell);
+
+            // Attacher un gestionnaire d'événements pour supprimer la ligne
+            deleteIcon.click(function () {
+                rubriqueEdit.deleted = true;
+
+                row.remove(); // Supprimer la ligne du tableau
+
+                // Supprimer la ligne correspondante de rubriquesDataEdit
+                var editIndex = rubriquesDataEdit.indexOf(rubriqueEdit);
+                if (editIndex !== -1) {
+                    rubriquesDataEdit.splice(editIndex, 1);
+                }
+
+                alert("Ligne supprimée");
+            });
+
+            tbody.append(row);
+        });
+
+        // Afficher le tableau une fois que toutes les lignes ont été ajoutées
+        $("#tableContainerEdit").show();
+
+        // Effacer les données du tableau après affichage
+        rubriquesDataEdit.length = 0;
+    }
+
+    // Fonction pour stocker les rubriquesDataEdit dans le stockage local
+    function storeRubriquesDataEditLocally() {
+        localStorage.setItem('rubriquesDataEdit', JSON.stringify(rubriquesDataEdit));
+    }
+
+    // Fonction pour charger les rubriquesDataEdit depuis le stockage local
+    function loadRubriquesDataEditFromLocal() {
+        var storedData = localStorage.getItem('rubriquesDataEdit');
+        if (storedData) {
+            rubriquesDataEdit = JSON.parse(storedData);
+        }
+    }
+    // Fonction pour envoyer les rubriques sauvegardées localement au serveur
+    // Fonction pour envoyer les rubriques sauvegardées localement au serveur
+    function sendRubriquesDataToServer() {
+        // Filtrer les rubriques marquées comme supprimées
+        var rubriquesToSend = rubriquesDataToSend.filter(function (rubrique) {
+            return !rubrique.deleted;
+        });
+
+        // Envoyer les données au serveur via une requête POST
+        $.ajax({
+            type: "POST",
+            url: "/Home/SynchroniserRubriques",
+            contentType: "application/json",
+            data: JSON.stringify({ rubriquesData: rubriquesToSend }),
+            success: function (response) {
+                // Gérer la réponse du serveur ici
+                console.log("Données envoyées avec succès au serveur !");
+                // Réinitialiser la variable rubriquesDataToSend après l'envoi des données
+                rubriquesDataToSend = [];
+            },
+            error: function (xhr, status, error) {
+                // Gérer les erreurs ici
+                alert("Erreur lors de l'envoi des données de rubrique 1 au serveur :", error);
+            }
+        });
+    }
+    // Fonction pour supprimer une rubrique de la base de données
+    function deleteRubriqueFromDatabase(idRubrique) {
+        $.ajax({
+            type: "POST",
+            url: "/Home/DeleteRubrique",
+            data: { idRubrique: idRubrique },
+            success: function (response) {
+                alert("Rubrique supprimée de la base de données !");
+            },
+            error: function (xhr, status, error) {
+                alert("Erreur lors de la suppression de la rubrique de la base de données :", error);
+            }
+        });
+    }
+
+    //----------------------------------------------------------------------------------------------------------Edit RUB3
+
+    // Fonction pour récupérer les rubriques par idBs
+    function getRubriques3ByIdBs(idBs) {
+        var idBs = $("#buId").val();
+
+        $.ajax({
+
+            type: "GET",
+            url: "/Home/GetRubriques3ByIdBs",
+            data: { idBs: idBs },
+            // Dans la partie de succès de votre requête AJAX
+            success: function (response) {
+                if (response && response.length > 0) {
+                    response.forEach(function (rubrique3) {
+                        if (rubrique3.date) {
+                            rubrique3.date = formatDate(rubrique3.date);
+                        }
+                    });
+
+                    displayRubriquesEdit3(response);
+                }
+            }, // Ajoutez une virgule ici pour séparer success de error
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des rubriques.");
+            }
+        });
+    }
+    // Fonction pour afficher les rubriques dans le tableau d'édition
+    function displayRubriquesEdit3(rubriques3) {
+        var tbody = $("#rubriquesBodyEdit3");
+        tbody.empty();
+
+        rubriques3.forEach(function (rubrique3, index) {
+            var row = $("<tr>");
+
+            var idRub3Cell = $("<td>").text(rubrique3.idRub3);
+            idRub3Cell.css("display", "none");
+            row.append(idRub3Cell);
+
+            // Ajouter les autres cellules avec les données de la rubrique
+            var dateMilliseconds = parseInt(rubrique3.dateRub3.substr(6));
+            var date = new Date(dateMilliseconds);
+            var formattedDateRub3 = formatDate(date);
+
+            // Ajouter la cellule contenant le champ de date
+            var dateCell = $("<td>").append(formattedDateRub3);
+            row.append(dateCell);
+
+            var dentsCell = $("<td>").text(rubrique3.dents);
+            var actMedicalCell = $("<td>").text(rubrique3.actMedical);
+            var honorairesCell = $("<td>").text(rubrique3.honorairesRub3);
+            var deviseCell = $("<td>").text(rubrique3.deviseRub3);
+            var montantConvertiCell = $("<td>").text(rubrique3.montant_change3);
+            var montantEstimé3Cell = $("<td>").text(rubrique3.estimé3);
+
+            var matriculeCell = $("<td>").text(rubrique3.matriculeFiscalRub3);
+
+            var typeCell = $("<td>").text(rubrique3.type);
+
+            [dentsCell, actMedicalCell, honorairesCell, deviseCell, montantConvertiCell, montantEstimé3Cell, matriculeCell, typeCell].forEach(function (cell) {
+                cell.css({
+                    "padding": "10px",
+                    "border": "1px solid #333"
+                });
+                row.append(cell);
+            });
+
+            var deleteCell = $("<td>");
+            var deleteIcon = $("<i>").addClass("fa fa-trash");
+            deleteIcon.css({
+                "color": "red",
+                "cursor": "pointer"
+            });
+            deleteCell.css({
+                "border": "1px solid #333"
+            });
+            deleteCell.append(deleteIcon);
+            row.append(deleteCell);
+
+            // Attacher un gestionnaire d'événements pour supprimer la ligne et la rubrique de la base de données
+            deleteIcon.click(function () {
+                var idRubrique3 = $(this).closest("tr").find("td:first").text(); // Lire l'ID Rub3 depuis la première colonne cachée
+                deleteRubrique3FromDatabase(idRubrique3); // Supprimer la rubrique de la base de données
+                row.remove(); // Supprimer la ligne du tableau
+            });
+
+            tbody.append(row);
+        });
+
+        // Afficher le tableau une fois que toutes les lignes ont été ajoutées
+        $("#tableContainerEdit3").show();
+    }
+
+    var rubriquesDataEdit3 = []; // Variable pour stocker toutes les rubriques 3 ajoutées
+
+    // Variable pour stocker les rubriques 3 à envoyer au serveur
+    var rubriquesDataToSend3 = [];
+
+
+    // Fonction pour ajouter une nouvelle rubrique 3 à partir d'un objet rubrique3Edit
+    function addRubrique3EditToTable() {
+        if ($("#dateRub3").val() && $("#dents").val() && $("#actMedical").val() && $("#honorairesRub3").val() && $("#deviseRub3").val() && $("#matriculeFiscalRub3").val() && $("#dev").val()) {
+            var rubrique3Edit = {
+                idBs: $("#buId").val(),
+                dateRub3: $("#dateRub3").val(),
+                dents: $("#dents").val(),
+                actMedical: $("#actMedical").val(),
+                honorairesRub3: $("#honorairesRub3").val(),
+                deviseRub3: $("#deviseRub3").val(),
+                montant_change3: $("#montantchan3").val(),
+                montant_estimé3: $("#montantEstimé3").val(),
+
+                matriculeFiscalRub3: $("#matriculeFiscalRub3").val(),
+                type: $("#dev").val(),
+                deleted: false
+            };
+
+            rubriquesDataEdit3.push(rubrique3Edit);
+            rubriquesDataToSend3.push(rubrique3Edit);
+
+            $("#dateRub3").val("");
+            $("#dents").val("");
+            $("#actMedical").val("");
+            $("#honorairesRub3").val("");
+            $("#montantchan3").val("");
+
+            $("#matriculeFiscalRub3").val("");
+            $("#dev").val("");
+
+            displayRubriques3EditTable();
+
+        }
+        storeRubriques3DataEditLocally();
+    }
+
+
+    // Fonction pour afficher les rubriques 3 dans le tableau rubriquesBodyEdit3
+    function displayRubriques3EditTable() {
+        var tbody = $("#rubriquesBodyEdit3");
+
+        rubriquesDataEdit3.forEach(function (rubrique3Edit, index) {
+            var row = $("<tr>");
+
+            var formattedDateRub3 = new Date(rubrique3Edit.dateRub3).toISOString().substr(0, 10);
+            var dateCell = $("<td>").text(formattedDateRub3);
+            var dentsCell = $("<td>").text(rubrique3Edit.dents);
+            var actMedicalCell = $("<td>").text(rubrique3Edit.actMedical);
+            var honorairesCell = $("<td>").text(rubrique3Edit.honorairesRub3);
+            var deviseCell = $("<td>").text(rubrique3Edit.deviseRub3);
+            var montantConvertiCell = $("<td>").text(rubrique3Edit.montant_change3);
+            var montantEstimé3Cell = $("<td>").text(rubrique3Edit.montant_estimé3);
+
+            var matriculeCell = $("<td>").text(rubrique3Edit.matriculeFiscalRub3);
+            var typeCell = $("<td>").text(rubrique3Edit.type);
+
+            [dateCell, dentsCell, actMedicalCell, honorairesCell, deviseCell, montantConvertiCell, montantEstimé3Cell, matriculeCell, typeCell].forEach(function (cell) {
+                cell.css({
+                    "padding": "10px",
+                    "border": "1px solid #333"
+                });
+                row.append(cell);
+            });
+
+            var deleteCell = $("<td>");
+            var deleteIcon = $("<i>").addClass("fa fa-trash");
+            deleteIcon.css({
+                "color": "red",
+                "cursor": "pointer"
+            });
+            deleteCell.css({
+                "border": "1px solid #333"
+            });
+            deleteCell.append(deleteIcon);
+            row.append(deleteCell);
+
+            deleteIcon.click(function () {
+                rubrique3Edit.deleted = true;
+                row.remove();
+                alert("Ligne supprimée");
+            });
+
+            tbody.append(row);
+        });
+
+        $("#tableContainerEdit3").show();
+
+        rubriquesDataEdit3.length = 0;
+    }
+    // Fonction pour stocker les rubriquesDataEdit dans le stockage local
+    function storeRubriques3DataEditLocally() {
+        localStorage.setItem('rubriquesDataEdit3', JSON.stringify(rubriquesDataEdit3));
+    }
+
+    // Fonction pour charger les rubriquesDataEdit depuis le stockage local
+    function loadRubriques3DataEditFromLocal() {
+        var storedData3 = localStorage.getItem('rubriquesDataEdit3');
+
+    }
+    function sendRubriques3DataToServer() {
+        var rubriquesToSend3 = rubriquesDataToSend3.filter(function (rubrique3) {
+            return !rubrique3.deleted;
+        });
+
+        // Envoyer les données au serveur via une requête POST
+        $.ajax({
+            type: "POST",
+            url: "/Home/SynchroniserRubriques3",
+            contentType: "application/json",
+            data: JSON.stringify({ rubriquesData3: rubriquesToSend3 }),
+            success: function (response) {
+                // Gérer la réponse du serveur ici
+                console.log("Données envoyées avec succès au serveur !");
+
+                // Réinitialiser la variable rubriquesDataToSend après l'envoi des données
+                rubriquesDataToSend3 = [];
+
+            },
+            error: function (xhr, status, error) {
+                // Gérer les erreurs ici
+                alert("Erreur lors de l'envoi des données de rubrique 3 au serveur :", error);
+            }
+        });
+    }
+    // Fonction pour supprimer une rubrique de la base de données
+    function deleteRubrique3FromDatabase(idRubrique3) {
+        $.ajax({
+            type: "POST",
+            url: "/Home/DeleteRubrique3",
+            data: { idRubrique3: idRubrique3 },
+            success: function (response) {
+                alert("Rubrique supprimée de la base de données !");
+            },
+            error: function (xhr, status, error) {
+                alert("Erreur lors de la suppression de la rubrique de la base de données :", error);
+            }
+        });
+    }
+
+
+
+    //-----------------------------------------------------------------------------------------------------Edit RUB2
+
+    function getRubriques2ByIdBs(idBs) {
+        var idBs = $("#buId").val();
+
+        $.ajax({
+
+            type: "GET",
+            url: "/Home/GetRubriques2ByIdBs",
+            data: { idBs: idBs },
+            // Dans la partie de succès de votre requête AJAX
+            success: function (response) {
+                if (response && response.length > 0) {
+                    response.forEach(function (rubrique2) {
+                        if (rubrique2.date) {
+                            rubrique2.date = formatDate(rubrique2.date);
+                        }
+                    });
+
+                    displayRubriquesEdit2(response);
+                }
+            }, // Ajoutez une virgule ici pour séparer success de error
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des rubriques.");
+            }
+        });
+    }
+
+    // Fonction pour afficher les rubriques dans le tableau d'édition
+    function displayRubriquesEdit2(rubriques2) {
+        var tbody = $("#rubriquesBodyEdit2");
+        tbody.empty();
+
+        rubriques2.forEach(function (rubrique2, index) {
+            var row = $("<tr>");
+
+            // Ajouter l'ID Rub2 (caché)
+            var idRub2Cell = $("<td>").text(rubrique2.idRub2);
+            idRub2Cell.css("display", "none"); // Cacher la colonne
+            row.append(idRub2Cell);
+            // Ajouter les autres cellules avec les données de la rubrique
+            var dateMilliseconds = parseInt(rubrique2.DE.substr(6));
+            var date = new Date(dateMilliseconds);
+            var formattedDE = formatDate(date);
+
+            // Ajouter la cellule contenant le champ de date
+            var DECell = $("<td>").append(formattedDE);
+            row.append(DECell);
+
+            // Ajouter les autres cellules avec les données de la rubrique
+            var dateMilliseconds = parseInt(rubrique2.DS.substr(6));
+            var date = new Date(dateMilliseconds);
+            var formattedDS = formatDate(date);
+
+            // Ajouter la cellule contenant le champ de date
+            var DSCell = $("<td>").append(formattedDS);
+            row.append(DSCell);
+            var montantFraisCell = $("<td>").text(rubrique2.montantFrais);
+            var deviseCell = $("<td>").text(rubrique2.deviseRub2);
+            var montantConvertiCell = $("<td>").text(rubrique2.montant_change2);
+            var montantEstimé2Cell = $("<td>").text(rubrique2.montant_estimé2);
+
+            var matriculeCell = $("<td>").text(rubrique2.matriculeFiscalRub2);
+
+            [montantFraisCell, deviseCell, montantConvertiCell, montantEstimé2Cell, matriculeCell].forEach(function (cell) {
+                cell.css({
+                    "padding": "10px",
+                    "border": "1px solid #333"
+                });
+                row.append(cell);
+            });
+
+            // Ajouter une colonne pour la suppression avec une icône de corbeille
+            var deleteCell = $("<td>");
+            var deleteIcon = $("<i>").addClass("fa fa-trash");
+            deleteIcon.css({
+                "color": "red",
+                "cursor": "pointer"
+            });
+            deleteCell.css({
+                "border": "1px solid #333"
+            });
+            deleteCell.append(deleteIcon);
+            row.append(deleteCell);
+
+            // Attacher un gestionnaire d'événements pour supprimer la ligne et la rubrique de la base de données
+            deleteIcon.click(function () {
+                var idRubrique2 = $(this).closest("tr").find("td:first").text(); // Lire l'ID Rub2 depuis la première colonne cachée
+                deleteRubrique2FromDatabase(idRubrique2); // Supprimer la rubrique de la base de données
+                row.remove(); // Supprimer la ligne du tableau
+            });
+
+            tbody.append(row);
+        });
+
+        // Afficher le tableau une fois que toutes les lignes ont été ajoutées
+        $("#tableContainerEdit2").show();
+    }
+
+
+    var rubriquesDataEdit2 = []; // Variable pour stocker toutes les rubriques 2 ajoutées
+    var rubriquesDataToSend2 = []; // Variable pour stocker les rubriques 2 à envoyer au serveur
+
+    // Fonction pour ajouter une nouvelle rubrique 2 à partir d'un objet rubrique2Edit
+    function addRubrique2EditToTable() {
+        if ($("#DE").val() && $("#DS").val() && $("#montantFrais").val() && $("#deviseRub2").val() && $("#matriculeFiscalRub2").val()) {
+            var rubrique2Edit = {
+                idBs: $("#buId").val(),
+                DE: $("#DE").val(),
+                DS: $("#DS").val(),
+                montantFrais: $("#montantFrais").val(),
+                deviseRub2: $("#deviseRub2").val(),
+                montant_change2: $("#montantchan2").val(),
+                montant_estimé2: $("#montantEstimé2").val(),
+
+                matriculeFiscalRub2: $("#matriculeFiscalRub2").val(),
+                deleted: false // par défaut, l'entrée n'est pas supprimée
+            };
+
+            rubriquesDataEdit2.push(rubrique2Edit);
+            rubriquesDataToSend2.push(rubrique2Edit);
+
+            $("#DE").val("");
+            $("#DS").val("");
+            $("#montantFrais").val("");
+            $("#montantchan2").val("");
+            $("#montantEstimé2").val("");
+
+            $("#matriculeFiscalRub2").val("");
+
+            displayRubriques2EditTable();
+        }
+        storeRubriques2DataEditLocally();
+    }
+
+    // Fonction pour afficher les rubriques 2 dans le tableau rubriquesBodyEdit2
+    function displayRubriques2EditTable() {
+        var tbody = $("#rubriquesBodyEdit2");
+
+        rubriquesDataEdit2.forEach(function (rubrique2Edit, index) {
+            var row = $("<tr>");
+
+            var DECell = $("<td>").text(rubrique2Edit.DE);
+            var DSCell = $("<td>").text(rubrique2Edit.DS);
+            var montantFraisCell = $("<td>").text(rubrique2Edit.montantFrais);
+            var deviseCell = $("<td>").text(rubrique2Edit.deviseRub2);
+            var montantConvertiCell = $("<td>").text(rubrique2Edit.montant_change2);
+            var montantEstimé2Cell = $("<td>").text(rubrique2Edit.montant_estimé2);
+
+            var matriculeCell = $("<td>").text(rubrique2Edit.matriculeFiscalRub2);
+
+            [DECell, DSCell, montantFraisCell, deviseCell, montantConvertiCell, montantEstimé2Cell, matriculeCell].forEach(function (cell) {
+                cell.css({
+                    "padding": "10px",
+                    "border": "1px solid #333"
+                });
+                row.append(cell);
+            });
+
+            var deleteCell = $("<td>");
+            var deleteIcon = $("<i>").addClass("fa fa-trash");
+            deleteIcon.css({
+                "color": "red",
+                "cursor": "pointer"
+            });
+            deleteCell.css({
+                "border": "1px solid #333"
+            });
+            deleteCell.append(deleteIcon);
+            row.append(deleteCell);
+
+            deleteIcon.click(function () {
+                rubrique2Edit.deleted = true;
+                row.remove();
+                alert("Ligne supprimée");
+            });
+
+            tbody.append(row);
+        });
+
+        $("#tableContainerEdit2").show();
+
+        rubriquesDataEdit2.length = 0;
+    }
+
+
+    function storeRubriques2DataEditLocally() {
+        localStorage.setItem('rubriquesDataEdit2', JSON.stringify(rubriquesDataEdit2));
+    }
+
+    // Fonction pour charger les rubriquesDataEdit depuis le stockage local
+    function loadRubriques2DataEditFromLocal() {
+        var storedData2 = localStorage.getItem('rubriquesDataEdit2');
+        if (storedData2) {
+            rubriquesDataEdit2 = JSON.parse(storedData2);
+        }
+    }
+
+    function sendRubriques2DataToServer() {
+        // Filtrer les rubriques marquées comme supprimées
+        var rubriquesToSend2 = rubriquesDataToSend2.filter(function (rubrique2) {
+            return !rubrique2.deleted;
+        });
+
+        // Envoyer les données au serveur via une requête POST
+        $.ajax({
+            type: "POST",
+            url: "/Home/SynchroniserRubriques2",
+            contentType: "application/json",
+            data: JSON.stringify({ rubriquesData2: rubriquesToSend2 }),
+            success: function (response) {
+                // Gérer la réponse du serveur ici
+                console.log("Données envoyées avec succès au serveur !");
+
+                // Réinitialiser la variable rubriquesDataToSend après l'envoi des données
+                rubriquesDataToSend2 = [];
+            },
+            error: function (xhr, status, error) {
+                // Gérer les erreurs ici
+                alert("Erreur lors de l'envoi des données de rubrique 2 au serveur : " + error);
+            }
+        });
+    }
+    // Fonction pour supprimer une rubrique de la base de données
+    function deleteRubrique2FromDatabase(idRubrique2) {
+        $.ajax({
+            type: "POST",
+            url: "/Home/DeleteRubrique2",
+            data: { idRubrique2: idRubrique2 },
+            success: function (response) {
+                alert("Rubrique supprimée de la base de données !");
+            },
+            error: function (xhr, status, error) {
+                alert("Erreur lors de la suppression de la rubrique de la base de données :", error);
+            }
+        });
+    }
+
+
+    //--------------------------------------------------------------------------------------------------------------
+
+    function synchroniserToutesLesRubriques() {
+        sendRubriquesDataToServer();
+        sendRubriques3DataToServer();
+        sendRubriques2DataToServer();
+        saveupdateddata();
+        alert("données enregistrées avec succés ! ");
+        window.location.href = "/Home/Index";
+        $("#MyModal").modal("hide");
+
+    }
+    function saveupdateddata() {
+        // Collecter les données générales
+        var dataToSend = {
+            idBs: $("#buId").val(),
+            idPrestataire: $("#DropDwn").val(),
+            numBs: $("#num").val(),
+
+            idAdherent: $("#adhId").val(),
+
+        };
+
+        // Envoyer les données au serveur
+        $.ajax({
+            type: "POST",
+            url: "/Home/saveUpdatedData",
+            data: JSON.stringify(dataToSend), // Envoyer les données sous forme d'objet JSON
+            contentType: "application/json",
+            success: function (response) {
+                if (response.success) {
+                    alert("Success!");
+                } else {
+                    alert("Erreur lors de l'enregistrement des données.");
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de l'envoi des données au serveur.");
+            }
+        });
+    }
+
+    // Ensuite, vous pouvez attacher cette fonction à un événement de clic sur un bouton, par exemple :
+    $(document).ready(function () {
+        $('#SaveAll').click(function () {
+            synchroniserToutesLesRubriques();
+        });
+    });
+
+    $(document).ready(function () {
+        // Fonction pour récupérer les détails de l'adhérent lors du chargement initial de la page et lorsque l'ID de l'adhérent change
+        getAdherentDetails();
+
+        $('#adhId').change(function () {
+            getAdherentDetails();
+        });
+
+        function getAdherentDetails() {
+            var idAdherent = $('#adhId').val();
+            $.ajax({
+                url: '/Home/GetAdherentDetails',
+                type: 'GET',
+                data: { idAdherent: idAdherent },
+                success: function (data) {
+                    $('#nomAdh').val(data.nomAdh);
+                    $('#pnomAdh').val(data.prenomAdh);
+                    $('#matCnam').val(data.matriculeCnam);
+                    $('#cin_pass').val(data.CIN_PASS);
+                    $('#adressA').val(data.adressAdh);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Une erreur s'est produite lors de la récupération des données:", error);
+                    // Gérer l'erreur de manière appropriée, par exemple, afficher un message à l'utilisateur
+                }
+            });
+        }
+    });
+
+    //------------------------------------------------------------------------------------------------Details
+
+    function getRubriquesByIdBsDetails(idBs) {
+        var idBs = $("#buId").val();
+
+        $.ajax({
+
+            type: "GET",
+            url: "/Home/GetRubriquesByIdBs",
+            data: { idBs: idBs },
+            // Dans la partie de succès de votre requête AJAX
+            success: function (response) {
+                if (response && response.length > 0) {
+                    response.forEach(function (rubrique) {
+                        if (rubrique.date) {
+                            rubrique.date = formatDate(rubrique.date);
+                        }
+                    });
+
+                    displayRubriquesWithoutDelete(response);
+                }
+            }, // Ajoutez une virgule ici pour séparer success de error
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des rubriques.");
+            }
+        });
+    }
+
+
+    // Fonction pour afficher les rubriques dans le tableau sans la colonne de suppression
+    function displayRubriquesWithoutDelete(rubriques) {
+        var tbody = $("#rubriquesBodyEdit");
+        tbody.empty();
+
+        rubriques.forEach(function (rubrique, index) {
+            var row = $("<tr>");
+
+            // Ajouter l'ID Rub1 (caché)
+            var idRub1Cell = $("<td>").text(rubrique.idRub1);
+            idRub1Cell.css("display", "none"); // Cacher la colonne
+            row.append(idRub1Cell);
+
+            // Ajouter les valeurs de désignation à la ligne du tableau
+            var designationCell = $("<td>").text(rubrique.codeNom + " - " + rubrique.nomSousFamille);
+            designationCell.css({
+                "padding": "10px",
+                "border": "1px solid #333"
+            });
+            row.append(designationCell);
+
+            // Ajouter les autres cellules avec les données de la rubrique
+            var dateMilliseconds = parseInt(rubrique.dateRub1.substr(6));
+            var date = new Date(dateMilliseconds);
+            var formattedDateRub1 = formatDate(date);
+
+            // Ajouter la cellule contenant le champ de date
+            var dateCell = $("<td>").append(formattedDateRub1);
+            row.append(dateCell);
+
+            // Ajouter les autres cellules
+            var honorairesCell = $("<td>").text(rubrique.honorairesRub1);
+            var deviseCell = $("<td>").text(rubrique.deviseRub1);
+            var montantConvertiCell = $("<td>").text(rubrique.montant_change);
+            var montantEstiméCell = $("<td>").text(rubrique.montant_estimé);
+
+            var matriculeCell = $("<td>").text(rubrique.matriculeFisacalRub1);
+
+            [honorairesCell, deviseCell, montantConvertiCell, montantEstiméCell, matriculeCell].forEach(function (cell) {
+                cell.css({
+                    "padding": "10px",
+                    "border": "1px solid #333"
+                });
+                row.append(cell);
+            });
+
+            tbody.append(row);
+        });
+
+        // Afficher le tableau une fois que toutes les lignes ont été ajoutées
+        $("#tableContainerEdit").show();
+    }
+
+    function getRubriques2ByIdBsDetails(idBs) {
+        var idBs = $("#buId").val();
+
+        $.ajax({
+
+            type: "GET",
+            url: "/Home/GetRubriques2ByIdBs",
+            data: { idBs: idBs },
+            // Dans la partie de succès de votre requête AJAX
+            success: function (response) {
+                if (response && response.length > 0) {
+                    response.forEach(function (rubrique2) {
+                        if (rubrique2.date) {
+                            rubrique2.date = formatDate(rubrique2.date);
+                        }
+                    });
+                    displayRubriquesEdit2WithoutDelete(response);
+                }
+            }, // Ajoutez une virgule ici pour séparer success de error
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des rubriques.");
+            }
+        });
+    }
+
+    // Fonction pour afficher les rubriques dans le deuxième tableau d'édition sans la colonne de suppression
+    function displayRubriquesEdit2WithoutDelete(rubriques2) {
+        var tbody = $("#rubriquesBodyEdit2");
+        tbody.empty();
+
+        rubriques2.forEach(function (rubrique2, index) {
+            var row = $("<tr>");
+
+            // Ajouter l'ID Rub2 (caché)
+            var idRub2Cell = $("<td>").text(rubrique2.idRub2);
+            idRub2Cell.css("display", "none"); // Cacher la colonne
+            row.append(idRub2Cell);
+            // Ajouter les autres cellules avec les données de la rubrique
+            var dateMilliseconds = parseInt(rubrique2.DE.substr(6));
+            var date = new Date(dateMilliseconds);
+            var formattedDE = formatDate(date);
+
+            // Ajouter la cellule contenant le champ de date
+            var DECell = $("<td>").append(formattedDE);
+            row.append(DECell);
+
+            // Ajouter les autres cellules avec les données de la rubrique
+            var dateMilliseconds = parseInt(rubrique2.DS.substr(6));
+            var date = new Date(dateMilliseconds);
+            var formattedDS = formatDate(date);
+
+            // Ajouter la cellule contenant le champ de date
+            var DSCell = $("<td>").append(formattedDS);
+            row.append(DSCell);
+            var montantFraisCell = $("<td>").text(rubrique2.montantFrais);
+            var deviseCell = $("<td>").text(rubrique2.deviseRub2);
+            var montantConvertiCell = $("<td>").text(rubrique2.montant_change2);
+            var montantEstimé2Cell = $("<td>").text(rubrique2.montant_estimé2);
+
+            var matriculeCell = $("<td>").text(rubrique2.matriculeFiscalRub2);
+
+            [montantFraisCell, deviseCell, montantConvertiCell, montantEstimé2Cell, matriculeCell].forEach(function (cell) {
+                cell.css({
+                    "padding": "10px",
+                    "border": "1px solid #333"
+                });
+                row.append(cell);
+            });
+
+            tbody.append(row);
+        });
+
+        // Afficher le deuxième tableau une fois que toutes les lignes ont été ajoutées
+        $("#tableContainerEdit2").show();
+    }
+
+
+    function getRubriques3ByIdBsDetails(idBs) {
+        var idBs = $("#buId").val();
+
+        $.ajax({
+
+            type: "GET",
+            url: "/Home/GetRubriques3ByIdBs",
+            data: { idBs: idBs },
+            // Dans la partie de succès de votre requête AJAX
+            success: function (response) {
+                if (response && response.length > 0) {
+                    response.forEach(function (rubrique3) {
+                        if (rubrique3.date) {
+                            rubrique3.date = formatDate(rubrique3.date);
+                        }
+                    });
+                    displayRubriquesEdit3WithoutDelete(response);
+                }
+            }, // Ajoutez une virgule ici pour séparer success de error
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des rubriques.");
+            }
+        });
+    }
+
+    // Fonction pour afficher les rubriques dans le troisième tableau d'édition sans la colonne de suppression
+    function displayRubriquesEdit3WithoutDelete(rubriques3) {
+        var tbody = $("#rubriquesBodyEdit3");
+        tbody.empty();
+
+        rubriques3.forEach(function (rubrique3, index) {
+            var row = $("<tr>");
+
+            var idRub3Cell = $("<td>").text(rubrique3.idRub3);
+            idRub3Cell.css("display", "none");
+            row.append(idRub3Cell);
+
+            // Ajouter les autres cellules avec les données de la rubrique
+            var dateMilliseconds = parseInt(rubrique3.dateRub3.substr(6));
+            var date = new Date(dateMilliseconds);
+            var formattedDateRub3 = formatDate(date);
+
+            // Ajouter la cellule contenant le champ de date
+            var dateCell = $("<td>").append(formattedDateRub3);
+            row.append(dateCell);
+
+            var dentsCell = $("<td>").text(rubrique3.dents);
+            var actMedicalCell = $("<td>").text(rubrique3.actMedical);
+            var honorairesCell = $("<td>").text(rubrique3.honorairesRub3);
+            var deviseCell = $("<td>").text(rubrique3.deviseRub3);
+            var montantConvertiCell = $("<td>").text(rubrique3.montant_change3);
+            var montantEstimé3Cell = $("<td>").text(rubrique3.montant_estimé3);
+            var matriculeCell = $("<td>").text(rubrique3.matriculeFiscalRub3);
+            var typeCell = $("<td>").text(rubrique3.type);
+
+            [dentsCell, actMedicalCell, honorairesCell, deviseCell, montantConvertiCell, montantEstimé3Cell, matriculeCell, typeCell].forEach(function (cell) {
+                cell.css({
+                    "padding": "10px",
+                    "border": "1px solid #333"
+                });
+                row.append(cell);
+            });
+
+            tbody.append(row);
+        });
+
+        // Afficher le troisième tableau une fois que toutes les lignes ont été ajoutées
+        $("#tableContainerEdit3").show();
+    }
+    //----------------------------------------------------------------------------------------------------------------TAUX
+
+    // Fonction pour gérer le changement de sélection dans la liste de devises
+    document.getElementById('deviserub1').onchange = function () {
+        var selectedCurrency = this.value; // Récupérer la devise sélectionnée
+        var dateRubrique = document.getElementById('daterub1').value; // Récupérer la date de la rubrique
+
+        // Effectuer une requête AJAX vers le serveur
+        $.ajax({
+            url: '/Home/GetTauxDeChange', // URL de l'action côté serveur
+            type: 'GET',
+            data: { selectedCurrency: selectedCurrency, rubriqueDate: dateRubrique }, // Données à envoyer avec la requête
+            success: function (response) {
+                if (response.error) {
+                    alert(response.error); // Afficher une alerte en cas d'erreur
+                    // Réinitialiser le montant converti à zéro
+                    document.getElementById('montantchan').value = "0.00";
+                    document.getElementById('montantEstimé').value = "0.00";
+
+                } else {
+                    var tauxDeChange = response.taux; // Récupérer le taux de change de la réponse
+                    var honoraires = parseFloat(document.getElementById('honorub1').value); // Récupérer les honoraires
+                    var montantChange = tauxDeChange * honoraires; // Calculer le montant converti
+
+                    // Afficher le montant converti dans le champ correspondant
+                    document.getElementById('montantchan').value = montantChange.toFixed(2); // Mettre à jour le champ avec le montant converti
+                    // Mettre à jour le montant estimé
+                    updateMontantEstime(); // Appeler la fonction pour mettre à jour le montant estimé
+
+                }
+            },
+            error: function (xhr, status, error) {
+                alert('Erreur lors de la récupération du taux de change : ' + error); // Afficher une alerte en cas d'erreur
+                // Réinitialiser le montant converti à zéro
+                document.getElementById('montantchan').value = "0.00";
+                document.getElementById('montantEstimé').value = "0.00";
+
+            }
+        });
+    };
+
+    // Fonction pour mettre à jour le montant converti en fonction de la devise sélectionnée
+    function updateMontantConverti() {
+        var selectedCurrency = document.getElementById('deviserub1').value; // Récupérer la devise sélectionnée
+        var dateRubrique = document.getElementById('daterub1').value; // Récupérer la date de la rubrique
+        var honoraires = parseFloat(document.getElementById('honorub1').value); // Récupérer les honoraires
+
+        // Récupérer la valeur du champ d'honoraires
+        var honorairesValue = parseFloat(document.getElementById('honorub1').value);
+
+        // Vérifier si le champ d'honoraires est rempli
+        // if (!isNaN(honorairesValue) && honorairesValue > 0) {
+        // Effectuer la requête AJAX pour récupérer le taux de change
+        $.ajax({
+            url: '/Home/GetTauxDeChange',
+            type: 'GET',
+            data: { selectedCurrency: selectedCurrency, rubriqueDate: dateRubrique },
+            success: function (response) {
+                if (!response.error) {
+                    var tauxDeChange = response.taux; // Récupérer le taux de change de la réponse
+                    var montantChange = tauxDeChange * honorairesValue; // Calculer le montant converti
+
+                    // Afficher le montant converti dans le champ correspondant
+                    document.getElementById('montantchan').value = montantChange.toFixed(2); // Mettre à jour le champ avec le montant converti
+
+                    // Mettre à jour automatiquement le montant estimé
+                    updateMontantEstime(); // Appeler la fonction de mise à jour du montant estimé
+                } else {
+                    // Si aucun taux de change n'est trouvé, afficher une alerte et réinitialiser le montant converti à zéro
+                    alert('Aucun taux de change trouvé pour la devise sélectionnée et la date de la rubrique.');
+                    document.getElementById('montantchan').value = "0.00"; // Réinitialiser le champ à zéro
+                    document.getElementById('montantEstimé').value = "0.00"; // Réinitialiser le champ à zéro
+
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Erreur lors de la récupération du taux de change : ' + error); // Afficher une erreur dans la console en cas d'erreur
+            }
+        });
+        // } else {
+        // Afficher une alerte si le champ d'honoraires est vide ou non numérique
+        //   console.log('Veuillez entrer un montant valide pour les honoraires.');
+        //}
+    }
+
+    // Fonction pour mettre à jour le montant estimé
+    function updateMontantEstime() {
+        var montantChange = parseFloat($('#montantchan').val()); // Récupérer le montant converti
+        var idSousFamille = $('#idSousFa').val();
+
+        $.ajax({
+            url: '/Home/GetValeurByIdSousFamille',
+            type: 'GET',
+            data: { idSousFamille: idSousFamille },
+            success: function (response) {
+                if (response && response.Valeur !== undefined && response.Unite !== undefined && response.Max !== undefined) {
+                    var valeur = parseFloat(response.Valeur);
+                    var unite = response.Unite;
+                    var max = parseFloat(response.Max);
+
+                    console.log("La valeur est ", valeur, " et l'unité est ", unite, " avec un maximum de ", max);
+
+                    var montantEstime;
+
+                    if (unite === 'Jour') {
+                        var nbJour = montantChange / 25;
+                        if (nbJour < max) {
+                            montantEstime = 25 * nbJour;
+                            $('#messageMax').text(""); // Effacer le message s'il n'a pas atteint le maximum
+                            // Calculer le montant estimé pour l'unité en jours
+                        } else if (nbJour > max) {
+                            montantEstime = max * 25;
+                            var message = "Plafond atteint ! ";
+                            $('#messageMax').text(message);// Utiliser le maximum si le nombre de jours dépasse le maximum
+                        }
+                    } else if (unite === '%') {
+                        montantEstime = (montantChange * valeur) / 100;
+                        $('#messageMax').text(""); // Effacer le message s'il n'a pas atteint le maximum
+                        // Calculer le montant estimé pour l'unité en pourcentage
+                        if (montantEstime > max) {
+                            montantEstime = max;
+                            var message = "Plafond atteint ! ";
+                            $('#messageMax').text(message); // Limiter montantEstime à la valeur de max si elle dépasse
+                        }
+                    }
+
+
+
+                    $('#montantEstimé').val(montantEstime.toFixed(2)); // Mettre à jour le champ montantEstimé avec le résultat calculé
+                } else {
+                    console.error("La réponse de l'API est incomplète ou incorrecte.");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Erreur lors de la récupération des données de la sous-famille : ' + error);
+            }
+        });
+    }
+
+    // Appeler la fonction de mise à jour du montant converti lors du chargement de la page ou lorsque les champs pertinents changent
+    $(document).ready(function () {
+        // Appeler la fonction de mise à jour du montant converti au chargement de la page
+        updateMontantConverti();
+
+        // Ajouter des écouteurs d'événements onchange aux champs de date et d'honoraires
+        document.getElementById('daterub1').onchange = updateMontantConverti;
+        document.getElementById('honorub1').onchange = updateMontantConverti;
+        document.getElementById('deviserub1').onchange = updateMontantConverti;
+        document.getElementById('idSousFa').onchange = updateMontantEstime;
+
+    });
+
+
+
+    // Ajouter des écouteurs d'événements onchange aux champs de date et d'honoraires
+    document.getElementById('daterub1').onchange = updateMontantConverti;
+    document.getElementById('honorub1').onchange = updateMontantConverti;
+    document.getElementById('deviserub1').onchange = updateMontantConverti;
+    document.getElementById('idSousFa').onchange = updateMontantEstime;
+    document.getElementById('honorub1').onchange = updateMontantConverti;
+
+
+
+
+
+
+
+
+
+    document.getElementById('deviseRub2').onchange = function () {
+        var selectedCurrency = this.value; // Récupérer la devise sélectionnée
+        var dateRubrique = document.getElementById('DE').value; // Récupérer la date de la rubrique
+
+        // Effectuer une requête AJAX vers le serveur
+        $.ajax({
+            url: '/Home/GetTauxDeChange2', // URL de l'action côté serveur
+            type: 'GET',
+            data: { selectedCurrency: selectedCurrency, rubriqueDate: dateRubrique }, // Données à envoyer avec la requête
+            success: function (response) {
+                if (response.error) {
+                    alert(response.error); // Afficher une alerte en cas d'erreur
+                    // Réinitialiser le montant converti à zéro
+                    document.getElementById('montantchan2').value = "0.00";
+
+                } else {
+                    var tauxDeChange = response.taux; // Récupérer le taux de change de la réponse
+                    var montantFrais = parseFloat(document.getElementById('montantFrais').value); // Récupérer le montant des frais
+                    var montantChange = tauxDeChange * montantFrais; // Calculer le montant converti
+
+                    // Afficher le montant converti dans le champ correspondant
+                    document.getElementById('montantchan2').value = montantChange.toFixed(2); // Mettre à jour le champ avec le montant converti
+                }
+            },
+            error: function (xhr, status, error) {
+                alert('Erreur lors de la récupération du taux de change : ' + error); // Afficher une alerte en cas d'erreur
+                document.getElementById('montantchan').value = "0.00";
+            }
+        });
+    };
+    // Fonction pour mettre à jour le montant converti
+    function updateMontantConverti2() {
+        var selectedCurrency = document.getElementById('deviseRub2').value; // Récupérer la devise sélectionnée
+        var dateRubrique = document.getElementById('DE').value; // Récupérer la date de la rubrique
+        var honoraires = parseFloat(document.getElementById('montantFrais').value); // Récupérer les honoraires
+
+        // Effectuer une requête AJAX vers le serveur pour récupérer le taux de change
+        $.ajax({
+            url: '/Home/GetTauxDeChange2',
+            type: 'GET',
+            data: { selectedCurrency: selectedCurrency, rubriqueDate: dateRubrique },
+            success: function (response) {
+                if (!response.error) {
+                    var tauxDeChange = response.taux; // Récupérer le taux de change de la réponse
+                    var montantChange = tauxDeChange * honoraires; // Calculer le montant converti
+
+                    // Afficher le montant converti dans le champ correspondant
+                    document.getElementById('montantchan2').value = montantChange.toFixed(2); // Mettre à jour le champ avec le montant converti
+                } else {
+                    // Si aucun taux de change n'est trouvé, afficher une alerte et réinitialiser le montant converti à zéro
+                    alert('Aucun taux de change trouvé pour la devise sélectionnée et la date de la rubrique.');
+                    document.getElementById('montantchan2').value = "0.00"; // Réinitialiser le champ à zéro
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Erreur lors de la récupération du taux de change : ' + error); // Afficher une erreur dans la console en cas d'erreur
+            }
+        });
+    }
+
+    // Ajouter des écouteurs d'événements onchange aux champs de date et d'honoraires
+    document.getElementById('DE').onchange = updateMontantConverti2;
+    document.getElementById('montantFrais').onchange = updateMontantConverti2;
+
+    document.getElementById('deviseRub3').onchange = function () {
+        var selectedCurrency = this.value; // Récupérer la devise sélectionnée
+        var rubriqueDate = document.getElementById('dateRub3').value; // Récupérer la date de la rubrique
+
+        // Effectuer une requête AJAX vers le serveur
+        $.ajax({
+            url: '/Home/GetTauxDeChange3', // URL de l'action côté serveur
+            type: 'GET',
+            data: { selectedCurrency: selectedCurrency, rubriqueDate: rubriqueDate }, // Données à envoyer avec la requête
+            success: function (response) {
+                if (response.error) {
+                    alert(response.error); // Afficher une alerte en cas d'erreur
+                    // Réinitialiser le montant converti à zéro
+                    document.getElementById('montantchan3').value = "0.00";
+
+                } else {
+                    var tauxDeChange = response.taux; // Récupérer le taux de change de la réponse
+                    var honoraires = parseFloat(document.getElementById('honorairesRub3').value); // Récupérer les honoraires
+                    var montantChange = tauxDeChange * honoraires; // Calculer le montant converti
+
+                    // Afficher le montant converti dans le champ correspondant
+                    document.getElementById('montantchan3').value = montantChange.toFixed(2); // Mettre à jour le champ avec le montant converti
+                }
+            },
+            error: function (xhr, status, error) {
+                alert('Erreur lors de la récupération du taux de change : ' + error); // Afficher une alerte en cas d'erreur
+                // Réinitialiser le montant converti à zéro
+                document.getElementById('montantchan3').value = "0.00";
+
+            }
+        });
+    };
+
+    // Fonction pour mettre à jour le montant converti
+    function updateMontantConverti3() {
+        var selectedCurrency = document.getElementById('deviseRub3').value; // Récupérer la devise sélectionnée
+        var dateRubrique = document.getElementById('dateRub3').value; // Récupérer la date de la rubrique
+        var honoraires = parseFloat(document.getElementById('honorairesRub3').value); // Récupérer les honoraires
+
+        // Effectuer une requête AJAX vers le serveur pour récupérer le taux de change
+        $.ajax({
+            url: '/Home/GetTauxDeChange3',
+            type: 'GET',
+            data: { selectedCurrency: selectedCurrency, rubriqueDate: dateRubrique },
+            success: function (response) {
+                if (!response.error) {
+                    var tauxDeChange = response.taux; // Récupérer le taux de change de la réponse
+                    var montantChange = tauxDeChange * honoraires; // Calculer le montant converti
+
+                    // Afficher le montant converti dans le champ correspondant
+                    document.getElementById('montantchan3').value = montantChange.toFixed(2); // Mettre à jour le champ avec le montant converti
+                } else {
+                    // Si aucun taux de change n'est trouvé, afficher une alerte et réinitialiser le montant converti à zéro
+                    alert('Aucun taux de change trouvé pour la devise sélectionnée et la date de la rubrique.');
+                    document.getElementById('montantchan3').value = "0.00"; // Réinitialiser le champ à zéro
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Erreur lors de la récupération du taux de change : ' + error); // Afficher une erreur dans la console en cas d'erreur
+            }
+        });
+    }
+
+    // Ajouter des écouteurs d'événements onchange aux champs de date et d'honoraires
+    document.getElementById('dateRub3').onchange = updateMontantConverti3;
+    document.getElementById('honorairesRub3').onchange = updateMontantConverti3;
+
+
+
+    //------------------------------------------------------------------------------------------------------Remboursement
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-info">
+                    <h3>TUNISAIR</h3>
+                    <p>fondée en 1948, forte de plus <br />de 75 ans d'expérience dans <br />le secteur de l'aviation,<br /> est la compagnie aérienne <br />nationale de la Tunisie.</p>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About us</a></li>
+                        <li><a href="#services">Services</a></li>
+
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>
+                        <i class="bi bi-pin-map-fill"></i> Rue Aéroport Tunis-Carthage  <br>Charguia 2, Ariana <br>Siège Tunisair <br>
+                        <i class="bi bi-telephone-fill"></i> <strong>Phone:</strong> +216 1789 55488 55<br>
+                        <i class="bi bi-envelope-at-fill"></i><strong> Email:</strong> info@Tunisair.com.tn<br>
+                        <i class="bi bi-browser-chrome"></i> <strong>Site Officiel: </strong>www.tunisair.com <br />
+                    </p>
+
+
+                    <div class="social-links">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong>TUNISAIR</strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+            -->
+            Designed by <a href="https://bootstrapmade.com/">DCSI</a>
+        </div>
+    </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="~/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="~/assets/vendor/aos/aos.js"></script>
+<script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="~/assets/vendor/php-email-form/validate.js"></script>
+<!-- Template Main JS File -->
+<script src="~/assets/js/main.js"></script>

@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BsDBModel3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_adherent">
+          <Key>
+            <PropertyRef Name="idAdherent" />
+          </Key>
+          <Property Name="idAdherent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomAdh" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prenomAdh" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CIN_PASS" Type="bigint" Nullable="false" />
+          <Property Name="adressAdh" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="emailAdh" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="matriculeCnam" Type="bigint" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="numTelephone" Type="bigint" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_bulletinSoin">
+          <Key>
+            <PropertyRef Name="idBs" />
+          </Key>
+          <Property Name="idBs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="idAdherent" Type="int" Nullable="false" />
+          <Property Name="idPrestataire" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_designation">
+          <Key>
+            <PropertyRef Name="designationId" />
+          </Key>
+          <Property Name="designationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="designationNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="designationNom" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BsDB.dbo.tbl_login' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_login">
+          <Key>
+            <PropertyRef Name="username" />
+            <PropertyRef Name="paassword" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="paassword" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_prestataire">
+          <Key>
+            <PropertyRef Name="idPrestataire" />
+          </Key>
+          <Property Name="idPrestataire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codePrestataire" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="nomPres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prenomPres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateNais" Type="datetime" Nullable="false" />
+          <Property Name="adressPres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idAdherent" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_rub1">
+          <Key>
+            <PropertyRef Name="idRub1" />
+          </Key>
+          <Property Name="idRub1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateRub1" Type="datetime" />
+          <Property Name="designationId" Type="int" />
+          <Property Name="honorairesRub1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="deviseRub1" Type="varchar" MaxLength="50" />
+          <Property Name="matriculeFisacalRub1" Type="bigint" />
+          <Property Name="idBs" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_rub2">
+          <Key>
+            <PropertyRef Name="idRub2" />
+          </Key>
+          <Property Name="idRub2" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DE" Type="datetime" />
+          <Property Name="DS" Type="datetime" />
+          <Property Name="montantFrais" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="deviseRub2" Type="varchar" MaxLength="50" />
+          <Property Name="matriculeFiscalRub2" Type="bigint" />
+          <Property Name="idBs" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_rub3">
+          <Key>
+            <PropertyRef Name="idRub3" />
+          </Key>
+          <Property Name="idRub3" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateRub3" Type="datetime" />
+          <Property Name="dents" Type="varchar" MaxLength="50" />
+          <Property Name="actMedical" Type="varchar" MaxLength="50" />
+          <Property Name="honorairesRub3" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="deviseRub3" Type="varchar" MaxLength="50" />
+          <Property Name="matriculeFiscalRub3" Type="bigint" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="idBs" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_taux_de_change">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="devise_locale" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="devise_etrangere" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="date_debut" Type="datetime" Nullable="false" />
+          <Property Name="date_fin" Type="datetime" Nullable="false" />
+          <Property Name="taux" Type="float" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tbl_bulletinSoin_tbl_adherent">
+          <End Role="tbl_adherent" Type="Self.tbl_adherent" Multiplicity="1" />
+          <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_adherent">
+              <PropertyRef Name="idAdherent" />
+            </Principal>
+            <Dependent Role="tbl_bulletinSoin">
+              <PropertyRef Name="idAdherent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_bulletinSoin_tbl_prestataire">
+          <End Role="tbl_prestataire" Type="Self.tbl_prestataire" Multiplicity="1" />
+          <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_prestataire">
+              <PropertyRef Name="idPrestataire" />
+            </Principal>
+            <Dependent Role="tbl_bulletinSoin">
+              <PropertyRef Name="idPrestataire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_prestataire_tbl_adherent">
+          <End Role="tbl_adherent" Type="Self.tbl_adherent" Multiplicity="1" />
+          <End Role="tbl_prestataire" Type="Self.tbl_prestataire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_adherent">
+              <PropertyRef Name="idAdherent" />
+            </Principal>
+            <Dependent Role="tbl_prestataire">
+              <PropertyRef Name="idAdherent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_rub1_tbl_bulletinSoin">
+          <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="1" />
+          <End Role="tbl_rub1" Type="Self.tbl_rub1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_bulletinSoin">
+              <PropertyRef Name="idBs" />
+            </Principal>
+            <Dependent Role="tbl_rub1">
+              <PropertyRef Name="idBs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_rub1_tbl_designation">
+          <End Role="tbl_designation" Type="Self.tbl_designation" Multiplicity="0..1" />
+          <End Role="tbl_rub1" Type="Self.tbl_rub1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_designation">
+              <PropertyRef Name="designationId" />
+            </Principal>
+            <Dependent Role="tbl_rub1">
+              <PropertyRef Name="designationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_rub2_tbl_bulletinSoin">
+          <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="1" />
+          <End Role="tbl_rub2" Type="Self.tbl_rub2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_bulletinSoin">
+              <PropertyRef Name="idBs" />
+            </Principal>
+            <Dependent Role="tbl_rub2">
+              <PropertyRef Name="idBs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_rub3_tbl_bulletinSoin">
+          <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="1" />
+          <End Role="tbl_rub3" Type="Self.tbl_rub3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_bulletinSoin">
+              <PropertyRef Name="idBs" />
+            </Principal>
+            <Dependent Role="tbl_rub3">
+              <PropertyRef Name="idBs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BsDBModel3StoreContainer">
+          <EntitySet Name="tbl_adherent" EntityType="Self.tbl_adherent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_bulletinSoin" EntityType="Self.tbl_bulletinSoin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_designation" EntityType="Self.tbl_designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_prestataire" EntityType="Self.tbl_prestataire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_rub1" EntityType="Self.tbl_rub1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_rub2" EntityType="Self.tbl_rub2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_rub3" EntityType="Self.tbl_rub3" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_taux_de_change" EntityType="Self.tbl_taux_de_change" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_login" EntityType="Self.tbl_login" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_login].[username] AS [username], 
+    [tbl_login].[paassword] AS [paassword]
+    FROM [dbo].[tbl_login] AS [tbl_login]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tbl_bulletinSoin_tbl_adherent" Association="Self.FK_tbl_bulletinSoin_tbl_adherent">
+            <End Role="tbl_adherent" EntitySet="tbl_adherent" />
+            <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_bulletinSoin_tbl_prestataire" Association="Self.FK_tbl_bulletinSoin_tbl_prestataire">
+            <End Role="tbl_prestataire" EntitySet="tbl_prestataire" />
+            <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_prestataire_tbl_adherent" Association="Self.FK_tbl_prestataire_tbl_adherent">
+            <End Role="tbl_adherent" EntitySet="tbl_adherent" />
+            <End Role="tbl_prestataire" EntitySet="tbl_prestataire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_rub1_tbl_bulletinSoin" Association="Self.FK_tbl_rub1_tbl_bulletinSoin">
+            <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+            <End Role="tbl_rub1" EntitySet="tbl_rub1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_rub1_tbl_designation" Association="Self.FK_tbl_rub1_tbl_designation">
+            <End Role="tbl_designation" EntitySet="tbl_designation" />
+            <End Role="tbl_rub1" EntitySet="tbl_rub1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_rub2_tbl_bulletinSoin" Association="Self.FK_tbl_rub2_tbl_bulletinSoin">
+            <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+            <End Role="tbl_rub2" EntitySet="tbl_rub2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_rub3_tbl_bulletinSoin" Association="Self.FK_tbl_rub3_tbl_bulletinSoin">
+            <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+            <End Role="tbl_rub3" EntitySet="tbl_rub3" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BsDBModel3" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_adherent">
+          <Key>
+            <PropertyRef Name="idAdherent" />
+          </Key>
+          <Property Name="idAdherent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomAdh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prenomAdh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CIN_PASS" Type="Int64" Nullable="false" />
+          <Property Name="adressAdh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="emailAdh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="matriculeCnam" Type="Int64" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numTelephone" Type="Int64" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tbl_bulletinSoin" Relationship="Self.FK_tbl_bulletinSoin_tbl_adherent" FromRole="tbl_adherent" ToRole="tbl_bulletinSoin" />
+          <NavigationProperty Name="tbl_prestataire" Relationship="Self.FK_tbl_prestataire_tbl_adherent" FromRole="tbl_adherent" ToRole="tbl_prestataire" />
+        </EntityType>
+        <EntityType Name="tbl_bulletinSoin">
+          <Key>
+            <PropertyRef Name="idBs" />
+          </Key>
+          <Property Name="idBs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="idAdherent" Type="Int32" Nullable="false" />
+          <Property Name="idPrestataire" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_adherent" Relationship="Self.FK_tbl_bulletinSoin_tbl_adherent" FromRole="tbl_bulletinSoin" ToRole="tbl_adherent" />
+          <NavigationProperty Name="tbl_prestataire" Relationship="Self.FK_tbl_bulletinSoin_tbl_prestataire" FromRole="tbl_bulletinSoin" ToRole="tbl_prestataire" />
+          <NavigationProperty Name="tbl_rub1" Relationship="Self.FK_tbl_rub1_tbl_bulletinSoin" FromRole="tbl_bulletinSoin" ToRole="tbl_rub1" />
+          <NavigationProperty Name="tbl_rub2" Relationship="Self.FK_tbl_rub2_tbl_bulletinSoin" FromRole="tbl_bulletinSoin" ToRole="tbl_rub2" />
+          <NavigationProperty Name="tbl_rub3" Relationship="Self.FK_tbl_rub3_tbl_bulletinSoin" FromRole="tbl_bulletinSoin" ToRole="tbl_rub3" />
+        </EntityType>
+        <EntityType Name="tbl_designation">
+          <Key>
+            <PropertyRef Name="designationId" />
+          </Key>
+          <Property Name="designationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="designationNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="designationNom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_rub1" Relationship="Self.FK_tbl_rub1_tbl_designation" FromRole="tbl_designation" ToRole="tbl_rub1" />
+        </EntityType>
+        <EntityType Name="tbl_prestataire">
+          <Key>
+            <PropertyRef Name="idPrestataire" />
+          </Key>
+          <Property Name="idPrestataire" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codePrestataire" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="nomPres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prenomPres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dateNais" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="adressPres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idAdherent" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_adherent" Relationship="Self.FK_tbl_prestataire_tbl_adherent" FromRole="tbl_prestataire" ToRole="tbl_adherent" />
+          <NavigationProperty Name="tbl_bulletinSoin" Relationship="Self.FK_tbl_bulletinSoin_tbl_prestataire" FromRole="tbl_prestataire" ToRole="tbl_bulletinSoin" />
+        </EntityType>
+        <EntityType Name="tbl_rub1">
+          <Key>
+            <PropertyRef Name="idRub1" />
+          </Key>
+          <Property Name="idRub1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateRub1" Type="DateTime" Precision="3" />
+          <Property Name="designationId" Type="Int32" />
+          <Property Name="honorairesRub1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="deviseRub1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="matriculeFisacalRub1" Type="Int64" />
+          <Property Name="idBs" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_bulletinSoin" Relationship="Self.FK_tbl_rub1_tbl_bulletinSoin" FromRole="tbl_rub1" ToRole="tbl_bulletinSoin" />
+          <NavigationProperty Name="tbl_designation" Relationship="Self.FK_tbl_rub1_tbl_designation" FromRole="tbl_rub1" ToRole="tbl_designation" />
+        </EntityType>
+        <EntityType Name="tbl_rub2">
+          <Key>
+            <PropertyRef Name="idRub2" />
+          </Key>
+          <Property Name="idRub2" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DE" Type="DateTime" Precision="3" />
+          <Property Name="DS" Type="DateTime" Precision="3" />
+          <Property Name="montantFrais" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="deviseRub2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="matriculeFiscalRub2" Type="Int64" />
+          <Property Name="idBs" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_bulletinSoin" Relationship="Self.FK_tbl_rub2_tbl_bulletinSoin" FromRole="tbl_rub2" ToRole="tbl_bulletinSoin" />
+        </EntityType>
+        <EntityType Name="tbl_rub3">
+          <Key>
+            <PropertyRef Name="idRub3" />
+          </Key>
+          <Property Name="idRub3" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateRub3" Type="DateTime" Precision="3" />
+          <Property Name="dents" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="actMedical" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="honorairesRub3" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="deviseRub3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="matriculeFiscalRub3" Type="Int64" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idBs" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_bulletinSoin" Relationship="Self.FK_tbl_rub3_tbl_bulletinSoin" FromRole="tbl_rub3" ToRole="tbl_bulletinSoin" />
+        </EntityType>
+        <EntityType Name="tbl_taux_de_change">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="devise_locale" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="devise_etrangere" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_debut" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="date_fin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="taux" Type="Double" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tbl_login">
+          <Key>
+            <PropertyRef Name="username" />
+            <PropertyRef Name="paassword" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="paassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tbl_bulletinSoin_tbl_adherent">
+          <End Role="tbl_adherent" Type="Self.tbl_adherent" Multiplicity="1" />
+          <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_adherent">
+              <PropertyRef Name="idAdherent" />
+            </Principal>
+            <Dependent Role="tbl_bulletinSoin">
+              <PropertyRef Name="idAdherent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_prestataire_tbl_adherent">
+          <End Role="tbl_adherent" Type="Self.tbl_adherent" Multiplicity="1" />
+          <End Role="tbl_prestataire" Type="Self.tbl_prestataire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_adherent">
+              <PropertyRef Name="idAdherent" />
+            </Principal>
+            <Dependent Role="tbl_prestataire">
+              <PropertyRef Name="idAdherent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_bulletinSoin_tbl_prestataire">
+          <End Role="tbl_prestataire" Type="Self.tbl_prestataire" Multiplicity="1" />
+          <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_prestataire">
+              <PropertyRef Name="idPrestataire" />
+            </Principal>
+            <Dependent Role="tbl_bulletinSoin">
+              <PropertyRef Name="idPrestataire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_rub1_tbl_bulletinSoin">
+          <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="1" />
+          <End Role="tbl_rub1" Type="Self.tbl_rub1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_bulletinSoin">
+              <PropertyRef Name="idBs" />
+            </Principal>
+            <Dependent Role="tbl_rub1">
+              <PropertyRef Name="idBs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_rub2_tbl_bulletinSoin">
+          <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="1" />
+          <End Role="tbl_rub2" Type="Self.tbl_rub2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_bulletinSoin">
+              <PropertyRef Name="idBs" />
+            </Principal>
+            <Dependent Role="tbl_rub2">
+              <PropertyRef Name="idBs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_rub3_tbl_bulletinSoin">
+          <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="1" />
+          <End Role="tbl_rub3" Type="Self.tbl_rub3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_bulletinSoin">
+              <PropertyRef Name="idBs" />
+            </Principal>
+            <Dependent Role="tbl_rub3">
+              <PropertyRef Name="idBs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_rub1_tbl_designation">
+          <End Role="tbl_designation" Type="Self.tbl_designation" Multiplicity="0..1" />
+          <End Role="tbl_rub1" Type="Self.tbl_rub1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_designation">
+              <PropertyRef Name="designationId" />
+            </Principal>
+            <Dependent Role="tbl_rub1">
+              <PropertyRef Name="designationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BsDBEntities7" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_adherent" EntityType="Self.tbl_adherent" />
+          <EntitySet Name="tbl_bulletinSoin" EntityType="Self.tbl_bulletinSoin" />
+          <EntitySet Name="tbl_designation" EntityType="Self.tbl_designation" />
+          <EntitySet Name="tbl_prestataire" EntityType="Self.tbl_prestataire" />
+          <EntitySet Name="tbl_rub1" EntityType="Self.tbl_rub1" />
+          <EntitySet Name="tbl_rub2" EntityType="Self.tbl_rub2" />
+          <EntitySet Name="tbl_rub3" EntityType="Self.tbl_rub3" />
+          <EntitySet Name="tbl_taux_de_change" EntityType="Self.tbl_taux_de_change" />
+          <EntitySet Name="tbl_login" EntityType="Self.tbl_login" />
+          <AssociationSet Name="FK_tbl_bulletinSoin_tbl_adherent" Association="Self.FK_tbl_bulletinSoin_tbl_adherent">
+            <End Role="tbl_adherent" EntitySet="tbl_adherent" />
+            <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_prestataire_tbl_adherent" Association="Self.FK_tbl_prestataire_tbl_adherent">
+            <End Role="tbl_adherent" EntitySet="tbl_adherent" />
+            <End Role="tbl_prestataire" EntitySet="tbl_prestataire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_bulletinSoin_tbl_prestataire" Association="Self.FK_tbl_bulletinSoin_tbl_prestataire">
+            <End Role="tbl_prestataire" EntitySet="tbl_prestataire" />
+            <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_rub1_tbl_bulletinSoin" Association="Self.FK_tbl_rub1_tbl_bulletinSoin">
+            <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+            <End Role="tbl_rub1" EntitySet="tbl_rub1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_rub2_tbl_bulletinSoin" Association="Self.FK_tbl_rub2_tbl_bulletinSoin">
+            <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+            <End Role="tbl_rub2" EntitySet="tbl_rub2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_rub3_tbl_bulletinSoin" Association="Self.FK_tbl_rub3_tbl_bulletinSoin">
+            <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+            <End Role="tbl_rub3" EntitySet="tbl_rub3" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_rub1_tbl_designation" Association="Self.FK_tbl_rub1_tbl_designation">
+            <End Role="tbl_designation" EntitySet="tbl_designation" />
+            <End Role="tbl_rub1" EntitySet="tbl_rub1" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BsDBModel3StoreContainer" CdmEntityContainer="BsDBEntities7">
+          <EntitySetMapping Name="tbl_adherent">
+            <EntityTypeMapping TypeName="BsDBModel3.tbl_adherent">
+              <MappingFragment StoreEntitySet="tbl_adherent">
+                <ScalarProperty Name="idAdherent" ColumnName="idAdherent" />
+                <ScalarProperty Name="nomAdh" ColumnName="nomAdh" />
+                <ScalarProperty Name="prenomAdh" ColumnName="prenomAdh" />
+                <ScalarProperty Name="CIN_PASS" ColumnName="CIN_PASS" />
+                <ScalarProperty Name="adressAdh" ColumnName="adressAdh" />
+                <ScalarProperty Name="emailAdh" ColumnName="emailAdh" />
+                <ScalarProperty Name="matriculeCnam" ColumnName="matriculeCnam" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="numTelephone" ColumnName="numTelephone" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_bulletinSoin">
+            <EntityTypeMapping TypeName="BsDBModel3.tbl_bulletinSoin">
+              <MappingFragment StoreEntitySet="tbl_bulletinSoin">
+                <ScalarProperty Name="idBs" ColumnName="idBs" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="idAdherent" ColumnName="idAdherent" />
+                <ScalarProperty Name="idPrestataire" ColumnName="idPrestataire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_designation">
+            <EntityTypeMapping TypeName="BsDBModel3.tbl_designation">
+              <MappingFragment StoreEntitySet="tbl_designation">
+                <ScalarProperty Name="designationId" ColumnName="designationId" />
+                <ScalarProperty Name="designationNo" ColumnName="designationNo" />
+                <ScalarProperty Name="designationNom" ColumnName="designationNom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_prestataire">
+            <EntityTypeMapping TypeName="BsDBModel3.tbl_prestataire">
+              <MappingFragment StoreEntitySet="tbl_prestataire">
+                <ScalarProperty Name="idPrestataire" ColumnName="idPrestataire" />
+                <ScalarProperty Name="codePrestataire" ColumnName="codePrestataire" />
+                <ScalarProperty Name="nomPres" ColumnName="nomPres" />
+                <ScalarProperty Name="prenomPres" ColumnName="prenomPres" />
+                <ScalarProperty Name="dateNais" ColumnName="dateNais" />
+                <ScalarProperty Name="adressPres" ColumnName="adressPres" />
+                <ScalarProperty Name="idAdherent" ColumnName="idAdherent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_rub1">
+            <EntityTypeMapping TypeName="BsDBModel3.tbl_rub1">
+              <MappingFragment StoreEntitySet="tbl_rub1">
+                <ScalarProperty Name="idRub1" ColumnName="idRub1" />
+                <ScalarProperty Name="dateRub1" ColumnName="dateRub1" />
+                <ScalarProperty Name="designationId" ColumnName="designationId" />
+                <ScalarProperty Name="honorairesRub1" ColumnName="honorairesRub1" />
+                <ScalarProperty Name="deviseRub1" ColumnName="deviseRub1" />
+                <ScalarProperty Name="matriculeFisacalRub1" ColumnName="matriculeFisacalRub1" />
+                <ScalarProperty Name="idBs" ColumnName="idBs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_rub2">
+            <EntityTypeMapping TypeName="BsDBModel3.tbl_rub2">
+              <MappingFragment StoreEntitySet="tbl_rub2">
+                <ScalarProperty Name="idRub2" ColumnName="idRub2" />
+                <ScalarProperty Name="DE" ColumnName="DE" />
+                <ScalarProperty Name="DS" ColumnName="DS" />
+                <ScalarProperty Name="montantFrais" ColumnName="montantFrais" />
+                <ScalarProperty Name="deviseRub2" ColumnName="deviseRub2" />
+                <ScalarProperty Name="matriculeFiscalRub2" ColumnName="matriculeFiscalRub2" />
+                <ScalarProperty Name="idBs" ColumnName="idBs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_rub3">
+            <EntityTypeMapping TypeName="BsDBModel3.tbl_rub3">
+              <MappingFragment StoreEntitySet="tbl_rub3">
+                <ScalarProperty Name="idRub3" ColumnName="idRub3" />
+                <ScalarProperty Name="dateRub3" ColumnName="dateRub3" />
+                <ScalarProperty Name="dents" ColumnName="dents" />
+                <ScalarProperty Name="actMedical" ColumnName="actMedical" />
+                <ScalarProperty Name="honorairesRub3" ColumnName="honorairesRub3" />
+                <ScalarProperty Name="deviseRub3" ColumnName="deviseRub3" />
+                <ScalarProperty Name="matriculeFiscalRub3" ColumnName="matriculeFiscalRub3" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="idBs" ColumnName="idBs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_taux_de_change">
+            <EntityTypeMapping TypeName="BsDBModel3.tbl_taux_de_change">
+              <MappingFragment StoreEntitySet="tbl_taux_de_change">
+                <ScalarProperty Name="devise_locale" ColumnName="devise_locale" />
+                <ScalarProperty Name="devise_etrangere" ColumnName="devise_etrangere" />
+                <ScalarProperty Name="date_debut" ColumnName="date_debut" />
+                <ScalarProperty Name="date_fin" ColumnName="date_fin" />
+                <ScalarProperty Name="taux" ColumnName="taux" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_login">
+            <EntityTypeMapping TypeName="BsDBModel3.tbl_login">
+              <MappingFragment StoreEntitySet="tbl_login">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="paassword" ColumnName="paassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

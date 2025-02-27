@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6a1ee74e0add450590ba5862b92e6944" Name="Diagram1">
+        <EntityTypeShape EntityType="BsDBModel3.tbl_adherent" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BsDBModel3.tbl_bulletinSoin" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BsDBModel3.tbl_designation" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BsDBModel3.tbl_prestataire" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BsDBModel3.tbl_rub1" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BsDBModel3.tbl_rub2" Width="1.5" PointX="7.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BsDBModel3.tbl_rub3" Width="1.5" PointX="7.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BsDBModel3.tbl_taux_de_change" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BsDBModel3.tbl_login" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="BsDBModel3.FK_tbl_bulletinSoin_tbl_adherent" ManuallyRouted="false" />
+        <AssociationConnector Association="BsDBModel3.FK_tbl_prestataire_tbl_adherent" ManuallyRouted="false" />
+        <AssociationConnector Association="BsDBModel3.FK_tbl_bulletinSoin_tbl_prestataire" ManuallyRouted="false" />
+        <AssociationConnector Association="BsDBModel3.FK_tbl_rub1_tbl_bulletinSoin" ManuallyRouted="false" />
+        <AssociationConnector Association="BsDBModel3.FK_tbl_rub2_tbl_bulletinSoin" ManuallyRouted="false" />
+        <AssociationConnector Association="BsDBModel3.FK_tbl_rub3_tbl_bulletinSoin" ManuallyRouted="false" />
+        <AssociationConnector Association="BsDBModel3.FK_tbl_rub1_tbl_designation" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

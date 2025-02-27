@@ -1,0 +1,1777 @@
+﻿@model test2.Models.Adherent
+
+@{
+    ViewBag.Title = "adhesionPersonnel";
+    Layout = "~/Views/shared/_LayoutPage3.cshtml";
+
+}
+
+
+<script>
+    $(function () {
+        // Initialisez le Datepicker sur les champs de date
+        $("#DA").datepicker({
+            dateFormat: "yy-mm-dd" // Format de date souhaité
+
+        });
+        $("#dateNais").datepicker({
+            // Options de configuration du calendrier
+            changeMonth: true, // Permet de changer le mois
+            changeYear: true, // Permet de changer l'année
+            maxDate: 0, // Limite la sélection aux dates antérieures ou égales à aujourd'hui
+            yearRange: "-100:+0", // Limite la sélection des années jusqu'à 100 ans avant aujourd'hui
+            dateFormat: "yy-mm-dd", // Format de date (année-mois-jour)
+            onSelect: function (dateText) {
+                // Fonction exécutée lorsqu'une date est sélectionnée
+                var selectedDate = new Date(dateText);
+                var now = new Date();
+                var age = now.getFullYear() - selectedDate.getFullYear();
+
+                // Vous pouvez faire ce que vous voulez avec l'âge ici, par exemple :
+                console.log("Âge calculé à partir de la date de naissance : " + age + " ans");
+            }
+        });
+        $("#DN").datepicker({
+            // Options de configuration du calendrier
+            changeMonth: true, // Permet de changer le mois
+            changeYear: true, // Permet de changer l'année
+            maxDate: 0, // Limite la sélection aux dates antérieures ou égales à aujourd'hui
+            yearRange: "-100:+0", // Limite la sélection des années jusqu'à 100 ans avant aujourd'hui
+            dateFormat: "yy-mm-dd", // Format de date (année-mois-jour)
+            onSelect: function (dateText) {
+                // Fonction exécutée lorsqu'une date est sélectionnée
+                var selectedDate = new Date(dateText);
+                var now = new Date();
+                var age = now.getFullYear() - selectedDate.getFullYear();
+
+                // Vous pouvez faire ce que vous voulez avec l'âge ici, par exemple :
+                console.log("Âge calculé à partir de la date de naissance : " + age + " ans");
+            }
+        });
+
+        $("#DNE").datepicker({
+            // Options de configuration du calendrier
+            changeMonth: true, // Permet de changer le mois
+            changeYear: true, // Permet de changer l'année
+            maxDate: 0, // Limite la sélection aux dates antérieures ou égales à aujourd'hui
+            yearRange: "-100:+0", // Limite la sélection des années jusqu'à 100 ans avant aujourd'hui
+            dateFormat: "yy-mm-dd", // Format de date (année-mois-jour)
+            onSelect: function (dateText) {
+                // Fonction exécutée lorsqu'une date est sélectionnée
+                var selectedDate = new Date(dateText);
+                var now = new Date();
+                var age = now.getFullYear() - selectedDate.getFullYear();
+
+                // Vous pouvez faire ce que vous voulez avec l'âge ici, par exemple :
+                console.log("Âge calculé à partir de la date de naissance : " + age + " ans");
+            }
+        });
+
+    });
+
+
+</script>
+
+<!-- Inclure jQuery -->
+<script src="~/Scripts/jquery-3.7.1.min.js"></script>
+<!-- Inclure DataTables -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<!-- Inclure Bootstrap -->
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<!-- Inclure Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Inclure jQuery UI (Datepicker) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Vos autres scripts -->
+!<!--<script src="~/Scripts/jquery.dataTables.js"></script>-->
+
+<link href="~/CSS/StyleSheet1.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+
+
+<!-- Favicons -->
+<link href="~/assets/img/favicon.png" rel="icon">
+<link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+
+<link href="~/CSS/StyleSheet1.css" rel="stylesheet" />
+<!-- Template Main CSS File -->
+<link href="~/assets/css/style.css" rel="stylesheet">
+
+<style>
+    /* CSS pour le sélecteur de taille de page */
+    #pageSizeSelect {
+        width: 50px; /* Largeur du sélecteur */
+        padding: 5px; /* Espacement interne */
+        font-size: 16px; /* Taille de la police */
+        border-radius: 5px; /* Coins arrondis */
+        border: 1px solid #ccc; /* Bordure */
+        background-color: #fff; /* Couleur de fond */
+        appearance: none; /* Suppression de l'apparence native */
+        -webkit-appearance: none; /* Pour certains navigateurs WebKit */
+        -moz-appearance: none; /* Pour certains navigateurs Firefox */
+        text-align: center;
+    }
+
+        /* Style lorsque le sélecteur est survolé */
+        #pageSizeSelect:hover {
+            border-color: rgba(0, 123, 255, 0.5);
+            /* Changement de couleur de la bordure */
+        }
+
+        /* Style lorsque le sélecteur est actif ou focus */
+        #pageSizeSelect:focus {
+            outline: none; /* Suppression de l'outline */
+            border-color: #007bff; /* Changement de couleur de la bordure */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre portée */
+        }
+    /* Style pour le conteneur des rubriques */
+    #rubriquesContent {
+        margin-top: 20px;
+    }
+
+    /* Style pour chaque rubrique */
+    .rubrique-info-edit {
+        margin-bottom: 50px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Style pour les étiquettes */
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+
+
+    /* Style pour le bouton de sauvegarde */
+    .save-button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+        margin-top: 17px;
+    }
+
+        .save-button:hover {
+            background-color: #45a049;
+        }
+
+    #exTab1 {
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+    }
+
+        /* Style de la liste de navigation */
+        #exTab1 .nav-pills {
+            margin-bottom: 20px;
+        }
+
+            /* Style des éléments de la liste de navigation */
+            #exTab1 .nav-pills li {
+                display: inline;
+            }
+
+                /* Style des liens dans les éléments de la liste de navigation */
+                #exTab1 .nav-pills li a {
+                    padding: 10px 15px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    background-color: #fff;
+                    color: #333;
+                    text-decoration: none;
+                    transition: background-color 0.3s ease;
+                }
+
+                /* Style des liens actifs */
+                #exTab1 .nav-pills li.active a {
+                    background-color: #337ab7;
+                    color: #fff;
+                    border-color: #337ab7;
+                }
+
+    .custom-text-right {
+        text-align: right;
+    }
+
+    .modal-dialog {
+        max-width: 60%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /* Appliquer flexbox pour organiser les éléments en ligne */
+    .nav.nav-pills {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        white-space: normal; /* Centrer les éléments horizontalement */
+    }
+
+        /* Ajuster la largeur des éléments de la liste */
+        .nav.nav-pills > li {
+            flex: 0 0 auto;
+        }
+
+            /* Ajouter un peu de marge au bas des éléments pour l'espace */
+            .nav.nav-pills > li a {
+                margin-bottom: 5px;
+            }
+
+    .required::before {
+        content: '*';
+        color: red;
+        margin-right: 5px;
+    }
+</style>
+
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+        <div class="logo">
+            <!-- Uncomment below if you prefer to use a text logo -->
+            <!-- <h1><a href="index.html">NewBiz</a></h1> -->
+            <a href="~/Account/Index"><img src="~/assets/img/Tunisair_(logo).svg" alt="" class="img-fluid" style="max-height: 100px;"></a>
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="~/Account/Index">Accueil</a></li>
+                <li><a class="nav-link scrollto" href="~/Account/Index/#about">À propos</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="~/TauxChange/taux">Gestion Taux de Change</a></li>
+                        <li><a href="~/Home/Index">Gestion Bulletin de Soin</a></li>
+
+                        <li><a href="#">Gestion d'adhésion des personnels</a></li>
+                        <li><a href="~/FamillePrestations/famille">Gestion Libellé des Prestations</a></li>
+                        <li><a href="~/SousFamille/sousFamille">Gestion des sous familles des libellés </a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-link scrollto" href="~/Account/Index/#testimonials">Equipe</a></li>
+                <li><a class="nav-link scrollto" href="~/Account/Index/#contact">Contact</a></li>
+            </ul>
+            <a href="~/Account/Login" class="btn-log-out" style="border: 2px solid #004289; color: #004289; margin-left: 100px; border-radius: 50px; text-align: center; padding: 5px 20px 5px 20px; " onmouseover="this.style.background='#004289'; this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#1549c2';">Déconnexion</a>
+
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- #header -->
+
+<body style="background-color:#fff; ">
+
+    <div class="container" style="margin-top: 10%">
+        <div class="col-md-6">
+            <div class="input-group" style="margin-top:10px;">
+                <input type="text" id="searchIdAdherent" class="form-control" placeholder="Recherche par ID Adhérent" />
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-primary" onclick="searchByAdherentId()">
+                        <i class="fas fa-search"></i> <!-- Icône de recherche -->
+                        Rechercher <!-- Texte du bouton -->
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <h4 style="text-align: center; font-family: initial; color: #3a78d3; margin-top: 2%;">Les Adhérents et leurs prestataires associés <i class="bi bi-people-fill" style="color: #3a78d3;"></i></h4>
+
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <a href="#" class="btn primary-btn" onclick="AddAdherent(0)" style="background-color: #e9ecef; -bs-btn-color: #000; --bs-btn-bg: #dee2e6; --bs-btn-border-color: rgba(13, 110, 253, .25); --bs-btn-hover-color: #000; --bs-btn-hover-bg: #dee2e6; --bs-btn-hover-border-color: #2b2b2b; --bs-btn-focus-shadow-rgb: #fff; --bs-btn-active-bg: #e9ecef; --bs-btn-active-border-color: #e9ecef; ">Ajouter</a>
+            </div>
+        </div>
+        <div class="row mt-3" style="max-height: 300px; overflow-y: auto;">
+            <div class="col-md-12">
+                <table id="bsTable" class="table table-hover" style="text-align: center; border-color: #2b2b2b;">
+                    <thead>
+                        <tr>
+
+                            <th>Matricule Adherent </th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>date d'adhésion</th>
+                            <th>Code direction</th>
+                            <th>Police</th>
+                            <th>Béni. en Cas de décés</th>
+                            <th colspan="3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyTable">
+                        <tr id="loadingStatus" style="color: red"></tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between;">
+            <div style="display:flex; justify-content:space-between;">
+                <label for="pageSizeSelect" style="margin-top:20px">Nombre d'éléments par page:</label>
+                <select id="pageSizeSelect" class="form-control" style="height: 35px; margin-top: 15px; margin-left: 15px;">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+
+
+                    <!-- Ajoutez d'autres options de taille de page si nécessaire -->
+                </select>
+            </div>
+            <nav aria-label="Page navigation example" class="d-flex justify-content-end" style="margin-top: 20px; margin-right:80px; margin-bottom:20%;">
+                <ul class="pagination">
+                    <li class="page-item" id="previousPage">
+                        <a class="page-link" href="javascript:;" aria-label="Previous">
+                            <span aria-hidden="true">&laquo; Précédent</span>
+                        </a>
+                    </li>
+                    <li class="page-item" id="nextPage">
+                        <a class="page-link" href="javascript:;" aria-label="Next">
+                            <span aria-hidden="true">Suivant &raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="MyModal">
+        <div class="modal-dialog modal-dialog-scrollable" id="Modal">
+            <div class="modal-content">
+                <!-- Header -->
+                <div class="modal-header">
+                    <h4 id="ModalTitle"></h4>
+                    <a href="adhesionPersonnel" class="close" data-dismiss="modal" style="margin-top: -30;">&times;</a>
+                </div>
+                <!-- Body -->
+                <div class="modal-body">
+                    <form id="form" class="adherent-info">
+                        <fieldset id="SubmitForm">
+                            <!-- Form fields -->
+                            <!-- Ajout d'un champ caché pour stocker l'ID du bulletin de soin -->
+                            <div id="exTab1" class="container">
+                                <ul class="nav nav-pills">
+                                    <li class="active">
+                                        <a href="#1a" data-toggle="tab">Adhérent</a>
+                                    </li>
+                                    <li>
+                                        <a href="#2a" data-toggle="tab">Conjoint</a>
+                                    </li>
+                                    <li>
+                                        <a href="#3a" data-toggle="tab">Enfants</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content clearfix">
+                                    <div class="tab-pane active" id="1a">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="adhId" class="required">Matricule Adhérent:</label>
+                                                    @Html.TextBoxFor(m => m.idAdherent, new { @id = "adhId", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="status" class="required">Code Direction:</label>
+                                                    @Html.DropDownListFor(m => m.status, new SelectList(new[] { "A - Actif ", "T - Technic", "R - Retraité" }), new { @id = "status", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="nomAdh" class="required">Nom Adhérent:</label>
+                                                    @Html.TextBoxFor(m => m.nomAdh, new { @id = "nomAdh", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="pnomAdh" class="required">Prénom Adhérent:</label>
+                                                    @Html.TextBoxFor(m => m.prenomAdh, new { @id = "pnomAdh", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="DA" class="required">Date d'Adhésion:</label>
+                                            @Html.TextBoxFor(m => m.dateAdhesion, new { @id = "DA", @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="police" class="required">Contrat N° (Police):</label>
+                                            @Html.TextBoxFor(m => m.police, new { @id = "police", @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="benif" class="required">Bénificiaire en cas de décés:</label>
+                                            @Html.TextBoxFor(m => m.benefEnCasDeces, new { @id = "benif", @class = "form-control" })
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="matCnam">Matricule CNAM:</label>
+                                            @Html.TextBoxFor(m => m.matriculeCnam, new { @id = "matCnam", @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cin_pass">CIN/Passeport N°:</label>
+                                            @Html.TextBoxFor(m => m.CIN_PASS, new { @id = "cin_pass", @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mail">E-mail:</label>
+                                            @Html.TextBoxFor(m => m.emailAdh, new { @id = "mail", @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telephone">Num. Téléphone:</label>
+                                            @Html.TextBoxFor(m => m.numTelephone, new { @id = "telephone", @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="adressA">Adresse Adhérent:</label>
+                                            @Html.TextBoxFor(m => m.adressAdh, new { @id = "adressA", @class = "form-control" })
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="gov">Governorat:</label>
+                                                    @Html.TextBoxFor(m => m.gouvernorat, new { @id = "gov", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="codePo">Code Postal:</label>
+                                                    @Html.TextBoxFor(m => m.codePostal, new { @id = "codePo", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="dateNais">Date Naissance:</label>
+                                                    @Html.TextBoxFor(m => m.dateNais, new { @id = "dateNais", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="lieuNais">Lieu Naissance:</label>
+                                                    @Html.TextBoxFor(m => m.lieuNais, new { @id = "lieuNais", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="prof">Profession:</label>
+                                                    @Html.TextBoxFor(m => m.profession, new { @id = "profA", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="lieu">Lieu:</label>
+                                                    @Html.TextBoxFor(m => m.lieu, new { @id = "lieu", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="display: flex;">
+                                            <label style="flex: 0 0 auto; margin-right: 10px;">Sexe:</label>
+                                            <div style="display: flex;">
+                                                <label class="radio-inline" style="margin-right: 10px;">
+                                                    @Html.RadioButtonFor(m => m.sexeAdherent, "F") Féminin
+                                                </label>
+                                                <label class="radio-inline">
+                                                    @Html.RadioButtonFor(m => m.sexeAdherent, "M") Masculin
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group" style="display: flex;" id="situFa">
+                                            <label style="flex: 0 0 auto; margin-right: 10px;">Situation Familiale:</label>
+                                            <div style="display: flex;">
+                                                <label class="radio-inline" style="margin-right: 10px;">
+                                                    @Html.RadioButtonFor(m => m.situationFamiliale, "C") Célibataire
+                                                </label>
+                                                <label class="radio-inline" style="margin-right: 10px;">
+                                                    @Html.RadioButtonFor(m => m.situationFamiliale, "V") Veuf(ve)
+                                                </label>
+                                                <label class="radio-inline" style="margin-right: 10px;">
+                                                    @Html.RadioButtonFor(m => m.situationFamiliale, "D") Divorcé(e)
+                                                </label>
+                                                <label class="radio-inline">
+                                                    @Html.RadioButtonFor(m => m.situationFamiliale, "M") Marié(e)
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="rib">Rib:</label>
+                                            @Html.TextBoxFor(m => m.RIB, new { @id = "rib", @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="salaire">Salaire Brute/An:</label>
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(m => m.salaireBrut, new { @id = "salaire", @class = "form-control" })
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">TND</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- Indication des champs obligatoires -->
+                                        <p style="color: red; margin-top: 10px;">[ * ] : Champs obligatoires à remplir ! </p>
+
+
+                                    </div>
+                                    <div class="tab-pane" id="2a">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="code">code prestataire:</label>
+                                                    @Html.TextBoxFor(m => m.pres.codePrestataire, new { @id = "code", @class = "form-control", @Value = "99" })
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="DN">Date Naissance:</label>
+                                                    @Html.TextBoxFor(m => m.pres.dateNais, new { @id = "DN", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="nomP">Nom:</label>
+                                                    @Html.TextBoxFor(m => m.pres.nomPres, new { @id = "nomP", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="pnomP">Prénom:</label>
+                                                    @Html.TextBoxFor(m => m.pres.prenomPres, new { @id = "pnomP", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="prof">Profession/Qualité:</label>
+                                                    @Html.TextBoxFor(m => m.pres.profession, new { @id = "prof", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="emp">Employeur:</label>
+                                                    @Html.TextBoxFor(m => m.pres.employeur, new { @id = "emp", @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group" id="sexeC" style="display: flex;">
+                                                <label style="flex: 0 0 auto; margin-right: 10px;">Sexe:</label>
+                                                <div style="display: flex;">
+                                                    <label class="radio-inline" style="margin-right: 10px;">
+                                                        @Html.RadioButtonFor(m => m.pres.sexe, "F") Féminin
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        @Html.RadioButtonFor(m => m.pres.sexe, "M") Masculin
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="#" class="btn btn-primary" id="AddOther" onclick="">Ajouter</a>
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="#" class="btn btn-primary" id="AddOtherEdit" onclick="">Ajouter</a>
+                                        </div>
+                                        <div id="tableContainer" style="display:none; margin-top:20px;overflow:scroll;">
+                                            <table id="conjointTable" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th style="padding: 10px;">Code</th>
+                                                        <th style="padding: 10px;">Date Naissance</th>
+                                                        <th style="padding: 10px;">Nom</th>
+                                                        <th style="padding: 10px;">Prénom</th>
+                                                        <th style="padding: 10px;">Profession</th>
+                                                        <th style="padding: 10px;">Employeur</th>
+                                                        <th style="padding: 10px;">Sexe</th>
+                                                        <th style="padding: 10px;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="conjointBody">
+                                                    <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="tableContainerEdit" style="display:none; margin-top:20px;overflow:scroll;">
+                                            <table id="conjointTableEdit" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th style="padding: 10px;">Code</th>
+                                                        <th style="padding: 10px;">Date Naissance</th>
+                                                        <th style="padding: 10px;">Nom</th>
+                                                        <th style="padding: 10px;">Prénom</th>
+                                                        <th style="padding: 10px;">Profession</th>
+                                                        <th style="padding: 10px;">Employeur</th>
+                                                        <th style="padding: 10px;">Sexe</th>
+                                                        <th style="padding: 10px;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="conjointBodyEdit">
+                                                    <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane" id="3a">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="codeE">code prestataire:</label>
+                                                    @Html.DropDownListFor(m => m.pres.codePrestataire, new SelectList(new[] { "01", "02", "03", "04", "05", "06", "07", "08", "09" }), new { @id = "codeE", @class = "form-control" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="DNE">Date Naissance:</label>
+                                                    @Html.TextBoxFor(m => m.pres.dateNais, new { @id = "DNE", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="pnomP">Prénom:</label>
+                                                    @Html.TextBoxFor(m => m.pres.prenomPres, new { @id = "pnomE", @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group" id="sexeE" style="display: flex;">
+                                                <label style="flex: 0 0 auto; margin-right: 10px;">Sexe:</label>
+                                                <div style="display: flex;">
+                                                    <label class="radio-inline" style="margin-right: 10px;">
+                                                        @Html.RadioButtonFor(m => m.pres.sexe, "F") Féminin
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        @Html.RadioButtonFor(m => m.pres.sexe, "M") Masculin
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="#" class="btn btn-primary" id="AddOtherE" onclick="">Ajouter Autre</a>
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="#" class="btn btn-primary" id="AddOtherEditE" onclick="">Ajouter enfant</a>
+                                        </div>
+
+                                        <div id="tableContainerE" style="display:none; margin-top:20px;overflow:scroll;">
+                                            <table id="EnfantTableE" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th style="padding: 10px;">Code</th>
+                                                        <th style="padding: 10px;">Date Naissance</th>
+                                                        <th style="padding: 10px;">Prénom</th>
+                                                        <th style="padding: 10px;">Sexe</th>
+                                                        <th style="padding: 10px;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="EnfantBody">
+                                                    <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="tableContainerEditE" style="display:none; margin-top:20px;overflow:scroll;">
+                                            <table id="EnfantTableEditE" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th style="padding: 10px;">Code</th>
+                                                        <th style="padding: 10px;">Date Naissance</th>
+                                                        <th style="padding: 10px;">Prénom</th>
+                                                        <th style="padding: 10px;">Sexe</th>
+                                                        <th style="padding: 10px;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="EnfantBodyEdit">
+                                                    <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <a href="adhesionPersonnel" class="btn btn-danger" data-dismiss="modal">Fermer</a>
+                        <a href="#" class="btn btn-success" id="SaveAdherentRecord">Enregistrer</a>
+                        <a href="#" class="btn btn-success" id="SaveNewRecord">Enregistrer Nouveau</a>
+
+
+                        <!-- Vous pouvez ajouter d'autres boutons d'action ici -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="DeleteConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Supprimer Adhérent</h4>
+                    <a href="taux" class="close" data-dismiss="modal" style="margin-top: -30;">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <h5> Etes-vous sûr ? Vous souhaitez supprimer cet enregistrement.</h5>
+                </div>
+                <div class="modal-footer">
+                    <a href="adhesionPersonnel" class="btn btn-primary" data-dismiss="modal">annuler</a>
+                    <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirmer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    $(document).ready(function () {
+        // Désactiver l'autocomplétion pour chaque balise
+        $("input, select, textarea").attr("autocomplete", "off");
+
+    });
+
+    $("#loadingStatus").html("Loading ...");
+
+    $.get("/Adhesion/GetAdherentList", null, function (adherentList) {
+        // Fonction appelée lorsque les données JSON sont reçues avec succès
+        DataBind(adherentList);
+    });
+
+
+    function searchByAdherentId() {
+        var idAdherent = $("#searchIdAdherent").val();
+        $.ajax({
+            type: "GET",
+            url: "/Adhesion/FilterByAdherentId?idAdherent=" + idAdherent,
+            success: function (adherentList) {
+                // Effacez la table actuelle et affichez la liste filtrée
+                $("#bodyTable").empty();
+                DataBind(adherentList);
+            },
+            error: function () {
+                alert("Une erreur s'est produite lors de la recherche des bulletins de soins par adhérent.");
+            }
+        });
+    }
+
+
+
+    function formatageDateISO(date) {
+        var dateMilliseconds = parseInt(date.substr(6)); // Extraction des millisecondes de la chaîne
+        var dateObj = new Date(dateMilliseconds); // Création d'un nouvel objet Date à partir des millisecondes
+
+        // Formater la date au format yyyy-mm-dd
+        var year = dateObj.getFullYear();
+        var month = ('0' + (dateObj.getMonth() + 1)).slice(-2); // Les mois sont basés sur zéro, donc on ajoute 1 et formatage à 2 chiffres
+        var day = ('0' + dateObj.getDate()).slice(-2); // Formatage à 2 chiffres pour le jour
+        var formattedDate = year + '-' + month + '-' + day;
+
+        return formattedDate;
+    }
+
+
+    function DataBind(adherentList) {
+        var SetData = $("#bodyTable");
+        for (var i = 0; i < adherentList.length; i++) {
+            var formattedDateAdhesion = adherentList[i].dateAdhesion ? formatageDateISO(adherentList[i].dateAdhesion) : '';
+
+            var Data = "<tr class='row_" + adherentList[i].idAdherent + "'>" +
+                "<td>" + adherentList[i].idAdherent + "</td>" +
+                "<td>" + adherentList[i].nomAdh + "</td>" +
+                "<td>" + adherentList[i].prenomAdh + "</td>" +
+                "<td>" + formattedDateAdhesion + "</td>" + // Utilisation de la date formatée ici
+                "<td>" + adherentList[i].status + "</td>" +
+                "<td>" + adherentList[i].police + "</td>" +
+                "<td>" + adherentList[i].benefEnCasDeces + "</td>" + // Utilisation de benefEnCasDeces au lieu de benef_en_cas_de_deces
+                "<td><a href='#' class='btn btn-warning' onclick='EditAdherent(" + adherentList[i].idAdherent + ")'><i class='fas fa-edit fa-2x small-icon text-white'></i></a></td>" +
+                "<td><a href='#' class='btn btn-danger' onclick='DeleteAdherentRecord(" + adherentList[i].idAdherent + ")'><i class='fas fa-trash-alt fa-2x small-icon text-white'></i></a></td>" +
+                "<td><a href='#' class='btn btn-info' onclick='ShowAdherentDetails(" + adherentList[i].idAdherent + ")'><i class='fas fa-info-circle fa-2x small-icon text-white'></i></a></td>" +
+                "</tr>";
+            SetData.append(Data);
+
+        }
+        $("#loadingStatus").html(" ");
+
+    }
+
+    //--------------------------------------------------------------------------------------------------------------- Pagination
+    (function () {
+        // Gestionnaire d'événements pour le sélecteur de taille de page
+        $('#pageSizeSelect').change(function () {
+            // Récupérer la nouvelle valeur sélectionnée
+            var newPageSize = $(this).val();
+
+            // Appeler la fonction pour récupérer et afficher les données avec la nouvelle taille de page
+            fetchDataWithPageSize(1, newPageSize); // Commencer à partir de la première page après le changement de taille
+        });
+
+        // Fonction pour récupérer et afficher les données avec une nouvelle taille de page
+        function fetchDataWithPageSize(page, pageSize) {
+            $.get("/Adhesion/GetAdherentList", { page: page, pageSize: pageSize }, function (adherentList) {
+                // Appeler la fonction de liaison des données avec la nouvelle liste d'adhérents
+                $("#bodyTable").empty();
+                DataBind(adherentList);
+            });
+        }
+
+        // Fonction pour récupérer et afficher les données
+        function loadData(page, pageSize) {
+            $.ajax({
+                url: '/Adhesion/GetAdherentList',
+                type: 'GET',
+                data: { page: page, pageSize: pageSize },
+                dataType: 'json',
+                success: function (data) {
+                    // Mettre à jour votre tableau HTML avec les données récupérées
+                    // Ici, 'data' contient les données renvoyées par votre méthode backend
+                    // Vous pouvez itérer sur 'data' pour construire les lignes de votre tableau
+                    // et les ajouter à votre tableau existant
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('Error:', textStatus, errorThrown);
+                }
+            });
+        }
+    })();
+    $(document).ready(function () {
+        var currentPage = 1;
+        var pageSize = 5; // Taille de la page par défaut
+        var totalPages = 10; // Nombre total de pages (initialisé arbitrairement)
+
+        // Fonction pour charger les données de la page spécifiée et mettre à jour l'interface utilisateur
+        function loadData2(page, pageSize) {
+            $.get("/Adhesion/GetAdherentList2", { page: page, pageSize: pageSize }, function (response) {
+                $('#bodyTable').empty(); // Videz d'abord le contenu existant du tableau
+                var data = response.data; // Liste des adhérents
+                $.each(data, function (index, item) {
+                    var formattedDateAdhesion = item.dateAdhesion ? formatageDateISO(item.dateAdhesion) : '';
+
+                    var row = '<tr>' +
+                        "<td>" + item.idAdherent + "</td>" +
+                        "<td>" + item.nomAdh + "</td>" +
+                        "<td>" + item.prenomAdh + "</td>" +
+                        "<td>" + formattedDateAdhesion + "</td>" +
+                        "<td>" + item.status + "</td>" +
+                        "<td>" + item.police + "</td>" +
+                        "<td>" + item.benefEnCasDeces + "</td>" +
+                        "<td><a href='#' class='btn btn-warning' onclick='EditAdherent(" + item.idAdherent + ")'><i class='fas fa-edit small-icon text-white'></i></a></td>" +
+                        "<td><a href='#' class='btn btn-danger' onclick='DeleteAdherentRecord(" + item.idAdherent + ")'><i class='fas fa-trash-alt small-icon text-white'></i></a></td>" +
+                        "<td><a href='#' class='btn btn-info' onclick='ShowAdherentDetails(" + item.idAdherent + ")'><i class='fas fa-info-circle small-icon text-white'></i></a></td>" +
+                        "</tr>";
+                    $('#bodyTable').append(row);
+                });
+                // Mettre à jour le nombre total de pages après avoir obtenu les données
+                totalPages = Math.ceil(response.totalRecords / pageSize);
+                // Mettre à jour l'état des boutons de pagination
+                updatePaginationButtons();
+            });
+        }
+
+        // Fonction pour mettre à jour l'état des boutons de pagination
+        function updatePaginationButtons() {
+            $('#previousPage').prop('disabled', currentPage <= 1);
+            $('#nextPage').prop('disabled', currentPage >= totalPages);
+        }
+
+        // Gestionnaire d'événements pour le bouton Précédent
+        $('#previousPage').click(function () {
+            if (currentPage > 1) {
+                currentPage--;
+                loadData2(currentPage, pageSize);
+            }
+        });
+
+        // Gestionnaire d'événements pour le bouton Suivant
+        $('#nextPage').click(function () {
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadData2(currentPage, pageSize);
+            }
+        });
+
+        // Gestionnaire d'événements pour le sélecteur de taille de page
+        $('#pageSizeSelect').change(function () {
+            pageSize = $(this).val();
+            loadData(1, pageSize); // Charger la première page après le changement de taille
+        });
+
+        // Appel initial pour charger les données de la première page
+        loadData(currentPage, pageSize);
+    });
+
+    //---------------------------------------------------------------------------------------------------------------- Ajout
+
+    // ADHERENT
+    function AddAdherent(idAdherent) {
+        $("#form")[0].reset();
+        $("#ModalTitle").html("Ajouter Nouveau Adhérent");
+        $("#MyModal").modal("show");
+        $("#SaveAdherentRecord").hide();
+        $("#AddOtherEdit").hide();
+        $("#AddOtherEditE").hide();
+
+
+
+        $("#adhId").val("");
+        $("#status").val("");
+        $("#nomAdh").val("");
+        $("#pnomAdh").val("");
+        $(document).ready(function () {
+            // Obtenir la date actuelle
+            var currentDate = new Date();
+
+            // Formater la date au format YYYY-MM-DD pour le champ de date
+            var formattedDate = currentDate.toISOString().split('T')[0];
+
+            // Définir la date formatée comme valeur du champ de date
+            $("#DA").val(formattedDate);
+        });
+        $(document).ready(function () {
+            // Mettre la valeur par défaut "97058" dans le champ Police
+            $("#police").val("97058");
+        });
+        $("#matCnam").val("");
+        $("#cin_pass").val("");
+        $("#mail").val("");
+        $("#telephone").val("");
+        $("#adressA").val("");
+        $("#gov").val("");
+        $("#codePo").val("");
+        $("#dateNais").val("");
+        $("#lieuNais").val("");
+        $("#profA").val("");
+        $("#lieu").val("");
+        $("input[name='situationFamiliale']").prop('checked', false);
+        $("#input[name='sexeAdherent']").prop('checked', false);
+        $("#rib").val("");
+        $("#salaire").val("");
+        $("#benif").val("");
+        //------------------------------------------------------------------------------------------------------- Conjoint
+        $("#code").val("99");
+        $("#DN").val("");
+        $("#nomP").val("");
+        $("#pnomP").val("");
+        $("#prof").val("");
+        $("#emp").val("");
+
+        $("#sexeC input[name='pres.sexe']").prop('checked', false); // Pour les conjoints
+
+        // ------------------------------------------------------------------------------------------------------- Enfant
+
+        $("#codeE").val("");
+        $("#DNE").val("");
+        $("#pnomE").val("");
+        $("#sexeE input[name='pres.sexe']").prop('checked', false); // Pour les enfants
+
+
+    }
+
+    // CONJOINT && ENFANTS
+    $(document).ready(function () {
+        // Tableaux pour stocker les conjoints et les enfants
+        var conjointData = [];
+        var enfantData = [];
+
+        // Fonction pour ajouter un nouveau conjoint
+        $("#AddOther").click(function () {
+            $("#tableContainer").show();
+
+            var conjoint = {
+                codePrestataire: $("#code").val(),
+                dateNais: $("#DN").val(),
+                nomPres: $("#nomP").val(),
+                prenomPres: $("#pnomP").val(),
+                profession: $("#prof").val(),
+                employeur: $("#emp").val(),
+                // Pour obtenir la valeur du bouton radio vérifié dans le bloc avec l'ID sexeC
+                sexe: $("#sexeC input[name='pres.sexe']:checked").val()
+
+
+            };
+
+            conjointData.push(conjoint);
+
+            // Ajouter les données du conjoint dans le tableau HTML
+            var newRow = "<tr>" +
+                "<td>" + conjoint.codePrestataire + "</td>" +
+                "<td>" + conjoint.dateNais + "</td>" +
+                "<td>" + conjoint.nomPres + "</td>" +
+                "<td>" + conjoint.prenomPres + "</td>" +
+                "<td>" + conjoint.profession + "</td>" +
+                "<td>" + conjoint.employeur + "</td>" +
+                "<td>" + conjoint.sexe + "</td>" +
+                "<td><a href='#' class='delete-icon deleteConjoint' style='color: red;'><i class='fas fa-trash'></i></a></td>"
+            "</tr>";
+
+            $("#conjointBody").append(newRow);
+
+            // Réinitialiser les champs du formulaire conjoint
+            $("#code").val("99");
+            $("#DN").val("");
+            $("#nomP").val("");
+            $("#pnomP").val("");
+            $("#prof").val("");
+            $("#emp").val("");
+            $("#sexeC input[name='pres.sexe']").prop('checked', false); // Pour les conjoints
+
+        });
+
+        // Supprimer un conjoint
+        $("#conjointBody").on("click", ".deleteConjoint", function () {
+            var rowIndex = $(this).closest("tr").index();
+            conjointData.splice(rowIndex, 1);
+            $(this).closest("tr").remove();
+        });
+        // Fonction pour ajouter un nouvel enfant
+        $("#AddOtherE").click(function () {
+            $("#tableContainerE").show();
+
+            var enfant = {
+                codePrestataire: $("#codeE").val(),
+                dateNais: $("#DNE").val(),
+                prenomPres: $("#pnomE").val(),
+                sexe: $("#sexeE input[name='pres.sexe']:checked").val()
+            };
+
+            enfantData.push(enfant);
+
+            // Ajouter les données de l'enfant dans le tableau HTML
+            var newRow = "<tr>" +
+                "<td>" + enfant.codePrestataire + "</td>" +
+                "<td>" + enfant.dateNais + "</td>" +
+                "<td>" + enfant.prenomPres + "</td>" +
+                "<td>" + enfant.sexe + "</td>" +
+                "<td><a href='#' class='delete-icon deleteEnfant' style='color: red;'><i class='fas fa-trash'></i></a></td>"
+            "</tr>";
+
+            $("#EnfantBody").append(newRow);
+
+            // Réinitialiser les champs du formulaire enfant
+            $("#codeE").val("");
+            $("#DNE").val("");
+            $("#pnomE").val("");
+            $("#sexeE input[name='pres.sexe']").prop("checked", false);
+        });
+        // Supprimer un enfant
+        $("#EnfantBody").on("click", ".deleteEnfant", function () {
+            var rowIndex = $(this).closest("tr").index();
+            enfantData.splice(rowIndex, 1);
+            $(this).closest("tr").remove();
+        });
+
+        // Fonction pour sauvegarder un nouvel adhérent avec ses conjoints et enfants
+        $("#SaveNewRecord").click(function () {
+            var dataToSend = {
+                idAdherent: $("#adhId").val(),
+                nomAdh: $("#nomAdh").val(),
+                prenomAdh: $("#pnomAdh").val(),
+                police: $("#police").val(),
+                matriculeCnam: $("#matCnam").val(),
+                CIN_PASS: $("#cin_pass").val(),
+                adressAdh: $("#adressA").val(),
+                status: $("#status").val(),
+                numTelephone: $("#telephone").val(),
+                dateAdhesion: $("#DA").val(),
+                dateNais: $("#dateNais").val(),
+                lieuNais: $("#lieuNais").val(),
+                sexeAdherent: $("input[name='sexeAdherent']:checked").val(),
+                situationFamiliale: $("input[name='situationFamiliale']:checked").val(),
+                gouvernorat: $("#gov").val(),
+                codePostal: $("#codePo").val(),
+                profession: $("#profA").val(),
+                lieu: $("#lieu").val(),
+                emailAdh: $("#mail").val(),
+                salaireBrut: $("#salaire").val(),
+                RIB: $("#rib").val(),
+                benefEnCasDeces: $("#benif").val(),
+                conjoints: conjointData,
+                enfants: enfantData,
+
+            };
+
+
+            // Envoyer les données au serveur pour sauvegarde
+            $.ajax({
+                type: "POST",
+                url: "/Adhesion/SaveNewAdherent",
+                data: dataToSend,
+                success: function (response) {
+                    if (response.success) {
+                        alert("Success!");
+                        window.location.href = "/Adhesion/adhesionPersonnel";
+                        $("#MyModal").modal("hide");
+                    } else {
+                        alert("Erreur lors de l'enregistrement des données: " + response.errors);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert("Une erreur s'est produite lors de l'envoi des données au serveur. Statut: " + status + ", Erreur: " + error);
+                }
+            });
+        });
+    });
+
+
+
+
+
+
+
+
+    //---------------------------------------------------------------------------------------------------------------EDITION
+    function EditAdherent(id) {
+        var url = "/Adhesion/GetAdherentById?id=" + id;
+
+        $("#ModalTitle").html("Modifier adhérent");
+        $("#MyModal").modal("show");
+        $("#SaveNewRecord").hide();
+        $("#AddOther").hide();
+        $("#AddOtherE").hide();
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (obj) {
+                if (obj) {
+                    // Convertir la date d'adhésion
+                    var dateAdhesion = obj.dateAdhesion ? new Date(parseInt(obj.dateAdhesion.substr(6))) : null;
+                    var formattedDateAdhesion = dateAdhesion ? dateAdhesion.toLocaleDateString('en-CA') : '';
+
+                    // Convertir la date de naissance
+                    var dateNais = obj.dateNais ? new Date(parseInt(obj.dateNais.substr(6))) : null;
+                    var formattedDateNais = dateNais ? dateNais.toLocaleDateString('en-CA') : '';
+
+
+                    $("#adhId").val(obj.idAdherent);
+                    $("#status").val(obj.status);
+                    $("#nomAdh").val(obj.nomAdh);
+                    $("#pnomAdh").val(obj.prenomAdh);
+                    $("#DA").val(formattedDateAdhesion);
+                    $("#police").val(obj.police);
+                    $("#matCnam").val(obj.matriculeCnam);
+                    $("#cin_pass").val(obj.CIN_PASS);
+                    $("#mail").val(obj.emailAdh);
+                    $("#telephone").val(obj.numTelephone);
+                    $("#adressA").val(obj.adressAdh);
+                    $("#gov").val(obj.gouvernorat);
+                    $("#codePo").val(obj.codePostal);
+                    $("#dateNais").val(formattedDateNais);
+                    $("#lieuNais").val(obj.lieuNais);
+                    $("#profA").val(obj.profession);
+                    $("#lieu").val(obj.lieu);
+                    $("#rib").val(obj.RIB);
+                    $("#salaire").val(obj.salaireBrut);
+                    $("#benif").val(obj.benefEnCasDeces);
+
+                    // Définir le bouton radio 'sexe' pour la première partie
+                    if (obj.sexeAdherent === "F") {
+                        $("input[name='sexeAdherent'][value='F']").prop('checked', true);
+                    } else if (obj.sexeAdherent === "M") {
+                        $("input[name='sexeAdherent'][value='M']").prop('checked', true);
+                    }
+
+                    // Vérifier la valeur et cocher le bouton radio correspondant
+                    if (obj.situationFamiliale === "C") {
+                        $("input[name='situationFamiliale'][value='C']").prop('checked', true);
+                    } else if (obj.situationFamiliale === "V") {
+                        $("input[name='situationFamiliale'][value='V']").prop('checked', true);
+                    } else if (obj.situationFamiliale === "D") {
+                        $("input[name='situationFamiliale'][value='D']").prop('checked', true);
+                    } else if (obj.situationFamiliale === "M") {
+                        $("input[name='situationFamiliale'][value='M']").prop('checked', true);
+                    }
+
+                    // Appeler la fonction pour récupérer les conjoints depuis la base de données
+                    getConjointsFromDatabase(obj.idAdherent); // Passer l'id de l'adhérent comme argument
+                    getEnfantsFromDatabase(obj.idAdherent);
+                } else {
+                    // Afficher un message ou gérer le cas où aucun adhérent n'est trouvé
+                    console.log("Aucun adhérent trouvé avec l'ID spécifié.");
+                }
+            }
+        });
+    }
+
+    // Fonction pour récupérer les conjoints depuis la base de données et les afficher dans le tableau
+    function getConjointsFromDatabase(idAdherent) {
+        // Appeler l'action pour récupérer les conjoints
+        $.ajax({
+            type: "GET",
+            url: "/Adhesion/GetConjoints?idAdherent=" + idAdherent,
+            success: function (conjoints) {
+                $("#tableContainerEdit").show();
+
+                // Effacer le contenu du corps du tableau
+                $("#conjointBodyEdit").empty();
+
+                // Parcourir les conjoints récupérés et les ajouter au tableau
+                $.each(conjoints, function (index, conjoint) {
+
+                    // Convertir la date de naissance
+                    var dateNais = conjoint.dateNais ? new Date(parseInt(conjoint.dateNais.substr(6))) : null;
+                    var formattedDateNaissance = dateNais ? dateNais.toLocaleDateString('en-CA') : '';
+
+                    // Formater la date de naissance
+                    /*
+                    var dateNaissanceMilliseconds = parseInt(conjoint.dateNais.substr(6));
+                    var dateNaissance = new Date(dateNaissanceMilliseconds);
+                    var formattedDateNaissance = dateNaissance.toISOString().substr(0, 10);
+                    */
+                    // Créer une nouvelle ligne de tableau pour chaque conjoint
+                    var newRow = "<tr>" +
+                        "<td style='display:none;'>" + conjoint.idPrestataire + "</td>" + // Ajouter l'ID Prestataire caché
+                        "<td>" + conjoint.codePrestataire + "</td>" +
+                        "<td>" + formattedDateNaissance + "</td>" + // Utiliser la date de naissance formatée
+                        "<td>" + conjoint.nomPres + "</td>" +
+                        "<td>" + conjoint.prenomPres + "</td>" +
+                        "<td>" + conjoint.profession + "</td>" +
+                        "<td>" + conjoint.employeur + "</td>" +
+                        "<td>" + conjoint.sexe + "</td>" +
+                        "<td><a href='#' class='delete-icon' style='color: red;'><i class='fas fa-trash'></i></a></td>" // Ajouter l'icône de suppression
+
+                    "</tr>";
+
+                    // Ajouter la nouvelle ligne au corps du tableau
+                    $("#conjointBodyEdit").append(newRow);
+
+                    $('.delete-icon').click(function () {
+                        var row = $(this).closest("tr"); // Récupérer la ligne correspondante à l'icône de suppression cliquée
+                        var idPrestataire = row.find("td:first").text(); // Lire l'ID Prestataire depuis la première colonne cachée de cette ligne
+                        deleteConjointFromDB(idPrestataire, row); // Supprimer la rubrique de la base de données et la ligne de tableau
+                    });
+                });
+            },
+            error: function (xhr, status, error) {
+                console.log("Une erreur s'est produite lors de la récupération des conjoints: " + error);
+            }
+        });
+    }
+
+
+    function getEnfantsFromDatabase(idAdherent) {
+        // Appeler l'action pour récupérer les enfants
+        $.ajax({
+            type: "GET",
+            url: "/Adhesion/GetEnfants?idAdherent=" + idAdherent,
+            success: function (enfants) {
+                $("#tableContainerEditE").show();
+
+                // Effacer le contenu du corps du tableau
+                $("#EnfantBodyEdit").empty();
+
+                // Parcourir les enfants récupérés et les ajouter au tableau
+                $.each(enfants, function (index, enfant) {
+
+                    // Convertir la date de naissance
+                    var dateNais = enfant.dateNais ? new Date(parseInt(enfant.dateNais.substr(6))) : null;
+                    var formattedDateNaissance = dateNais ? dateNais.toLocaleDateString('en-CA') : '';
+
+
+                    // Créer une nouvelle ligne de tableau pour chaque enfant
+                    var newRow = "<tr>" +
+                        "<td style='display:none;'>" + enfant.idPrestataire + "</td>" + // Ajouter l'ID Prestataire caché
+                        "<td>" + enfant.codePrestataire + "</td>" +
+                        "<td>" + formattedDateNaissance + "</td>" + // Utiliser la date de naissance formatée
+                        "<td>" + enfant.prenomPres + "</td>" +
+                        "<td>" + enfant.sexe + "</td>" +
+                        "<td><a href='#' class='delete-icon-enfant' style='color: red;'><i class='fas fa-trash'></i></a></td>" // Ajouter l'icône de suppression
+                    "</tr>";
+
+                    // Ajouter la nouvelle ligne au corps du tableau
+                    $("#EnfantBodyEdit").append(newRow);
+
+                    $('.delete-icon-enfant').click(function () {
+                        var row = $(this).closest("tr"); // Récupérer la ligne correspondante à l'icône de suppression cliquée
+                        var idPrestataire = row.find("td:first").text(); // Lire l'ID Prestataire depuis la première colonne cachée de cette ligne
+                        deleteEnfantFromDB(idPrestataire, row); // Supprimer l'enfant de la base de données et la ligne de tableau
+                    });
+
+
+                });
+            },
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des enfants: " + error);
+            }
+        });
+    }
+
+    var conjointDataEdit = [];
+    var enfantDataEdit = [];
+
+
+
+    $("#AddOtherEdit").click(function () {
+        $("#tableContainerEdit").show();
+
+        var conjoint = {
+            codePrestataire: $("#code").val(),
+            dateNais: $("#DN").val(),
+            nomPres: $("#nomP").val(),
+            prenomPres: $("#pnomP").val(),
+            profession: $("#prof").val(),
+            employeur: $("#emp").val(),
+            // Pour obtenir la valeur du bouton radio vérifié dans le bloc avec l'ID sexeC
+            sexe: $("#sexeC input[name='pres.sexe']:checked").val(),
+        };
+
+        conjointDataEdit.push(conjoint);
+
+        // Ajouter les données du conjoint dans le tableau HTML
+        var newRow = "<tr>" +
+            "<td>" + conjoint.codePrestataire + "</td>" +
+            "<td>" + conjoint.dateNais + "</td>" +
+            "<td>" + conjoint.nomPres + "</td>" +
+            "<td>" + conjoint.prenomPres + "</td>" +
+            "<td>" + conjoint.profession + "</td>" +
+            "<td>" + conjoint.employeur + "</td>" +
+            "<td>" + conjoint.sexe + "</td>" +
+            "<td><a href='#' class='delete-icon deleteConjoint' style='color: red;'><i class='fas fa-trash'></i></a></td>"
+        "</tr>";
+
+        $("#conjointBodyEdit").append(newRow);
+
+        // Réinitialiser les champs du formulaire conjoint
+        $("#code").val("");
+        $("#DN").val("");
+        $("#nomP").val("");
+        $("#pnomP").val("");
+        $("#prof").val("");
+        $("#emp").val("");
+        // Supprimer un conjoint
+        $("#conjointBodyEdit").on("click", ".deleteConjoint", function () {
+            var rowIndex = $(this).closest("tr").index();
+            conjointDataEdit.splice(rowIndex, 1);
+            $(this).closest("tr").remove();
+        });
+    });
+
+    // Fonction pour ajouter un nouvel enfant
+    $("#AddOtherEditE").click(function () {
+        $("#tableContainerEditE").show();
+
+        var enfant = {
+            codePrestataire: $("#codeE").val(),
+            dateNais: $("#DNE").val(),
+            prenomPres: $("#pnomE").val(),
+            sexe: $("#sexeE input[name='pres.sexe']:checked").val()
+        };
+
+        enfantDataEdit.push(enfant);
+
+        // Ajouter les données de l'enfant dans le tableau HTML
+        var newRow = "<tr>" +
+            "<td>" + enfant.codePrestataire + "</td>" +
+            "<td>" + enfant.dateNais + "</td>" +
+            "<td>" + enfant.prenomPres + "</td>" +
+            "<td>" + enfant.sexe + "</td>" +
+            "<td><a href='#' class='delete-icon deleteEnfant' style='color: red;'><i class='fas fa-trash'></i></a></td>"
+        "</tr>";
+
+        $("#EnfantBodyEdit").append(newRow);
+
+        // Réinitialiser les champs du formulaire enfant
+        $("#codeE").val("");
+        $("#DNE").val("");
+        $("#pnomE").val("");
+        $("#sexeE input[name='sexe']").prop("checked", false);
+
+        // Supprimer un conjoint
+        $("#EnfantBodyEdit").on("click", ".deleteConjoint", function () {
+            var rowIndex = $(this).closest("tr").index();
+            EnfantBodyEdit.splice(rowIndex, 1);
+            $(this).closest("tr").remove();
+        });
+    });
+
+    $("#SaveAdherentRecord").click(function () {
+
+        // Sérialiser les données du formulaire
+        var dataToSend = {
+            idAdherent: $("#adhId").val(),
+            nomAdh: $("#nomAdh").val(),
+            prenomAdh: $("#pnomAdh").val(),
+            police: $("#police").val(),
+            matriculeCnam: $("#matCnam").val(),
+            CIN_PASS: $("#cin_pass").val(),
+            adressAdh: $("#adressA").val(),
+            status: $("#status").val(),
+            numTelephone: $("#telephone").val(),
+            dateAdhesion: $("#DA").val(),
+            dateNais: $("#dateNais").val(),
+            lieuNais: $("#lieuNais").val(),
+            sexeAdherent: $("input[name='sexeAdherent']:checked").val(),
+            situationFamiliale: $("input[name='situationFamiliale']:checked").val(),
+            gouvernorat: $("#gov").val(),
+            codePostal: $("#codePo").val(),
+            profession: $("#profA").val(),
+            lieu: $("#lieu").val(),
+            emailAdh: $("#mail").val(),
+            salaireBrut: $("#salaire").val(),
+            RIB: $("#rib").val(),
+            benefEnCasDeces: $("#benif").val(),
+            conjoints: conjointDataEdit,
+            enfants: enfantDataEdit,
+        };        // Effectuer une requête AJAX pour enregistrer les données dans la base de données
+        $.ajax({
+            type: "POST",
+            url: "/Adhesion/SaveAdherentData", // Assurez-vous de remplacer "YourController" par le nom de votre contrôleur
+            data: dataToSend,
+            success: function (response) {
+                if (response.success) {
+                    alert("Success!");
+                    window.location.href = "/Adhesion/adhesionPersonnel"; // Assurez-vous de remplacer "YourController/Index" par l'URL de redirection souhaitée
+                    $("#MyModal").modal("hide");
+                } else {
+                    alert("Erreur lors de l'enregistrement des données: " + response.errors);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de l'envoi des données au serveur. Statut: " + status + ", Erreur: " + error);
+            }
+        });
+    });
+
+
+
+    //----------------------------------------------------------------------------------------------Affichage
+
+    function ShowAdherentDetails(id) {
+        var url = "/Adhesion/GetAdherentById?id=" + id;
+
+        $("#ModalTitle").html("Consulter adhérent");
+        $("#MyModal").modal("show");
+        $("#SaveNewRecord").hide();
+        $("#SaveAdherentRecord").hide();
+        $("#AddOther").hide();
+        $("#AddOtherEdit").hide();
+        $("#AddOtherE").hide();
+        $("#AddOtherEditE").hide();
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (obj) {
+                if (obj) {
+                    // Conversion des dates en objets Date
+                    var dateAdhesion = obj.dateAdhesion ? new Date(parseInt(obj.dateAdhesion.substr(6))) : null;
+                    var dateNais = obj.dateNais ? new Date(parseInt(obj.dateNais.substr(6))) : null;
+
+                    // Formater les dates au format 'yyyy-mm-dd'
+                    var formattedDateAdhesion = dateAdhesion ? dateAdhesion.toLocaleDateString('en-CA') : '';
+                    var formattedDateNais = dateNais ? dateNais.toLocaleDateString('en-CA') : '';
+
+                    // Remplir les champs avec les valeurs de l'adhérent
+                    $("#adhId").val(obj.idAdherent).prop('disabled', true);
+                    $("#status").val(obj.status).prop('disabled', true);
+                    $("#nomAdh").val(obj.nomAdh).prop('disabled', true);
+                    $("#pnomAdh").val(obj.prenomAdh).prop('disabled', true);
+                    $("#DA").val(formattedDateAdhesion).prop('disabled', true);
+                    $("#police").val(obj.police).prop('disabled', true);
+                    $("#matCnam").val(obj.matriculeCnam).prop('disabled', true);
+                    $("#cin_pass").val(obj.CIN_PASS).prop('disabled', true);
+                    $("#mail").val(obj.emailAdh).prop('disabled', true);
+                    $("#telephone").val(obj.numTelephone).prop('disabled', true);
+                    $("#adressA").val(obj.adressAdh).prop('disabled', true);
+                    $("#gov").val(obj.gouvernorat).prop('disabled', true);
+                    $("#codePo").val(obj.codePostal).prop('disabled', true);
+                    $("#dateNais").val(formattedDateNais).prop('disabled', true);
+                    $("#lieuNais").val(obj.lieuNais).prop('disabled', true);
+                    $("#profA").val(obj.profession).prop('disabled', true);
+                    $("#lieu").val(obj.lieu).prop('disabled', true);
+                    $("#rib").val(obj.RIB).prop('disabled', true);
+                    $("#salaire").val(obj.salaireBrut).prop('disabled', true);
+                    $("#benif").val(obj.benefEnCasDeces).prop('disabled', true);
+
+                    // Définir le bouton radio 'sexe'
+                    if (obj.sexeAdherent === "F") {
+                        $("input[name='sexeAdherent'][value='F']").prop('checked', true).prop('disabled', true);
+                    } else if (obj.sexeAdherent === "M") {
+                        $("input[name='sexeAdherent'][value='M']").prop('checked', true).prop('disabled', true);
+                    }
+
+                    // Définir la situation familiale
+                    if (obj.situationFamiliale === "C") {
+                        $("input[name='situationFamiliale'][value='C']").prop('checked', true).prop('disabled', true);
+                    } else if (obj.situationFamiliale === "V") {
+                        $("input[name='situationFamiliale'][value='V']").prop('checked', true).prop('disabled', true);
+                    } else if (obj.situationFamiliale === "D") {
+                        $("input[name='situationFamiliale'][value='D']").prop('checked', true).prop('disabled', true);
+                    } else if (obj.situationFamiliale === "M") {
+                        $("input[name='situationFamiliale'][value='M']").prop('checked', true).prop('disabled', true);
+                    }
+
+                    // Afficher les conjoints et les enfants
+                    showConjoints(obj.idAdherent);
+                    showEnfants(obj.idAdherent);
+
+                    // Cacher les dernières colonnes des tables
+                    $("#tableContainerEdit th:last-child, #tableContainerEdit td:last-child").hide();
+                    $("#tableContainerEditE th:last-child, #tableContainerEditE td:last-child").hide();
+
+                    // Désactiver les champs d'ajout
+                    $("#code").val("").prop('disabled', true);
+                    $("#nomP").val("").prop('disabled', true);
+                    $("#pnomP").val("").prop('disabled', true);
+                    $("#prof").val("").prop('disabled', true);
+                    $("#emp").val("").prop('disabled', true);
+                    $("#DN").val("").prop('disabled', true);
+                    $("#sexeC").val("").prop('disabled', true);
+
+                    $("#codeE").val("").prop('disabled', true);
+                    $("#pnomE").val("").prop('disabled', true);
+                    $("#DNE").val("").prop('disabled', true);
+                    $("#sexeE").val("").prop('disabled', true);
+                } else {
+                    console.log("Aucun adhérent trouvé avec l'ID spécifié.");
+                }
+            }
+        });
+    }
+
+
+    function showConjoints(idAdherent) {
+        // Appeler l'action pour récupérer les conjoints
+        $.ajax({
+            type: "GET",
+            url: "/Adhesion/GetConjoints?idAdherent=" + idAdherent,
+            success: function (conjoints) {
+                $("#tableContainerEdit").show();
+
+                // Effacer le contenu du corps du tableau
+                $("#conjointBodyEdit").empty();
+
+                // Parcourir les conjoints récupérés et les ajouter au tableau
+                $.each(conjoints, function (index, conjoint) {
+                    // Formater la date de naissance
+                    var dateNaissanceMilliseconds = parseInt(conjoint.dateNais.substr(6));
+                    var dateNaissance = new Date(dateNaissanceMilliseconds);
+                    var formattedDateNaissance = dateNaissance.toISOString().substr(0, 10);
+
+                    // Créer une nouvelle ligne de tableau pour chaque conjoint
+                    var newRow = "<tr>" +
+                        "<td style='display:none;'>" + conjoint.idPrestataire + "</td>" + // Ajouter l'ID Prestataire caché
+                        "<td>" + conjoint.codePrestataire + "</td>" +
+                        "<td>" + formattedDateNaissance + "</td>" + // Utiliser la date de naissance formatée
+                        "<td>" + conjoint.nomPres + "</td>" +
+                        "<td>" + conjoint.prenomPres + "</td>" +
+                        "<td>" + conjoint.profession + "</td>" +
+                        "<td>" + conjoint.employeur + "</td>" +
+                        "<td>" + conjoint.sexe + "</td>" +
+                        "</tr>";
+
+                    // Ajouter la nouvelle ligne au corps du tableau
+                    $("#conjointBodyEdit").append(newRow);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.log("Une erreur s'est produite lors de la récupération des conjoints: " + error);
+            }
+        });
+    }
+
+
+    function showEnfants(idAdherent) {
+        // Appeler l'action pour récupérer les enfants
+        $.ajax({
+            type: "GET",
+            url: "/Adhesion/GetEnfants?idAdherent=" + idAdherent,
+            success: function (enfants) {
+                $("#tableContainerEditE").show();
+
+                // Effacer le contenu du corps du tableau
+                $("#EnfantBodyEdit").empty();
+
+                // Parcourir les enfants récupérés et les ajouter au tableau
+                $.each(enfants, function (index, enfant) {
+                    // Formater la date de naissance
+                    var dateNaissanceMilliseconds = parseInt(enfant.dateNais.substr(6));
+                    var dateNaissance = new Date(dateNaissanceMilliseconds);
+                    var formattedDateNaissance = dateNaissance.toISOString().substr(0, 10);
+
+                    // Créer une nouvelle ligne de tableau pour chaque enfant
+                    var newRow = "<tr>" +
+                        "<td style='display:none;'>" + enfant.idPrestataire + "</td>" + // Ajouter l'ID Prestataire caché
+                        "<td>" + enfant.codePrestataire + "</td>" +
+                        "<td>" + formattedDateNaissance + "</td>" + // Utiliser la date de naissance formatée
+                        "<td>" + enfant.prenomPres + "</td>" +
+                        "<td>" + enfant.sexe + "</td>" +
+                        "</tr>";
+
+                    // Ajouter la nouvelle ligne au corps du tableau
+                    $("#EnfantBodyEdit").append(newRow);
+                });
+            },
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des enfants: " + error);
+            }
+        });
+    }
+
+    //---------------------------------------------------------------------------------------------Supperession
+
+    function deleteConjointFromDB(idPrestataire, row) {
+        $.ajax({
+            type: "POST",
+            url: "/Adhesion/DeleteConjoint",
+            data: { idPrestataire: idPrestataire },
+            success: function (response) {
+                alert("Rubrique supprimée de la base de données !");
+                row.remove(); // Supprimer la ligne du tableau une fois la suppression réussie
+            },
+            error: function (xhr, status, error) {
+                alert("Erreur lors de la suppression de la rubrique de la base de données :", error);
+            }
+        });
+    }
+
+    function deleteEnfantFromDB(idPrestataire, row) {
+        $.ajax({
+            type: "POST",
+            url: "/Adhesion/DeleteEnfant",
+            data: { idPrestataire: idPrestataire },
+            success: function (response) {
+                alert("Enfant supprimé de la base de données !");
+                row.remove(); // Supprimer la ligne du tableau une fois la suppression réussie
+            },
+            error: function (xhr, status, error) {
+                alert("Erreur lors de la suppression de l'enfant de la base de données :", error);
+            }
+        });
+    }
+
+    function DeleteAdherentRecord(idAdherent) {
+        $("#adhId").val(idAdherent);
+        $("#DeleteConfirmation").modal("show"); // Afficher la modal de confirmation
+    }
+
+    function ConfirmDelete() {
+        var idAdherent = $("#adhId").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/Adhesion/DeleteAdherentRecord?idAdherent=" + idAdherent,
+            success: function (result) {
+                $("#DeleteConfirmation").modal("hide"); // Cacher la modal de confirmation
+                if (result) {
+                    alert("supprimé avec succés");
+
+                    $(".row_" + idAdherent).remove(); // Supprimer la ligne du tableau
+                } else {
+                    alert("Failed to delete adherent record.");
+                }
+            },
+            error: function () {
+                alert("An error occurred while deleting the adherent record.");
+            }
+        });
+    }
+
+
+</script>
+
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-info">
+                    <h3>TUNISAIR</h3>
+                    <p>fondée en 1948, forte de plus <br />de 75 ans d'expérience dans <br />le secteur de l'aviation,<br /> est la compagnie aérienne <br />nationale de la Tunisie.</p>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About us</a></li>
+                        <li><a href="#services">Services</a></li>
+
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>
+                        <i class="bi bi-pin-map-fill"></i> Rue Aéroport Tunis-Carthage  <br>Charguia 2, Ariana <br>Siège Tunisair <br>
+                        <i class="bi bi-telephone-fill"></i> <strong>Phone:</strong> +216 1789 55488 55<br>
+                        <i class="bi bi-envelope-at-fill"></i><strong> Email:</strong> info@Tunisair.com.tn<br>
+                        <i class="bi bi-browser-chrome"></i> <strong>Site Officiel: </strong>www.tunisair.com <br />
+                    </p>
+
+
+                    <div class="social-links">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong>TUNISAIR</strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+            -->
+            Designed by <a href="https://bootstrapmade.com/">DCSI</a>
+        </div>
+    </div>
+</footer><!-- End Footer -->

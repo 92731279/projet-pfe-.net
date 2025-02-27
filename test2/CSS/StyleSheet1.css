@@ -1,0 +1,129 @@
+﻿/* Styles pour le formulaire dans le popup */
+#form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styles pour les éléments des informations de l'adhérent */
+.adherent-info {
+    margin-bottom: 40px;
+    border: 2px solid #ccc; /* Bordure  pour séparer */
+    padding: 20px;
+}
+
+/* Styles pour les éléments des informations de la rubrique */
+.rubrique-info {
+    margin-bottom: 20px;
+    border: 2px solid #ccc ; /* Bordure  pour séparer */
+    margin-top: 40px; /* Espacement entre la bordure et le contenu */
+    padding:20px;
+}
+
+
+/* Styles pour le titre du popup */
+#ModalTitle {
+    margin-bottom: 20px;
+}
+
+/* Styles pour le bouton de fermeture */
+.close {
+    position: absolute;
+    
+    right: 10px;
+    font-size: 24px;
+    color: #000;
+}
+
+/* Styles pour le bouton "Save" */
+#SaveBSRecord {
+    margin-right: 10px;
+}
+.container-pagination {
+    margin-top: 20px;
+}
+
+.pagination {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
+
+    
+
+        .pagination li a {
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            color: #333;
+            height: 35px;
+        }
+
+            .pagination li a.active {
+                background-color: #007bff;
+                color: #fff;
+            }
+
+.small-icon {
+    font-size: 16px; /* Ajustez la taille comme vous le souhaitez */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.col-md-6 {
+    margin-bottom: 40px;
+    margin-left: auto;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+    .input-group > input {
+        flex: 1 1 auto;
+    }
+
+.input-group-append {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.messageContainer {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: lawngreen;
+    padding: 15px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+
+
+.messageContainer .success-icon {
+        margin-right: 10px;
+        display: inline-block;
+        font-size: 20px;
+        vertical-align: middle;
+
+}
+body {
+    background-image: url('../assets/img/3.jpeg');
+    background-size: cover; /* Pour couvrir entièrement le conteneur */
+    background-repeat: no-repeat; /* Pour éviter la répétition de l'image */
+}
+

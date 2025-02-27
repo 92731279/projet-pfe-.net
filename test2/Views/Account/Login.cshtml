@@ -1,0 +1,203 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/shared/_LayoutPage1.cshtml";
+}
+
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        La connexion a échoué. Veuillez vérifier votre nom d'utilisateur et votre mot de passe.
+        <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+<style>
+    .container {
+        width: 50%;
+        padding: 20px;
+        flex-direction: column;
+    }
+
+        .container .w3ls-login input[type=submit] {
+            /* Styles spécifiques pour le bouton submit dans le conteneur */
+            /* Par exemple */
+            background-color: #007bff; /* Bleu pour le bouton */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .container .w3ls-login input[type=submit]:hover {
+                background-color: #0056b3; /* Bleu plus foncé au survol */
+            }
+
+    input[type="submit" i] {
+        color: #fff;
+        width: 20%;
+        margin-left: 300px;
+        padding: 0.7em 0;
+        margin-top: 0em;
+        font-size: 1em;
+        letter-spacing: 2px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        border-radius: 30px;
+        font-weight: 600;
+        background: #1549c2;
+        border: 2px solid transparent;
+        font-family: 'Source Sans Pro', sans-serif;
+        transition: 0.5s all ease;
+        -webkit-transition: 0.5s all ease;
+        -moz-transition: 0.5s all ease;
+        -o-transition: 0.5s all ease;
+        -ms-transition: 0.5s all ease;
+    }
+
+    input[type=submit]:hover {
+        background-color: white; /* Bleu plus foncé au survol */
+        color: #1549c2;
+        border: 2px solid #1549c2;
+    }
+
+    input[type="checkbox" i] {
+        background-color: #1549c2;
+    }
+
+    /* Style de l'alerte */
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    /* Style de l'alerte danger */
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
+    /* Style du bouton de fermeture de l'alerte */
+    .close {
+        float: right;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+        opacity: .5;
+    }
+
+        .close:hover {
+            color: #000;
+            text-decoration: none;
+            opacity: .75;
+        }
+</style>
+
+
+<div class="container">
+
+    <h1> Bienvenue ! </h1>
+    <div class="clear-loading spinner">
+        <span></span>
+    </div>
+    <div class="w3ls-login box box--big">
+        <!-- form starts here -->
+        <form action="Verify" method="post">
+            <div class="agile-field-txt">
+                <label><i class="fa fa-user" aria-hidden="true"></i> Nom d'Utilisateur</label>
+                <input type="text" name="Name" placeholder="Entrez votre nom d'utilisateur" required="" style=" border: 2px ridge #5d99e0; " />
+            </div>
+            <div class="agile-field-txt">
+                <label><i class="fa fa-unlock-alt" aria-hidden="true"></i> Mot de passe </label>
+                <input type="password" name="Password" placeholder="Entrez votre mot de passe" required="" id="myInput" style="border: 2px ridge #5d99e0;" "      />
+                <div class="agile_label">
+                    <input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+                    <label class="check" for="check3">Afficher mot de passe</label>
+                </div>
+               
+            </div>
+
+    </div>
+    <!-- //end script -->
+    <input type="submit" value="Se Connecter">
+    </form>
+</div>
+
+
+
+<!-- script for show password -->
+<script>
+
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
+    // Code JavaScript pour fermer l'alerte lorsqu'on clique sur le bouton de fermeture
+    document.addEventListener("DOMContentLoaded", function () {
+        var closeButtons = document.querySelectorAll('.close');
+        closeButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var alert = this.parentElement;
+                alert.style.display = "none";
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        // Désactiver l'autocomplétion pour chaque balise
+        $("input, select, textarea").attr("autocomplete", "off");
+
+    });
+
+
+
+</script>
+<script>
+    // Vérifier si l'authentification a échoué et appeler highlightFailedLogin() si nécessaire
+    @if (ViewBag.AuthenticationFailed != null && ViewBag.AuthenticationFailed)
+    {
+        <text>
+            alert("Login failed. Please check your username and password.");
+        </text>
+    }
+</script>
+
+
+
+
+
+<!-- //form ends here -->
+<!--copyright-->
+<div class="copy-wthree" style="text-align:center;">
+    <p>
+        © 2024 TUNISAIR Login Form . All Rights Reserved | Design by
+        <a href="http://w3layouts.com/" target="_blank">DCSI</a>
+    </p>
+</div>
+<!--//copyright-->
+<!-- Fonction pour colorer les bordures des champs de texte en rouge en cas d'échec de connexion -->
+<script>
+    function highlightFailedLogin() {
+        // Récupérer les éléments d'entrée
+        var username = document.getElementsByName("Name")[0];
+        var password = document.getElementsByName("password")[0];
+
+        // Ajouter une classe CSS pour colorer les bordures en rouge
+        username.style.borderColor = "red";
+        password.style.borderColor = "red";
+    }
+</script>

@@ -1,0 +1,175 @@
+﻿@model test2.Models.DashboardViewModel
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/shared/_LayoutPage3.cshtml";
+
+}
+<!-- Inclure jQuery -->
+<script src="~/Scripts/jquery-3.7.1.min.js"></script>
+<!-- Inclure DataTables -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<!-- Inclure Bootstrap -->
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<!-- Inclure Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Inclure jQuery UI (Datepicker) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Vos autres scripts -->
+!<!--<script src="~/Scripts/jquery.dataTables.js"></script>-->
+
+<link href="~/CSS/StyleSheet1.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+
+
+<!-- Favicons -->
+<link href="~/assets/img/favicon.png" rel="icon">
+<link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+
+<link href="~/CSS/StyleSheet1.css" rel="stylesheet" />
+<!-- Template Main CSS File -->
+<link href="~/assets/css/style.css" rel="stylesheet">
+
+
+
+
+
+<style>
+    /* Style général pour le corps de la page */
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    /* Style pour les paragraphes */
+    p {
+        margin-bottom: 10px;
+    }
+
+    /* Style pour les liens des bulletins de soin */
+    .bulletin-link {
+        color: blue;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+        .bulletin-link:hover {
+            text-decoration: underline;
+        }
+
+    /* Style pour la liste des bulletins de soin */
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    /* Style pour chaque bulletin de soin */
+    li {
+        margin-bottom: 5px;
+    }
+
+    /* Style pour le formulaire de déconnexion */
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+</style>
+
+
+<body>
+    @if (Model != null && Model.Adherent != null)
+    {<p>Matricule Adhérent: @Model.Adherent.idAdherent</p>
+
+    <p>Nom de l'adhérent: @Model.Adherent.nomAdh</p>
+    <p>Prénom de l'adhérent: @Model.Adherent.prenomAdh</p>
+    
+
+    <h3>Bulletins de soin:</h3>
+    <ul>
+        @foreach (var bulletin in Model.BulletinSoin)
+        {
+            <div>
+            <li>
+                <a href="#" class="bulletin-link" data-bulletin-id="@bulletin.idBs">ID du bulletin: @bulletin.idBs</a>
+            </li>
+            <li data-bulletin-pres="@bulletin.idPrestataire">Code Prestataire: @bulletin.idPrestataire</li>
+
+            </div>
+        }
+    </ul>
+
+    @Html.BeginForm("Logout", "Account", FormMethod.Post)
+    {
+        <input type="submit" value="Déconnexion" />
+    }
+}
+
+else
+{
+    <p>Aucun adhérent trouvé.</p>
+}
+</body>
+
+<script>
+    // Ajoutez un écouteur d'événements pour chaque lien de bulletin
+    var bulletinLinks = document.querySelectorAll('.bulletin-link');
+    bulletinLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Empêche le lien de suivre le lien
+
+            // Récupère l'ID du bulletin à partir de l'attribut de données
+            var bulletinId = this.getAttribute('data-bulletin-id');
+
+            // Récupère l'ID du prestataire à partir de l'attribut de données
+            var prestataireId = this.parentElement.nextElementSibling.getAttribute('data-bulletin-pres');
+
+            // Affiche l'ID du prestataire
+            alert('ID du prestataire: ' + prestataireId + ' associé au bulletin: ' + bulletinId);
+        });
+    });
+</script>
+
+
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="~/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="~/assets/vendor/aos/aos.js"></script>
+<script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="~/assets/vendor/php-email-form/validate.js"></script>
+<!-- Template Main JS File -->
+<script src="~/assets/js/main.js"></script>

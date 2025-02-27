@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BsDBModel8StoreContainer" CdmEntityContainer="BsDBEntities16">
+    <EntitySetMapping Name="tbl_adherent">
+      <EntityTypeMapping TypeName="BsDBModel8.tbl_adherent">
+        <MappingFragment StoreEntitySet="tbl_adherent">
+          <ScalarProperty Name="idAdherent" ColumnName="idAdherent" />
+          <ScalarProperty Name="nomAdh" ColumnName="nomAdh" />
+          <ScalarProperty Name="prenomAdh" ColumnName="prenomAdh" />
+          <ScalarProperty Name="CIN_PASS" ColumnName="CIN_PASS" />
+          <ScalarProperty Name="adressAdh" ColumnName="adressAdh" />
+          <ScalarProperty Name="emailAdh" ColumnName="emailAdh" />
+          <ScalarProperty Name="matriculeCnam" ColumnName="matriculeCnam" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="numTelephone" ColumnName="numTelephone" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="police" ColumnName="police" />
+          <ScalarProperty Name="dateAdhesion" ColumnName="dateAdhesion" />
+          <ScalarProperty Name="dateNais" ColumnName="dateNais" />
+          <ScalarProperty Name="lieuNais" ColumnName="lieuNais" />
+          <ScalarProperty Name="sexe" ColumnName="sexe" />
+          <ScalarProperty Name="situationFamiliale" ColumnName="situationFamiliale" />
+          <ScalarProperty Name="gouvernorat" ColumnName="gouvernorat" />
+          <ScalarProperty Name="codePostal" ColumnName="codePostal" />
+          <ScalarProperty Name="profession" ColumnName="profession" />
+          <ScalarProperty Name="lieu" ColumnName="lieu" />
+          <ScalarProperty Name="salaireBrut" ColumnName="salaireBrut" />
+          <ScalarProperty Name="RIB" ColumnName="RIB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_bulletinSoin">
+      <EntityTypeMapping TypeName="BsDBModel8.tbl_bulletinSoin">
+        <MappingFragment StoreEntitySet="tbl_bulletinSoin">
+          <ScalarProperty Name="idBs" ColumnName="idBs" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="idAdherent" ColumnName="idAdherent" />
+          <ScalarProperty Name="idPrestataire" ColumnName="idPrestataire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_designation">
+      <EntityTypeMapping TypeName="BsDBModel8.tbl_designation">
+        <MappingFragment StoreEntitySet="tbl_designation">
+          <ScalarProperty Name="designationId" ColumnName="designationId" />
+          <ScalarProperty Name="designationNo" ColumnName="designationNo" />
+          <ScalarProperty Name="designationNom" ColumnName="designationNom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_prestataire">
+      <EntityTypeMapping TypeName="BsDBModel8.tbl_prestataire">
+        <MappingFragment StoreEntitySet="tbl_prestataire">
+          <ScalarProperty Name="idPrestataire" ColumnName="idPrestataire" />
+          <ScalarProperty Name="codePrestataire" ColumnName="codePrestataire" />
+          <ScalarProperty Name="nomPres" ColumnName="nomPres" />
+          <ScalarProperty Name="prenomPres" ColumnName="prenomPres" />
+          <ScalarProperty Name="dateNais" ColumnName="dateNais" />
+          <ScalarProperty Name="adressPres" ColumnName="adressPres" />
+          <ScalarProperty Name="idAdherent" ColumnName="idAdherent" />
+          <ScalarProperty Name="sexe" ColumnName="sexe" />
+          <ScalarProperty Name="profession" ColumnName="profession" />
+          <ScalarProperty Name="employeur" ColumnName="employeur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_rub1">
+      <EntityTypeMapping TypeName="BsDBModel8.tbl_rub1">
+        <MappingFragment StoreEntitySet="tbl_rub1">
+          <ScalarProperty Name="idRub1" ColumnName="idRub1" />
+          <ScalarProperty Name="dateRub1" ColumnName="dateRub1" />
+          <ScalarProperty Name="designationId" ColumnName="designationId" />
+          <ScalarProperty Name="honorairesRub1" ColumnName="honorairesRub1" />
+          <ScalarProperty Name="deviseRub1" ColumnName="deviseRub1" />
+          <ScalarProperty Name="matriculeFisacalRub1" ColumnName="matriculeFisacalRub1" />
+          <ScalarProperty Name="idBs" ColumnName="idBs" />
+          <ScalarProperty Name="devise_souhaite" ColumnName="devise_souhaite" />
+          <ScalarProperty Name="montant_change" ColumnName="montant_change" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_rub2">
+      <EntityTypeMapping TypeName="BsDBModel8.tbl_rub2">
+        <MappingFragment StoreEntitySet="tbl_rub2">
+          <ScalarProperty Name="idRub2" ColumnName="idRub2" />
+          <ScalarProperty Name="DE" ColumnName="DE" />
+          <ScalarProperty Name="DS" ColumnName="DS" />
+          <ScalarProperty Name="montantFrais" ColumnName="montantFrais" />
+          <ScalarProperty Name="deviseRub2" ColumnName="deviseRub2" />
+          <ScalarProperty Name="matriculeFiscalRub2" ColumnName="matriculeFiscalRub2" />
+          <ScalarProperty Name="idBs" ColumnName="idBs" />
+          <ScalarProperty Name="montant_change2" ColumnName="montant_change2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_rub3">
+      <EntityTypeMapping TypeName="BsDBModel8.tbl_rub3">
+        <MappingFragment StoreEntitySet="tbl_rub3">
+          <ScalarProperty Name="idRub3" ColumnName="idRub3" />
+          <ScalarProperty Name="dateRub3" ColumnName="dateRub3" />
+          <ScalarProperty Name="dents" ColumnName="dents" />
+          <ScalarProperty Name="actMedical" ColumnName="actMedical" />
+          <ScalarProperty Name="honorairesRub3" ColumnName="honorairesRub3" />
+          <ScalarProperty Name="deviseRub3" ColumnName="deviseRub3" />
+          <ScalarProperty Name="matriculeFiscalRub3" ColumnName="matriculeFiscalRub3" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="idBs" ColumnName="idBs" />
+          <ScalarProperty Name="montant_change3" ColumnName="montant_change3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_taux_de_change">
+      <EntityTypeMapping TypeName="BsDBModel8.tbl_taux_de_change">
+        <MappingFragment StoreEntitySet="tbl_taux_de_change">
+          <ScalarProperty Name="devise_locale" ColumnName="devise_locale" />
+          <ScalarProperty Name="devise_etrangere" ColumnName="devise_etrangere" />
+          <ScalarProperty Name="date_debut" ColumnName="date_debut" />
+          <ScalarProperty Name="date_fin" ColumnName="date_fin" />
+          <ScalarProperty Name="taux" ColumnName="taux" />
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_login">
+      <EntityTypeMapping TypeName="BsDBModel8.tbl_login">
+        <MappingFragment StoreEntitySet="tbl_login">
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="paassword" ColumnName="paassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

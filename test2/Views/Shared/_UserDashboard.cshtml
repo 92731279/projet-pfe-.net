@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "User Dashboard";
+}
+
+<style>
+    .dashboard-header {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .dashboard-stat {
+        margin: 20px 0;
+    }
+
+    #users-by-role-chart {
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: #ffffff; /* Couleur de fond claire pour contraster avec le canvas */
+        border-radius: 15px; /* Coins arrondis pour un look plus doux */
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); /* Ombre pour donner de la profondeur */
+        transition: transform 0.2s; /* Animation pour un effet visuel lors du survol */
+    }
+   
+
+    /* Style spécifique du canvas */
+    #users-by-role-chart {
+        height: 400px;
+        width: 500px; /* Hauteur définie pour une meilleure visibilité */
+        border: 2px solid transparent; /* Bordure colorée pour délimiter le canvas */
+        border-radius: 10px; /* Coins arrondis pour un look harmonieux avec le conteneur */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombre pour ajouter de la profondeur */
+    }
+        #users-by-role-chart:hover {
+            transform: scale(1.02); /* Agrandissement léger lors du survol */
+        }
+
+
+    
+
+</style>
+
+<div class="container">
+
+    
+    <div class="row">
+            <canvas id="users-by-role-chart"></canvas>
+
+    </div>
+</div>
+
+
+

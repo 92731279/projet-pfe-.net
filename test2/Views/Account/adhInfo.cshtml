@@ -1,0 +1,516 @@
+﻿@model test2.Models.DashboardViewModel
+
+@{
+    ViewBag.Title = "adhInfo";
+    Layout = "~/Views/shared/_LayoutPage3.cshtml";
+
+}
+<link href="~/CSS/styles.css" rel="stylesheet" />
+<script src="~/js/scripts.js"></script>
+<link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Ajoutez cette balise à la fin de votre code HTML -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" />
+
+<style>
+    /* Style de la table */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        font-family: Arial, sans-serif;
+    }
+
+        /* Style de l'en-tête de la table */
+        .table th {
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        /* Style des cellules de la table */
+        .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        /* Style des lignes paires de la table */
+        .table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Style des lignes impaires de la table */
+        .table tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+    /* Style des titres */
+    h4 {
+        font-size: 30px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 3%;
+        margin-top: 2%;
+        font-family: initial;
+    }
+         .text-uppercase mb-4 {
+            color: white;
+        }
+</style>
+<h2 style="margin-top:20px;">adhInfo</h2>
+
+        <header id="header" class="fixed-top d-flex align-items-center">
+            <div class="container d-flex justify-content-between">
+
+                <div class="logo">
+                    <!-- Uncomment below if you prefer to use an text logo -->
+                    <!-- <h1><a href="index.html">NewBiz</a></h1> -->
+                    <a href="#"><img src="~/assets/img/Tunisair_(logo).svg" alt="" class="img-fluid" style=" max-height: 100px;"></a>
+                </div>
+
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="~/Account/Dashboard2">Acceuil</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="~/Account/Dashboard2/#bs">BS validés</a></li>
+
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="~/Account/Dashboard2/#bsNew">Bs Non Validés</a></li>
+
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="~/Account/Dashboard2/#contact">Contact</a></li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="~/Account/adhInfo" style="margin-left: 100px;">
+                                <i class="bi bi-person-circle" data-toggle="tooltip" data-placement="bottom" title="profil" style="font-size:25px;"></i>
+                                <span style="margin-left: 5px;">@Model.Adherent.nomAdh @Model.Adherent.prenomAdh</span>
+                            </a>
+
+
+                        </li>
+                        <li>
+                            <a href="~/Account/Login" class="btn-log-out" style="border: 2px solid #004289; color: #004289; margin-left: 100px; border-radius: 50px; text-align: center; text-decoration: none; padding: 5px 20px 5px 20px; " onmouseover="this.style.background='#004289'; this.style.color='#ffffff';" onmouseout="this.style.background = '#ffffff'; this.style.color = '#1549c2';">Déconnexion</a>
+                        </li>
+
+                    </ul>
+                   
+
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav><!-- .navbar -->
+
+            </div>
+        </header><!-- #header -->
+
+<style>
+    .col-sm-8 {
+        background: white !important;
+        border: 1px white;
+    }
+
+    .form-group row {
+        border: 1px solid #ccc;
+    }
+
+    /* Ajoutez d'autres styles selon vos besoins */
+    }
+
+    strong {
+        font-family: initial;
+    }
+
+    .col-sm-8 {
+        background: #dcf3ee03 !important;
+    }
+</style>
+
+<style>
+
+    body {
+        background-color: #d8e4f2;
+        font-family: "Roboto", sans-serif;
+        font-weight: bold;
+    }
+
+    form {
+        padding: 70px;
+        
+      
+    }
+
+        form h1 {
+            font-size: 20px;
+        }
+
+        form .separation {
+            width: 100%;
+            height: 1px;
+        }
+
+        form .corps-formulaire {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+            form .corps-formulaire .groupe {
+                position: relative; /* Pour mettre positionner l’élément dans le flux normal de la page */
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            form .corps-formulaire .gauche .groupe input {
+                margin-top: 5px;
+                padding: 10px 5px 10px 30px;
+                border: 1px solid #c9c9c9;
+                outline-color: #747cdf;
+                border-radius: 5px;
+            }
+
+            form .corps-formulaire .gauche .groupe i {
+                position: absolute; /* positionné par rapport à son parent le plus proche positionné */
+                left: 0;
+                top: 25px;
+                padding: 9px 8px;
+                color: #747cdf;
+            }
+
+            form .corps-formulaire .droite {
+                margin-left: 40px;
+            }
+
+                form .corps-formulaire .droite .groupe {
+                    height: 100%;
+                }
+
+                    form .corps-formulaire .droite .groupe textarea {
+                        margin-top: 5px;
+                        padding: 10px;
+                        background-color: white;
+                        border: 2px solid #747cdf;
+                        outline: none;
+                        border-radius: 5px;
+                        resize: none;
+                        height: 72%;
+                    }
+
+        form .pied-formulaire button {
+            background-color: white;
+            color: white;
+            font-size: 15px;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+            transition: transform 0.5s;
+        }
+
+            form .pied-formulaire button:hover {
+                transform: scale(1.05);
+            }
+    .form-control {
+        background-color: var(--bs-tertiary-bg);
+        opacity: 1;
+        width: 90%;
+    }
+</style>
+
+
+<body style="background-color:white;">
+    <!-- Chemin relatif depuis la racine du site -->
+    <form>
+        <h4 style="text-align: center; font-family: initial; margin-bottom: 3%; margin-top: 2%; text-shadow: 1px 1px 1px var(--blue) !important; color: rgb(49 100 155) !important; ">Informations Personnelles <i class="bi bi-people-fill"></i></h4>
+
+        @if (Model != null && Model.Adherent != null)
+        {
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div style="width: 100%; border: transparent;">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label"><strong>Matricule :</strong></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" value="@Model.Adherent.idAdherent" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label"><strong>Nom :</strong></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" value="@Model.Adherent.nomAdh" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label"><strong>Prénom :</strong></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" value="@Model.Adherent.prenomAdh" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label"><strong>Email:</strong></label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" value="@Model.Adherent.emailAdh" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label"><strong>Adresse </strong></label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="3" readonly>@Model.Adherent.adressAdh</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label"><strong>Matricule Cnam:</strong></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" value="@Model.Adherent.matriculeCnam" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label"><strong>CIN/Num Passeport:</strong></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" value="@Model.Adherent.CIN_PASS" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label"><strong>Numéro de téléphone :</strong></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" value="@Model.Adherent.numTelephone" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label"><strong>Police :</strong></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" value="@Model.Adherent.police" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label"><strong>Date d'adhésion :</strong></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" value="@(Model.Adherent.dateAdhesion != DateTime.MinValue ? Model.Adherent.dateAdhesion.ToShortDateString() : "")" readonly>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><strong>Date de naissance :</strong></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" value="@(Model.Adherent.dateNais.HasValue ? Model.Adherent.dateNais.Value.ToShortDateString() : "")" readonly>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><strong>Lieu de naissance :</strong></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" value="@Model.Adherent.lieuNais" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><strong>Sexe :</strong></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" value="@Model.Adherent.sexeAdherent" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><strong>Situation familiale :</strong></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" value="@Model.Adherent.situationFamiliale" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><strong>Gouvernorat :</strong></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" value="@Model.Adherent.gouvernorat" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><strong>Code postal :</strong></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" value="@Model.Adherent.codePostal" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><strong>Profession :</strong></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" value="@Model.Adherent.profession" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><strong>Lieu :</strong></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" value="@Model.Adherent.lieu" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><strong>Salaire brut :</strong></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" value="@Model.Adherent.salaireBrut" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><strong>RIB :</strong></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" value="@Model.Adherent.RIB" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><strong>Bénéficiaire en cas de décès :</strong></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" value="@Model.Adherent.benefEnCasDeces" readonly>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            if (Model.Adherent != null)
+            {
+                if (Model.Adherent.PrestatairesConjoint != null && Model.Adherent.PrestatairesConjoint.Any())
+                {
+                    <div>
+                        <h4 style=" color: rgb(49 100 155) !important;">Conjoint :</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Nom </th>
+                                    <th>Prénom </th>
+                                    <th>Date de Naissance </th>
+                                    <th>Sexe</th>
+                                    <th>Profeesion/Qualité</th>
+
+                                    <th>Employeur</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var prestataire in Model.Adherent.PrestatairesConjoint)
+                                {
+                                    <tr>
+                                        <td>@prestataire.codePrestataire</td>
+                                        <td>@prestataire.nomPres</td>
+
+                                        <td>@prestataire.prenomPres</td>
+                                        <td>@prestataire.dateNais</td>
+                                        <td>@prestataire.sexe</td>
+                                        <td>@prestataire.profession</td>
+                                        <td>@prestataire.employeur</td>
+
+
+
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p>Aucun conjoint associé à cet adhérent.</p>
+                }
+
+                if (Model.Adherent.Prestataires != null && Model.Adherent.Prestataires.Any())
+                {
+                    <div>
+                        <h4 style=" color: rgb(49 100 155) !important;">Enfants :</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Prénom</th>
+                                    <th>Date de Naissance </th>
+                                    <th>Sexe</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var prestataire in Model.Adherent.Prestataires.OrderBy(p => p.codePrestataire))
+                                {
+                                    <tr>
+                                        <td>@prestataire.codePrestataire</td>
+                                        <td>@prestataire.prenomPres</td>
+                                        <td>@prestataire.dateNais</td>
+                                        <td>@prestataire.sexe</td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p>Aucun enfant associé à cet adhérent.</p>
+                }
+            }
+
+
+            <!--logout-->
+            <script>
+                document.getElementById("logout").addEventListener("click", function (event) {
+                    event.preventDefault(); // Empêche le comportement par défaut du lien
+
+                    // Envoyer une requête au serveur pour déconnecter l'utilisateur
+                    // Vous pouvez utiliser AJAX ici ou une redirection vers une page de déconnexion
+                    // Par exemple, une redirection vers "/Account/Logout"
+                    fetch("/Account/Logout", {
+                        method: "POST", // Vous pouvez également utiliser GET ou tout autre méthode appropriée
+                        credentials: "same-origin" // Assure que les cookies de session sont envoyés avec la requête
+                    }).then(function (response) {
+                        // Gérer la réponse de la requête (par exemple, une redirection)
+                        if (response.ok) {
+                            window.location.href = "/Account/Login"; // Redirection vers la page de connexion
+                        } else {
+                            console.error("La déconnexion a échoué.");
+                        }
+                    }).catch(function (error) {
+                        console.error("Erreur lors de la déconnexion:", error);
+                    });
+                });
+            </script>
+
+
+        }
+    </form>
+</body>
+
+<!-- Footer-->
+<footer class="footer text-center" style="margin-top:10%;">
+    <div class="container">
+        <div class="row">
+            <!-- Footer Location-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4" style=" color: white; ">Location</h4>
+                <p class="lead mb-0">
+                    2215 John Daniel Drive
+                    <br />
+                    Clark, MO 65243
+                </p>
+            </div>
+            <!-- Footer Social Icons-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4" style=" color: white; ">Around the Web</h4>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+            </div>
+            <!-- Footer About Text-->
+            <div class="col-lg-4">
+                <h4 class="text-uppercase mb-4" style=" color: white; ">About Freelancer</h4>
+                <p class="lead mb-0">
+                    Freelance is a free to use, MIT licensed Bootstrap theme created by
+                    <a href="http://startbootstrap.com">Start Bootstrap</a>
+                    .
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Copyright Section-->
+<div class="copyright py-4 text-center text-white">
+    <div class="container"><small>Copyright &copy; Your Website 2023</small></div>
+</div>

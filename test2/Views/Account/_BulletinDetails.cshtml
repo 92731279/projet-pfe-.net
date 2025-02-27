@@ -1,0 +1,38 @@
+﻿
+@model test2.Models.BulletinSoin
+
+@using (Html.BeginForm("Update", "BulletinSoin", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.idBs)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.nomAdh)
+        @Html.DisplayFor(model => model.nomAdh)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.prenomAdh)
+        @Html.DisplayFor(model => model.prenomAdh)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.matriculeCnam)
+        @Html.DisplayFor(model => model.matriculeCnam)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CIN_PASS)
+        @Html.DisplayFor(model => model.CIN_PASS)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.adressAdh)
+        @Html.DisplayFor(model => model.adressAdh)
+    </div>
+
+    <!-- Ajoutez d'autres champs de formulaire pour les autres propriétés du bulletin de soin -->
+
+    <!-- Vous pouvez également ajouter des champs pour les rubriques si nécessaire -->
+
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+}

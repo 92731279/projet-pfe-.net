@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BsDBModel11.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_adherent">
+    <Key>
+      <PropertyRef Name="idAdherent" />
+    </Key>
+    <Property Name="idAdherent" Type="int" Nullable="false" />
+    <Property Name="nomAdh" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="prenomAdh" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CIN_PASS" Type="bigint" />
+    <Property Name="adressAdh" Type="varchar" MaxLength="50" />
+    <Property Name="emailAdh" Type="varchar" MaxLength="50" />
+    <Property Name="matriculeCnam" Type="bigint" />
+    <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="numTelephone" Type="bigint" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+    <Property Name="police" Type="int" Nullable="false" />
+    <Property Name="dateAdhesion" Type="datetime" Nullable="false" />
+    <Property Name="dateNais" Type="datetime" />
+    <Property Name="lieuNais" Type="varchar" MaxLength="100" />
+    <Property Name="sexe" Type="varchar" MaxLength="10" />
+    <Property Name="situationFamiliale" Type="varchar" MaxLength="50" />
+    <Property Name="gouvernorat" Type="varchar" MaxLength="50" />
+    <Property Name="codePostal" Type="int" />
+    <Property Name="profession" Type="varchar" MaxLength="100" />
+    <Property Name="lieu" Type="varchar" MaxLength="100" />
+    <Property Name="salaireBrut" Type="float" />
+    <Property Name="RIB" Type="bigint" />
+    <Property Name="benefEnCasDeces" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_bulletinSoin">
+    <Key>
+      <PropertyRef Name="idBs" />
+    </Key>
+    <Property Name="idBs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+    <Property Name="idAdherent" Type="int" Nullable="false" />
+    <Property Name="idPrestataire" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_designation">
+    <Key>
+      <PropertyRef Name="designationId" />
+    </Key>
+    <Property Name="designationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="designationNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="designationNom" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_famille">
+    <Key>
+      <PropertyRef Name="idFamille" />
+    </Key>
+    <Property Name="idFamille" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomFamille" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="obsFamille" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BsDB.dbo.tbl_login' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_login">
+    <Key>
+      <PropertyRef Name="username" />
+      <PropertyRef Name="paassword" />
+    </Key>
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="paassword" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_prestataire">
+    <Key>
+      <PropertyRef Name="idPrestataire" />
+    </Key>
+    <Property Name="idPrestataire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codePrestataire" Type="nchar" MaxLength="10" />
+    <Property Name="nomPres" Type="varchar" MaxLength="50" />
+    <Property Name="prenomPres" Type="varchar" MaxLength="50" />
+    <Property Name="dateNais" Type="datetime" />
+    <Property Name="adressPres" Type="varchar" MaxLength="50" />
+    <Property Name="idAdherent" Type="int" Nullable="false" />
+    <Property Name="sexe" Type="varchar" MaxLength="10" />
+    <Property Name="profession" Type="varchar" MaxLength="100" />
+    <Property Name="employeur" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tbl_rub1">
+    <Key>
+      <PropertyRef Name="idRub1" />
+    </Key>
+    <Property Name="idRub1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dateRub1" Type="datetime" />
+    <Property Name="designationId" Type="int" />
+    <Property Name="honorairesRub1" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="deviseRub1" Type="varchar" MaxLength="50" />
+    <Property Name="matriculeFisacalRub1" Type="varchar" MaxLength="50" />
+    <Property Name="idBs" Type="int" Nullable="false" />
+    <Property Name="devise_souhaite" Type="varchar" MaxLength="50" />
+    <Property Name="montant_change" Type="float" />
+  </EntityType>
+  <EntityType Name="tbl_rub2">
+    <Key>
+      <PropertyRef Name="idRub2" />
+    </Key>
+    <Property Name="idRub2" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DE" Type="datetime" />
+    <Property Name="DS" Type="datetime" />
+    <Property Name="montantFrais" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="deviseRub2" Type="varchar" MaxLength="50" />
+    <Property Name="matriculeFiscalRub2" Type="varchar" MaxLength="50" />
+    <Property Name="idBs" Type="int" Nullable="false" />
+    <Property Name="montant_change2" Type="float" />
+  </EntityType>
+  <EntityType Name="tbl_rub3">
+    <Key>
+      <PropertyRef Name="idRub3" />
+    </Key>
+    <Property Name="idRub3" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dateRub3" Type="datetime" />
+    <Property Name="dents" Type="varchar" MaxLength="50" />
+    <Property Name="actMedical" Type="varchar" MaxLength="50" />
+    <Property Name="honorairesRub3" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="deviseRub3" Type="varchar" MaxLength="50" />
+    <Property Name="matriculeFiscalRub3" Type="varchar" MaxLength="50" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+    <Property Name="idBs" Type="int" Nullable="false" />
+    <Property Name="montant_change3" Type="float" />
+  </EntityType>
+  <EntityType Name="tbl_sousFamille">
+    <Key>
+      <PropertyRef Name="idSousFamille" />
+    </Key>
+    <Property Name="idSousFamille" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomSousFamille" Type="varchar" MaxLength="50" />
+    <Property Name="valeur" Type="float" Nullable="false" />
+    <Property Name="unité" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="max" Type="float" />
+    <Property Name="unitéMax" Type="varchar" MaxLength="50" />
+    <Property Name="obsSousFamille" Type="varchar" MaxLength="50" />
+    <Property Name="idFamille" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_taux_de_change">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="devise_locale" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="devise_etrangere" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="date_debut" Type="datetime" Nullable="false" />
+    <Property Name="date_fin" Type="datetime" Nullable="false" />
+    <Property Name="taux" Type="float" Nullable="false" />
+    <Property Name="is_deleted" Type="bit" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tbl_bulletinSoin_tbl_adherent">
+    <End Role="tbl_adherent" Type="Self.tbl_adherent" Multiplicity="1" />
+    <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_adherent">
+        <PropertyRef Name="idAdherent" />
+      </Principal>
+      <Dependent Role="tbl_bulletinSoin">
+        <PropertyRef Name="idAdherent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_bulletinSoin_tbl_prestataire">
+    <End Role="tbl_prestataire" Type="Self.tbl_prestataire" Multiplicity="1" />
+    <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_prestataire">
+        <PropertyRef Name="idPrestataire" />
+      </Principal>
+      <Dependent Role="tbl_bulletinSoin">
+        <PropertyRef Name="idPrestataire" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_prestataire_tbl_adherent">
+    <End Role="tbl_adherent" Type="Self.tbl_adherent" Multiplicity="1" />
+    <End Role="tbl_prestataire" Type="Self.tbl_prestataire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_adherent">
+        <PropertyRef Name="idAdherent" />
+      </Principal>
+      <Dependent Role="tbl_prestataire">
+        <PropertyRef Name="idAdherent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_rub1_tbl_bulletinSoin">
+    <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="1" />
+    <End Role="tbl_rub1" Type="Self.tbl_rub1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_bulletinSoin">
+        <PropertyRef Name="idBs" />
+      </Principal>
+      <Dependent Role="tbl_rub1">
+        <PropertyRef Name="idBs" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_rub1_tbl_designation">
+    <End Role="tbl_designation" Type="Self.tbl_designation" Multiplicity="0..1" />
+    <End Role="tbl_rub1" Type="Self.tbl_rub1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_designation">
+        <PropertyRef Name="designationId" />
+      </Principal>
+      <Dependent Role="tbl_rub1">
+        <PropertyRef Name="designationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_rub2_tbl_bulletinSoin">
+    <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="1" />
+    <End Role="tbl_rub2" Type="Self.tbl_rub2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_bulletinSoin">
+        <PropertyRef Name="idBs" />
+      </Principal>
+      <Dependent Role="tbl_rub2">
+        <PropertyRef Name="idBs" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_rub3_tbl_bulletinSoin">
+    <End Role="tbl_bulletinSoin" Type="Self.tbl_bulletinSoin" Multiplicity="1" />
+    <End Role="tbl_rub3" Type="Self.tbl_rub3" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_bulletinSoin">
+        <PropertyRef Name="idBs" />
+      </Principal>
+      <Dependent Role="tbl_rub3">
+        <PropertyRef Name="idBs" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_sousFamille_tbl_famille">
+    <End Role="tbl_famille" Type="Self.tbl_famille" Multiplicity="1" />
+    <End Role="tbl_sousFamille" Type="Self.tbl_sousFamille" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_famille">
+        <PropertyRef Name="idFamille" />
+      </Principal>
+      <Dependent Role="tbl_sousFamille">
+        <PropertyRef Name="idFamille" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BsDBModel11StoreContainer">
+    <EntitySet Name="tbl_adherent" EntityType="Self.tbl_adherent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_bulletinSoin" EntityType="Self.tbl_bulletinSoin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_designation" EntityType="Self.tbl_designation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_famille" EntityType="Self.tbl_famille" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_prestataire" EntityType="Self.tbl_prestataire" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_rub1" EntityType="Self.tbl_rub1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_rub2" EntityType="Self.tbl_rub2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_rub3" EntityType="Self.tbl_rub3" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_sousFamille" EntityType="Self.tbl_sousFamille" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_taux_de_change" EntityType="Self.tbl_taux_de_change" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_login" EntityType="Self.tbl_login" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_login].[username] AS [username], 
+    [tbl_login].[paassword] AS [paassword]
+    FROM [dbo].[tbl_login] AS [tbl_login]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_tbl_bulletinSoin_tbl_adherent" Association="Self.FK_tbl_bulletinSoin_tbl_adherent">
+      <End Role="tbl_adherent" EntitySet="tbl_adherent" />
+      <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_bulletinSoin_tbl_prestataire" Association="Self.FK_tbl_bulletinSoin_tbl_prestataire">
+      <End Role="tbl_prestataire" EntitySet="tbl_prestataire" />
+      <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_prestataire_tbl_adherent" Association="Self.FK_tbl_prestataire_tbl_adherent">
+      <End Role="tbl_adherent" EntitySet="tbl_adherent" />
+      <End Role="tbl_prestataire" EntitySet="tbl_prestataire" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_rub1_tbl_bulletinSoin" Association="Self.FK_tbl_rub1_tbl_bulletinSoin">
+      <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+      <End Role="tbl_rub1" EntitySet="tbl_rub1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_rub1_tbl_designation" Association="Self.FK_tbl_rub1_tbl_designation">
+      <End Role="tbl_designation" EntitySet="tbl_designation" />
+      <End Role="tbl_rub1" EntitySet="tbl_rub1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_rub2_tbl_bulletinSoin" Association="Self.FK_tbl_rub2_tbl_bulletinSoin">
+      <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+      <End Role="tbl_rub2" EntitySet="tbl_rub2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_rub3_tbl_bulletinSoin" Association="Self.FK_tbl_rub3_tbl_bulletinSoin">
+      <End Role="tbl_bulletinSoin" EntitySet="tbl_bulletinSoin" />
+      <End Role="tbl_rub3" EntitySet="tbl_rub3" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_sousFamille_tbl_famille" Association="Self.FK_tbl_sousFamille_tbl_famille">
+      <End Role="tbl_famille" EntitySet="tbl_famille" />
+      <End Role="tbl_sousFamille" EntitySet="tbl_sousFamille" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

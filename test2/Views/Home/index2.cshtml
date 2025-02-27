@@ -1,0 +1,1531 @@
+﻿@model test2.Models.BulletinSoin
+
+@{
+    ViewBag.Title = "Gestion BS";
+
+    Layout = "~/Views/shared/_LayoutPage1.cshtml";
+
+}
+
+<!-- Inclure jQuery -->
+<script src="~/Scripts/jquery-3.7.1.min.js"></script>
+<!-- Inclure DataTables -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+
+<!-- Inclure le fichier CSS de DataTables via CDN -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+
+<!-- Inclure jQuery via CDN (nécessaire pour DataTables) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Inclure le fichier JavaScript de DataTables via CDN -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/datatables.net/js/jquery.dataTables.min.js"></script>
+
+<!-- Inclure Bootstrap -->
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<!-- Inclure Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Inclure jQuery UI (Datepicker) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Vos autres scripts -->
+!<!--<script src="~/Scripts/jquery.dataTables.js"></script>-->
+
+<link href="~/CSS/StyleSheet1.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+
+
+<!-- Favicons -->
+<link href="~/assets/img/favicon.png" rel="icon">
+<link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+
+
+<!-- Template Main CSS File -->
+<link href="~/assets/css/style.css" rel="stylesheet">
+
+<!-- Ajoutez ces scripts dans votre fichier HTML -->
+<script>
+    $(function () {
+        // Initialisez le Datepicker sur les champs de date
+        $("#daterub1").datepicker({
+            dateFormat: "yy-mm-dd" // Format de date souhaité
+
+        });
+
+        $("#DE").datepicker({
+            dateFormat: "yy-mm-dd" // Format de date souhaité
+
+        });
+        $("#DS").datepicker({
+            dateFormat: "yy-mm-dd" // Format de date souhaité
+
+        });
+        $("#dateRub3").datepicker({
+            dateFormat: "yy-mm-dd" // Format de date souhaité
+
+        });
+    });
+</script>
+
+<style>
+    /* CSS pour le sélecteur de taille de page */
+    #pageSizeSelect {
+        width: 50px; /* Largeur du sélecteur */
+        padding: 5px; /* Espacement interne */
+        font-size: 16px; /* Taille de la police */
+        border-radius: 5px; /* Coins arrondis */
+        border: 1px solid #ccc; /* Bordure */
+        background-color: #fff; /* Couleur de fond */
+        appearance: none; /* Suppression de l'apparence native */
+        -webkit-appearance: none; /* Pour certains navigateurs WebKit */
+        -moz-appearance: none; /* Pour certains navigateurs Firefox */
+        text-align: center;
+    }
+
+        /* Style lorsque le sélecteur est survolé */
+        #pageSizeSelect:hover {
+            border-color: rgba(0, 123, 255, 0.5);
+            /* Changement de couleur de la bordure */
+        }
+
+        /* Style lorsque le sélecteur est actif ou focus */
+        #pageSizeSelect:focus {
+            outline: none; /* Suppression de l'outline */
+            border-color: #007bff; /* Changement de couleur de la bordure */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre portée */
+        }
+    /* CSS pour le sélecteur de taille de page */
+    #pageSizeSelectNew {
+        width: 50px; /* Largeur du sélecteur */
+        padding: 5px; /* Espacement interne */
+        font-size: 16px; /* Taille de la police */
+        border-radius: 5px; /* Coins arrondis */
+        border: 1px solid #ccc; /* Bordure */
+        background-color: #fff; /* Couleur de fond */
+        appearance: none; /* Suppression de l'apparence native */
+        -webkit-appearance: none; /* Pour certains navigateurs WebKit */
+        -moz-appearance: none; /* Pour certains navigateurs Firefox */
+        text-align: center;
+    }
+
+        /* Style lorsque le sélecteur est survolé */
+        #pageSizeSelectNew:hover {
+            border-color: rgba(0, 123, 255, 0.5);
+            /* Changement de couleur de la bordure */
+        }
+
+        /* Style lorsque le sélecteur est actif ou focus */
+        #pageSizeSelectNew:focus {
+            outline: none; /* Suppression de l'outline */
+            border-color: #007bff; /* Changement de couleur de la bordure */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre portée */
+        }
+    /* Style pour le conteneur des rubriques */
+    #rubriquesContent {
+        margin-top: 20px;
+    }
+
+    /* Style pour chaque rubrique */
+    .rubrique-info-edit {
+        margin-bottom: 50px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Style pour les étiquettes */
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+
+
+    /* Style pour le bouton de sauvegarde */
+    .save-button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+        margin-top: 17px;
+    }
+
+        .save-button:hover {
+            background-color: #45a049;
+        }
+    /* Style du conteneur */
+    #exTab1 {
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+    }
+
+        /* Style de la liste de navigation */
+        #exTab1 .nav-pills {
+            margin-bottom: 20px;
+        }
+
+            /* Style des éléments de la liste de navigation */
+            #exTab1 .nav-pills li {
+                display: inline;
+            }
+
+                /* Style des liens dans les éléments de la liste de navigation */
+                #exTab1 .nav-pills li a {
+                    padding: 10px 15px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    background-color: #fff;
+                    color: #333;
+                    text-decoration: none;
+                    transition: background-color 0.3s ease;
+                }
+
+                /* Style des liens actifs */
+                #exTab1 .nav-pills li.active a {
+                    background-color: #337ab7;
+                    color: #fff;
+                    border-color: #337ab7;
+                }
+
+    .custom-text-right {
+        text-align: right;
+    }
+
+    .modal-dialog {
+        max-width: 60%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /* Appliquer flexbox pour organiser les éléments en ligne */
+    .nav.nav-pills {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        white-space: normal; /* Centrer les éléments horizontalement */
+    }
+
+        /* Ajuster la largeur des éléments de la liste */
+        .nav.nav-pills > li {
+            flex: 0 0 auto;
+        }
+
+            /* Ajouter un peu de marge au bas des éléments pour l'espace */
+            .nav.nav-pills > li a {
+                margin-bottom: 5px;
+            }
+
+
+    /* Style pour le conteneur principal */
+    div.inner-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+        /* Style pour tous les composants de l'inner form */
+        div.inner-form .input-field {
+            height: 50px; /* Ajustez la hauteur selon vos besoins */
+        }
+
+        /* Style pour le champ de sélection */
+        div.inner-form .input-select select {
+            width: 300px; /* Largeur personnalisée */
+            padding: 10px; /* Espace interne */
+            border: 1px solid #ccc; /* Bordure */
+            border-radius: 5px; /* Coins arrondis */
+            font-size: 16px; /* Taille de la police */
+            cursor: pointer; /* Curseur */
+            appearance: none; /* Supprime l'apparence par défaut */
+        }
+
+        /* Style pour le champ de texte */
+        div.inner-form .input-field input[type="text"] {
+            width: 200px; /* Largeur personnalisée */
+            padding: 10px 20px; /* Espace interne */
+            border: 1px solid #ccc; /* Bordure */
+            border-radius: 5px; /* Coins arrondis */
+            font-size: 16px; /* Taille de la police */
+        }
+
+        /* Style pour le bouton de recherche */
+        div.inner-form .input-field button {
+            padding: 10px 20px; /* Espace interne */
+            background-color: #007bff; /* Couleur de fond */
+            color: #fff; /* Couleur du texte */
+            border: none; /* Supprime la bordure */
+            border-radius: 5px; /* Coins arrondis */
+            font-size: 16px; /* Taille de la police */
+            cursor: pointer; /* Curseur */
+        }
+
+            /* Style pour l'icône de recherche */
+            div.inner-form .input-field button i {
+                font-size: 18px; /* Taille de l'icône */
+            }
+
+            /* Style au survol du bouton de recherche */
+            div.inner-form .input-field button:hover {
+                background-color: #0056b3;
+            }
+
+    /* Style pour l'icône de sélection */
+    .select-icon {
+        position: absolute; /* Position absolue pour la placer à côté du champ de sélection */
+        right: 10px; /* Ajustement de la position à droite */
+        top: 40%; /* Centre verticalement */
+        transform: translateY(-50%); /* Centre verticalement */
+        color: #555; /* Couleur de l'icône */
+        pointer-events: none; /* Empêche l'icône d'être cliquable */
+    }
+
+    .required::before {
+        content: '*';
+        color: red;
+        margin-right: 5px;
+    }
+</style>
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+
+        <div class="logo">
+
+            <a href="~/Account/Index"><img src="~/assets/img/Tunisair_(logo).svg" alt="" class="img-fluid" style="max-height: 100px;"></a>
+
+        </div>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="~/Account/Index">Accueil</a></li>
+                <li><a class="nav-link scrollto" href="~/Account/Index/#about">À propos</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="~/TauxChange/taux">Gestion Taux de Change</a></li>
+                        <li><a href="#">Gestion Bulletin de Soin</a></li>
+                        <li><a href="~/Adhesion/adhesionPersonnel">Gestion Adhésion Personnel</a></li>
+                        <li><a href="~/FamillePrestations/famille">Gestion Familles des Prestations</a></li>
+                        <li><a href="~/SousFamille/sousfamille">Gestion des Prestations </a></li>
+
+                    </ul>
+
+                </li>
+                <li><a class="nav-link scrollto" href="~/Account/Index/#testimonials">Equipe</a></li>
+
+                <li><a class="nav-link scrollto" href="~/Account/Index/#contact">Contact</a></li>
+            </ul>
+            <div>
+                <a href="~/Account/Login" class="btn-log-out" style="border: 2px solid #004289; color: #004289; margin-left: 100px;
+                    border-radius: 50px; text-align: center; padding: 5px 20px 5px 20px; " onmouseover="this.style.background = '#004289';
+                    this.style.color = '#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#1549c2';">Déconnexion</a>
+            </div>
+
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+    </div>
+</header><!-- #header -->
+
+<body style="background-color:#fff; ">
+
+
+    <div class="container" style="margin-top: 3%">
+
+
+        <div style="text-align: left; margin-top:10%;">
+            <div class="btn btn" style="border: 1px solid #b1d6ff; color: #7ebbff; font-weight: initial; margin-top: 20px;"
+                 onmouseover="this.style.background='#b1d6ff'; this.style.color='#fff';" onmouseout="this.style.background='#fff'; this.style.color='#0079ff';">
+                <i class="bi bi-arrow-bar-left"></i>   <a href="~/Home/Index">Les Bulletins de soin </a>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="container" style="margin-top: 3%; margin-bottom:10%;">
+
+
+        <h4 style="text-align: center; font-family: initial; color: red">Les Nouveaux bulletins de soin non Validés</h4>
+        <div class="row mt-3" style="max-height: 300px; overflow-y: auto;">
+            <div class="col-md-12">
+                <table id="bsTableNew" class="table table-hover" style="text-align: center; border-color: #2b2b2b;">
+                    <thead class="thead-light" style="font-weight: bold;">
+                        <tr>
+                            <th>Numéro Bulletin</th>
+                            <th>Id Adhérent</th>
+                            <th>Nom Adhérent</th>
+                            <th>Prénom Adhérent</th>
+
+                            <th>Code Prestataire</th>
+                            <th colspan="3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="setbsListNew">
+                        <tr id="loadingStatus" style="color: red"></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between;">
+            <div style="display:flex; justify-content:space-between;">
+                <label for="pageSizeSelectNew" style="margin-top:20px">Nombre d'éléments par page:</label>
+                <select id="pageSizeSelectNew" class="form-control" style="height: 35px; margin-top: 15px; margin-left: 15px;">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+
+
+                    <!-- Ajoutez d'autres options de taille de page si nécessaire -->
+                </select>
+            </div>
+            <nav aria-label="Page navigation example" class="d-flex justify-content-end" style="margin-top: 20px; margin-right:80px; margin-bottom:20%;">
+                <ul class="pagination">
+                    <li class="page-item" id="previousPageNew">
+                        <a class="page-link" href="javascript:;" aria-label="Previous">
+                            <span aria-hidden="true">&laquo; Précédent</span>
+                        </a>
+                    </li>
+                    <li class="page-item" id="nextPageNew">
+                        <a class="page-link" href="javascript:;" aria-label="Next">
+                            <span aria-hidden="true">Suivant &raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" id="MyModal">
+        <div class="modal-dialog modal-dialog-scrollable" id="Modal">
+            <div class="modal-content" style="width:1000px;">
+                <!-- Header -->
+                <div class="modal-header">
+                    <h4 id="ModalTitle"></h4>
+                    <a href="Index" class="close" data-dismiss="modal" style="margin-top: -30;">&times;</a>
+                </div>
+
+                <!-- Body -->
+                <div class="modal-body">
+                    <form id="form" class="adherent-info">
+                        <fieldset id="SubmitForm">
+                            <!-- Form fields -->
+                            <!-- Ajout d'un champ caché pour stocker l'ID du bulletin de soin -->
+                            <div class="form-group">
+                                <input type="hidden" id="buId" name="idBs" />
+                            </div>
+                            <div id="exTab1" class="container">
+                                <ul class="nav nav-pills">
+                                    <li class="active mr-md-3 mb-3">
+                                        <a href="#1a" data-toggle="tab">Adhérent</a>
+                                    </li>
+                                    <li class="mr-md-3 mb-3">
+                                        <a href="#2a" data-toggle="tab">Medecins & Praticiens</a>
+                                    </li>
+                                    <li class="mr-md-3 mb-3">
+                                        <a href="#3a" data-toggle="tab">Etablissement hospitalier</a>
+                                    </li>
+                                    <li class="mb-3">
+                                        <a href="#4a" data-toggle="tab">Soins & prothèses dentaires</a>
+                                    </li>
+                                    <li class="mb-3">
+                                        <a href="#5a" data-toggle="tab">BS</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content clearfix">
+                                    <div class="tab-pane active" id="1a">
+                                        <div class="input-group">
+
+                                            <div class="form-group">
+                                                <label for="num" class="required" required="">Numéro BS:</label>
+                                                @Html.TextBoxFor(m => m.numBs, new { @id = "num", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="adhId" class="required" required="">Id Adhérent:</label>
+                                                @Html.TextBoxFor(m => m.idAdherent, new { @id = "adhId", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+
+                                            <div class="form-group">
+                                                <label for="nomAdh" class="required" required="">Nom Adhérent:</label>
+                                                @Html.TextBoxFor(m => m.nomAdh, new { @id = "nomAdh", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pnomAdh" class="required" required="">Prénom Adhérent:</label>
+                                                @Html.TextBoxFor(m => m.prenomAdh, new { @id = "pnomAdh", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="DropDwn" class="required" required="">Prestataire:</label>
+                                                @Html.DropDownListFor(m => m.idPrestataire, ViewBag.ListOfPrestataire as SelectList, new { @id = "DropDwn", @class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+
+                                            <div class="form-group">
+                                                <label for="matCnam">Matricule CNAM:</label>
+                                                @Html.TextBoxFor(m => m.matriculeCnam, new { @id = "matCnam", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cin_pass">CIN/PASS:</label>
+                                                @Html.TextBoxFor(m => m.CIN_PASS, new { @id = "cin_pass", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="adressA">Adresse Adhérent:</label>
+                                                @Html.TextBoxFor(m => m.adressAdh, new { @id = "adressA", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <small>[00 ]: Adhérent - [99] :conjoint - [01] : Enfant 1er - [02]: 2e -[03] : 3e ... etc</small>
+
+                                            <!-- Indication des champs obligatoires -->
+                                            <p style="color: red; margin-top: 10px;">[ * ] : Champs obligatoires à remplir ! </p>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane" id="2a">
+                                        <div class="rubrique-info">
+                                            <div class="form-group">
+                                                <!-- Ajout de la ligne "Rubrique Medecins & Pharmacie" -->
+                                                <div style="text-align: center; color: #2572e2; margin-bottom: 20px "><b>Réservé aux Medecins & Praticiens - خاص بالاطباءو الممارسين </b></div>
+
+                                                <label for="daterub1">date:</label>
+                                                @Html.TextBoxFor(m => m.Rubrique1.dateRub1, new { @id = "daterub1", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="idSousFa">Désignation:</label>
+                                                @Html.DropDownListFor(m => m.Rubrique1.idSousFamille, ViewBag.ListOfPrestation as SelectList, new { @id = "idSousFa", @class = "form-control" })
+                                            </div>
+                                            <div class="input-group">
+                                                <div class="form-group">
+                                                    <label for="honorub1">Honoraires:</label>
+                                                    @Html.TextBoxFor(m => m.Rubrique1.honorairesRub1, new { @id = "honorub1", @class = "form-control" })
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="deviserub1">Devise:</label>
+                                                    @Html.DropDownListFor(m => m.Rubrique1.deviseRub1, new SelectList(new[] { "TND", "EUR", "GBP", "CHF", "SAR", "CAD", "LYD", "EGP", "LBP", "MAD", "MRU", "DZD", "TRY", "GNF", "XOF" }), new { @id = "deviserub1", @class = "form-control" })
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="montantchan">  Montant Après Conversion:</label>
+                                                    <div class="input-group">
+                                                        @Html.TextBoxFor(m => m.Rubrique1.montant_change, new { @id = "montantchan", @class = "form-control" })
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" style="background-color: #dcd6d6;">TND</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="width:200px;">
+                                                    <label for="montantEstimé">Montant Estimé :</label>
+                                                    <div class="input-group">
+                                                        @Html.TextBoxFor(m => m.Rubrique1.montant_estimé, new { @id = "montantEstimé", @class = "form-control" })
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" style="background-color: #dcd6d6;">TND</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="messageMax" style="color: red; text-align: right;"></div>
+
+
+                                            <div class="form-group">
+                                                <label for="matfiscal1">Matricule Fiscal:</label>
+                                                @Html.TextBoxFor(m => m.Rubrique1.matriculeFisacalRub1, new { @id = "matfiscal1", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group" style="display: flex; justify-content: space-between;margin-top:5%">
+                                                <p style="text-align: left; width: 50%;">En cas de chirurgie ou de traitements spéciaux, il faut joindre au bulletin de soins la nature de l'acte pratiqué sous pli confidentiel.</p>
+                                                <p style="text-align: right; width: 35%;">في حالات الجراحة او العلاج الخاص يجب مصاحبة بنوع العمل المنجز في ظرف سري</p>
+                                            </div>
+
+
+                                            <div class="form-group" style="margin-top:10%;">
+                                                <a href="#" class="btn btn-primary" id="AddOtherEdit" onclick="addRubriqueEditToTable()">Add</a>
+                                            </div>
+
+                                        </div>
+                                        <!-- Bouton pour ajouter une autre itération de la rubrique -->
+                                        <div class="form-group">
+                                            <a href="#" class="btn btn-primary" id="AddOther" onclick="addOtherRubrique()">Ajouter Autre</a>
+                                        </div>
+                                        <!--    tableau-->
+
+                                        <div id="tableContainer" style="display: none; margin-top:20px;overflow:scroll;">
+                                            <table id="rubriquesTable" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th style="padding: 10px;">Désignation</th>
+                                                        <th style="padding: 10px;">Date</th>
+                                                        <th style="padding: 10px;">Honoraires</th>
+                                                        <th style="padding: 10px;">Devise</th>
+                                                        <th style="padding: 10px;">Montant Converti</th>
+                                                        <th style="padding: 10px;">Montant Estimé</th>
+
+                                                        <th style="padding: 10px;">Matricule Fiscal</th>
+                                                        <th style="padding: 10px;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="rubriquesBody">
+                                                    <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div id="tableContainerEdit" style="display: none; margin-top:20px;overflow:scroll;">
+                                            <table id="rubriquesTableEdit" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th style="padding: 10px;">Désignation</th>
+                                                        <th style="padding: 10px;">Date </th>
+                                                        <th style="padding: 10px;">Honoraires</th>
+                                                        <th style="padding: 10px;">Devise</th>
+                                                        <th style="padding: 10px;">Montant Converti</th>
+                                                        <th style="padding: 10px;">Montant Estimé</th>
+
+                                                        <th style="padding: 10px;">Matricule Fiscal</th>
+                                                        <th style="padding: 10px;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="rubriquesBodyEdit">
+                                                    <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="tab-pane" id="3a">
+                                        <div class="rubrique-info">
+                                            <div style="text-align: center; color: #2572e2; margin-bottom: 20px "><b>  Réservé à l'établissement hospitalier - خاص بالمؤسسة الاستشفائية </b></div>
+                                            <div class="input-group">
+
+                                                <div class="form-group">
+
+                                                    <label for="DE">Date d'Entrée:</label>
+                                                    @Html.TextBoxFor(m => m.Rubrique2.DE, new { @id = "DE", @class = "form-control" })
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="DS">Date de Sortie:</label>
+                                                    @Html.TextBoxFor(m => m.Rubrique2.DS, new { @id = "DS", @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                            <div class="input-group">
+                                                <div class="form-group">
+
+                                                    <label for="montantFrais">Montant Frais:</label>
+                                                    @Html.TextBoxFor(m => m.Rubrique2.montantFrais, new { @id = "montantFrais", @class = "form-control" })
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="deviseRub2">Devise :</label>
+                                                    @Html.DropDownListFor(m => m.Rubrique2.deviseRub2, new SelectList(new[] { "TND", "EUR", "GBP", "CHF", "SAR", "CAD", "LYD", "EGP", "LBP", "MAD", "MRU", "DZD", "TRY", "GNF", "XOF" }), new { @id = "deviseRub2", @class = "form-control" })
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="montantchan">Montant après conversion en dinars:</label>
+                                                    <div class="input-group">
+                                                        @Html.TextBoxFor(m => m.Rubrique2.montant_change2, new { @id = "montantchan2", @class = "form-control" })
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">TND</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="montantchan">Montant Estimé:</label>
+                                                    <div class="input-group">
+                                                        @Html.TextBoxFor(m => m.Rubrique2.montant_estimé2, new { @id = "montantEstimé2", @class = "form-control" })
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">TND</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <label for="matriculeFiscalRub2">Matricule Fiscal :</label>
+                                                @Html.TextBoxFor(m => m.Rubrique2.matriculeFiscalRub2, new { @id = "matriculeFiscalRub2", @class = "form-control" })
+                                            </div>
+                                            <div class="form-group" style="margin-top:10%;">
+                                                <a href="#" class="btn btn-primary" id="AddOtherEdit2" onclick="addRubrique2EditToTable()">Add</a>
+                                            </div>
+                                        </div>
+                                        <div id="tableContainerEdit2" style="display:none; margin-top: 20px; overflow: scroll;">
+                                            <table id="rubriquesTableEdit2" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th style="padding: 10px;">Date Entrée</th>
+                                                        <th style="padding: 10px;">Date Sortie</th>
+                                                        <th style="padding: 10px;">Montant Frais</th>
+                                                        <th style="padding: 10px;">Devise</th>
+                                                        <th style="padding: 10px;">Montant Converti</th>
+                                                        <th style="padding: 10px;">Montant estimé</th>
+
+                                                        <th style="padding: 10px;">Matricule Fiscal</th>
+                                                        <th style="padding: 10px;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="rubriquesBodyEdit2">
+                                                    <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane" id="4a">
+                                        <div class="rubrique-info">
+                                            <div class="form-group">
+                                                <div style="text-align: center; color: #2572e2; margin-bottom: 20px "><b>Soins Et prothèses dentaires - علاج و تركيب الاسنان <b></b></b></div>
+                                                <div class="form-group">
+                                                    <label for="dateRub3">Date :</label>
+                                                    @Html.TextBoxFor(m => m.Rubrique3.dateRub3, new { @id = "dateRub3", @class = "form-control" })
+                                                </div>
+                                                <div class="input-group">
+
+                                                    <div class="form-group">
+                                                        <label for="dents">Dents:</label>
+                                                        @Html.TextBoxFor(m => m.Rubrique3.dents, new { @id = "dents", @class = "form-control" })
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="actMedical">Act Medical:</label>
+                                                        @Html.TextBoxFor(m => m.Rubrique3.actMedical, new { @id = "actMedical", @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                                <div class="input-group">
+
+                                                    <div class="form-group">
+                                                        <label for="honorairesRub3">Honoraires :</label>
+                                                        @Html.TextBoxFor(m => m.Rubrique3.honorairesRub3, new { @id = "honorairesRub3", @class = "form-control" })
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="deviseRub3">Devise :</label>
+                                                        @Html.DropDownListFor(m => m.Rubrique3.deviseRub3, new SelectList(new[] { "TND", "EUR", "GBP", "CHF", "SAR", "CAD", "LYD", "EGP", "LBP", "MAD", "MRU", "DZD", "TRY", "GNF", "XOF" }), new { @id = "deviseRub3", @class = "form-control" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="montantchan">Montant Converti:</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBoxFor(m => m.Rubrique3.montant_change3, new { @id = "montantchan3", @class = "form-control" })
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">TND</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="montantchan">Montant Estimé:</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBoxFor(m => m.Rubrique3.montant_estimé3, new { @id = "montantEstimé3", @class = "form-control" })
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">TND</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+
+                                                        <div class="form-group">
+                                                            <label for="matriculeFiscalRub3">Matricule Fiscal :</label>
+                                                            @Html.TextBoxFor(m => m.Rubrique3.matriculeFiscalRub3, new { @id = "matriculeFiscalRub3", @class = "form-control" })
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="type">Type:</label>
+                                                            @Html.DropDownListFor(m => m.Rubrique3.type, new SelectList(new[] { "Soin Dentaire", "Prothèse Dentaire" }), new { @id = "dev", @class = "form-control" })
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group" style="margin-top:10%;">
+                                                        <a href="#" class="btn btn-primary" id="AddOtherEdit3" onclick="addRubrique3EditToTable()">Add</a>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <a href="#" class="btn btn-primary" id="AddOther3" onclick="addOtherRubrique3()">Ajouter Autre</a>
+                                                </div>
+                                                <div id="tableContainer3" style="display: none; margin-top:20px;overflow:scroll;">
+                                                    <table id="rubriquesTable3" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                        <thead class="thead-dark">
+                                                            <tr>
+                                                                <th style="padding: 10px;">Date</th>
+                                                                <th style="padding: 10px;">Dents</th>
+                                                                <th style="padding: 10px;">Act Medical</th>
+                                                                <th style="padding: 10px;">Honoraires</th>
+                                                                <th style="padding: 10px;">Devise</th>
+                                                                <th style="padding: 10px;">Montant converti</th>
+                                                                <th style="padding: 10px;">Montant estimé</th>
+
+                                                                <th style="padding: 10px;">Matricule Fiscal</th>
+                                                                <th style="padding: 10px;">Type</th>
+                                                                <th style="padding: 10px;">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="rubriquesBody3">
+                                                            <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div id="tableContainerEdit3" style="display: none; margin-top: 20px; overflow: scroll;">
+                                                    <table id="rubriquesTableEdit3" class="table table-striped table-bordered" style="width: 100%; text-align: center; border:1px solid #333;">
+                                                        <thead class="thead-dark">
+                                                            <tr>
+                                                                <th style="padding: 10px;">Date</th>
+                                                                <th style="padding: 10px;">Dents</th>
+                                                                <th style="padding: 10px;">Act Medical</th>
+                                                                <th style="padding: 10px;">Honoraires</th>
+                                                                <th style="padding: 10px;">Devise</th>
+                                                                <th style="padding: 10px;">Montant converti</th>
+                                                                <th style="padding: 10px;">Montant estimé</th>
+
+                                                                <th style="padding: 10px;">Matricule Fiscal</th>
+                                                                <th style="padding: 10px;">Type</th>
+                                                                <th style="padding: 10px;">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="rubriquesBodyEdit3">
+                                                            <!-- Les données de chaque rubrique seront ajoutées ici par JavaScript -->
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="5a">
+
+
+                                        <input type="hidden" id="photoPath" name="photoPath" />
+                                        <!-- Image pour afficher la photo -->
+                                        <img id="bsPhoto" src="" alt="Uploaded photo" style="max-width: 100%; height: auto;">
+                                        <div id="bsPhotoname"></div>
+                                        <div class="form-group row" style="margin-top: 10%;">
+                                            <label for="path" class="col-sm-3 col-form-label">Nom Photo:</label>
+                                            <div class="col-sm-9" style=" background-color: rgba(255, 255, 255, 0);">
+                                                @Html.TextBoxFor(m => m.path, new { @id = "path", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <a href="Index" class="btn btn-danger" data-dismiss="modal">Annuler</a>
+                        <a href="#" class="btn btn-success" id="SaveBSRecord">Enregistrer</a>
+                        <a href="#" class="btn btn-success" id="SaveAll">Enregistrer</a>
+
+                        <!-- Vous pouvez ajouter d'autres boutons d'action ici -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="DeleteConfirmation" style="max-width: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); ">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Delete BS Record</h4>
+                    <a href="Index" class="close" data-dismiss="modal" style="margin-top: -30;">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <h5> Are you Sure ? You want To Delete This Record .</h5>
+                </div>
+                <div class="modal-footer">
+                    <a href="Index" class="btn btn-primary" data-dismiss="modal">Annuler</a>
+                    <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirmer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+        // Désactiver l'autocomplétion pour chaque balise
+        $("input, select, textarea").attr("autocomplete", "off");
+
+    });
+    $("#loadingStatus").html("Loading ...");
+
+
+
+
+    // ---------------------------------New bs
+    $.get("/Home/GetbsListNew", function (bsListNew) {
+        // Fonction appelée lorsque les données JSON sont reçues avec succès
+        DataBindNew(bsListNew);
+    });
+
+    function DataBindNew(bsListNew) {
+
+        var SetData = $("#setbsListNew");
+        SetData.empty(); // Vide le contenu précédent avant d'ajouter de nouvelles données
+
+        for (var i = 0; i < bsListNew.length; i++) {
+
+            var Data = "<tr class='row_" + bsListNew[i].idBs + "'>" +
+                "<td>" + bsListNew[i].numBs + "</td>" +
+                "<td>" + bsListNew[i].idAdherent + "</td>" +
+                "<td>" + bsListNew[i].nomAdh + "</td>" +
+                "<td>" + bsListNew[i].prenomAdh + "</td>" +
+
+                "<td>" + bsListNew[i].codePrestataire + "</td>" +
+                "<td><button class='btn btn-success' onclick='valider(" + bsListNew[i].idBs + ")'><i class='far fa-check-circle small-icon text-white'></i></button></td>" +
+                "<td><button class='btn btn-danger' onclick='rejeter(" + bsListNew[i].idBs + ")'><i class='fas fa-times-circle small-icon text-white'></i></button></td>" +
+                "<td><button class='btn btn-info' onclick='voirPlus(" + bsListNew[i].idBs + ")'><i class='fas fa-eye small-icon text-white'></i></button></td>" +
+
+                "</tr>";
+            SetData.append(Data);
+        }
+        $("#loadingStatus").html(" ");
+
+    }
+
+
+    function valider(idBs) {
+        $.post("/Home/ValiderBulletin", { idBs: idBs })
+            .done(function (response) {
+                if (response.success) {
+                    alert("Le bulletin de soin a été validé avec succès.");
+                    // Actualiser la liste des bulletins de soin après la validation
+                    $.get("/Home/GetbsListNew", function (bsListNew) {
+                        DataBindNew(bsListNew);
+                    });
+                } else {
+                    alert("Erreur : " + response.error);
+                }
+            })
+            .fail(function () {
+                alert("Une erreur s'est produite lors de la validation du bulletin de soin.");
+            });
+    }
+    function rejeter(idBs) {
+        $.post("/Home/RejeterBulletin", { idBs: idBs })
+            .done(function (response) {
+                if (response.success) {
+                    alert("Le bulletin de soin a été rejeté avec succès.");
+                    // Actualiser la liste des bulletins de soin après le rejet
+                    $.get("/Home/GetbsListNew", function (bsListNew) {
+                        DataBindNew(bsListNew);
+                    });
+                } else {
+                    alert("Erreur : " + response.error);
+                }
+            })
+            .fail(function () {
+                alert("Une erreur s'est produite lors du rejet du bulletin de soin.");
+            });
+    }
+    function voirPlus(idBs) {
+        var url = "/Home/GetbsNewById?idBs=" + idBs;
+        $("#ModalTitle").html("Détails de Bulletin de Soin");
+        $("#MyModal").modal("show");
+        $("#SaveBSRecord").hide();
+        $("#AddOther").hide();
+        $("#editOther").hide();
+        $("#AddOther3").hide();
+        $("#editOther3").hide();
+
+
+        $("#AddOtherEdit").hide();
+        $("#AddOtherEdit3").hide();
+        $("#AddOtherEdit2").hide();
+
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                // Remplir les champs du formulaire avec les données récupérées
+                $("#buId").val(data.idBs).prop('disabled', true);
+                $("#num").val(data.numBs).prop('disabled', true);
+
+                $("#adhId").val(data.idAdherent).prop('disabled', true);
+                $("#nomAdh").val(data.nomAdh).prop('disabled', true);
+                $("#pnomAdh").val(data.prenomAdh).prop('disabled', true);
+                $("#matCnam").val(data.matriculeCnam).prop('disabled', true);
+                $("#cin_pass").val(data.CIN_PASS).prop('disabled', true);
+                $("#adressA").val(data.adressAdh).prop('disabled', true);
+                $("#DropDwn").val(data.idPrestataire).prop('disabled', true);
+
+                // Appel de la fonction getRubriquesByIdBs avec l'identifiant de bulletin de soin
+                getRubriquesByIdBsDetails(data.idBs);
+                // Cacher la colonne "Action" du tableau
+                $("#tableContainerEdit th:last-child, #tableContainerEdit td:last-child").hide();
+
+                $("#daterub1").val("").prop('disabled', true);
+                $("#idSousFa").val("").prop('disabled', true);
+                $("#honorub1").val("").prop('disabled', true);
+                $("#deviserub1").val("TND").prop('disabled', true);
+                $("#montantchan").val("").prop('disabled', true);
+                $("#matfiscal1").val("").prop('disabled', true);
+                $("#montantEstimé").val("").prop('disabled', true);
+
+
+                getRubriques2ByIdBsDetails(data.idBs);
+                $("#tableContainerEdit2 th:last-child, #tableContainerEdit2 td:last-child").hide();
+
+
+                $("#DE").val("").prop('disabled', true);
+                $("#DS").val("").prop('disabled', true);
+                $("#montantFrais").val("").prop('disabled', true);
+                $("#deviseRub2").val("TND").prop('disabled', true);
+                $("#montantchan2").val("").prop('disabled', true);
+                $("#montantEstimé2").val("").prop('disabled', true);
+
+                $("#matriculeFiscalRub2").val("").prop('disabled', true);
+
+
+                getRubriques3ByIdBsDetails(data.idBs);
+                $("#tableContainerEdit3 th:last-child, #tableContainerEdit3 td:last-child").hide();
+
+
+                $("#dateRub3").val("").prop('disabled', true);
+                $("#dents").val("").prop('disabled', true);
+                $("#actMedical").val("").prop('disabled', true);
+                $("#honorairesRub3").val("").prop('disabled', true);
+                $("#deviseRub3").val("TND").prop('disabled', true);
+                $("#montantchan3").val("").prop('disabled', true);
+                $("#montantEstimé3").val("").prop('disabled', true);
+
+                $("#matriculeFiscalRub3").val("").prop('disabled', true);
+                $("#dev").val("").prop('disabled', true);
+
+                getPhoto(data)
+                $("#path").val("").prop('disabled', true);
+
+            },
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des données.");
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+        $('#bsTable').DataTable({
+            "scrollY": "100px", // Spécifie la hauteur du scroll vertical
+            "scrollCollapse": true, // Active le scroll vertical
+            "paging": true // Active la pagination
+        });
+    });
+
+
+    function getPhoto(data) {
+
+        // Extraire uniquement le chemin relatif de l'image
+        var imagePath = data.path.substring(data.path.lastIndexOf("\\images\\"));
+
+        // Afficher le chemin relatif de l'image dans la console pour le débogage
+        console.log("Chemin relatif de l'image :", imagePath);
+
+        // Définir l'attribut src de l'élément img sur le chemin relatif de l'image
+        $("#bsPhoto").attr("src", imagePath);
+
+        // Afficher le chemin de l'image dans la console pour le débogage
+        console.log("Chemin de l'image :", data.path);
+
+        // Extraire uniquement le nom de fichier de l'image
+        var fileName = imagePath.substring(imagePath.lastIndexOf("\\") + 1);
+
+        $("#path").val(fileName).prop('disabled', true);
+
+
+
+    }
+
+
+
+
+
+
+
+
+    //pour les nouveaux bs
+
+
+    // pagination element par page
+    (function () {
+        // Gestionnaire d'événements pour le sélecteur de taille de page
+        $('#pageSizeSelectNew').change(function () {
+            // Récupérer la nouvelle valeur sélectionnée
+            var newPageSize = $(this).val();
+
+            // Appeler la fonction pour récupérer et afficher les données avec la nouvelle taille de page
+            fetchDataWithPageSizeNew(1, newPageSize); // Commencer à partir de la première page après le changement de taille
+        });
+
+        // Fonction pour récupérer et afficher les données avec une nouvelle taille de page
+        function fetchDataWithPageSizeNew(page, pageSize) {
+            $.get("/Home/GetbsListNew", { page: page, pageSize: pageSize }, function (bsListNew) {
+                // Appeler la fonction de liaison des données avec la nouvelle liste de bulletins de soin
+                $("#setbsListNew").empty();
+                DataBindNew(bsListNew);
+            });
+        }
+
+        // Fonction pour récupérer et afficher les données lors du chargement initial de la page
+        function loadDataNew(page, pageSize) {
+            $.ajax({
+                url: '/Home/GetbsListNew',
+                type: 'GET',
+                data: { page: page, pageSize: pageSize },
+                dataType: 'json',
+                success: function (data) {
+                    // Mettre à jour votre tableau HTML avec les données récupérées
+                    // Ici, 'data' contient les données renvoyées par votre méthode backend
+                    // Vous pouvez itérer sur 'data' pour construire les lignes de votre tableau
+                    // et les ajouter à votre tableau existant
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('Error:', textStatus, errorThrown);
+                }
+            });
+        }
+
+        // Charger les données lors du chargement initial de la page avec la taille de page par défaut
+        var defaultPageSize = $('#pageSizeSelect').val();
+        loadDataNew(1, defaultPageSize); // Charger les données pour la première page avec la taille de page par défaut
+    })();
+
+    // code pour page suivante et precedente
+    $(document).ready(function () {
+        var currentPage = 1;
+        var pageSize = 5; // Taille de la page par défaut
+        var totalPages = 10; // Nombre total de pages
+
+        // Fonction pour charger les données de la page spécifiée et mettre à jour l'interface utilisateur
+        function loadData2New(page, pageSize) {
+            // Faites une requête AJAX pour récupérer les données de la page spécifiée
+            $.get("/Home/GetbsList2New", { page: page, pageSize: pageSize }, function (response) {
+                // Mettez à jour votre tableau HTML avec les données récupérées
+                $('#setbsListNew').empty(); // Videz d'abord le contenu existant du tableau
+                var data = response.data; // Assurez-vous que votre backend renvoie les données dans un objet 'data'
+                $.each(data, function (index, itemNew) {
+                    // Générez la ligne HTML pour chaque élément de données et ajoutez-la à la table
+                    var row = '<tr>' +
+                        '<td>' + itemNew.numBs + '</td>' +
+                        '<td>' + itemNew.idAdherent + '</td>' +
+                        '<td>' + itemNew.nomAdh + '</td>' +
+                        '<td>' + itemNew.prenomAdh + '</td>' +
+                        '<td>' + itemNew.codePrestataire + '</td>' +
+                        '<td><a href="#" class="btn btn-success" onclick="valider(' + itemNew.idBs + ')"><i class="far fa-check-circle small-icon text-white"></i></a></td>' +
+                        '<td><a href="#" class="btn btn-danger" onclick="rejeter(' + itemNew.idBs + ')"><i class="fas fa-times-circle small-icon text-white"></i></a></td>' +
+                        '<td><a href="#" class="btn btn-info" onclick="voirPlus(' + itemNew.idBs + ')"><i class="fas fa-eye small-icon text-white"></i></a></td>' +
+                        '</tr>';
+                    $('#setbsListNew').append(row);
+                });
+                // Mettre à jour le nombre total de pages après avoir obtenu les données
+                totalPages = Math.ceil(response.totalRecords / pageSize);
+                // Mettre à jour l'état des boutons de pagination
+                updatePaginationButtonsNew();
+            });
+        }
+
+        // Fonction pour mettre à jour l'état des boutons de pagination
+        function updatePaginationButtonsNew() {
+            // Désactiver le bouton "Précédent" s'il n'y a pas de page précédente
+            $('#previousPageNew').prop('disabled', currentPage <= 1);
+            // Désactiver le bouton "Suivant" s'il n'y a pas de page suivante
+            $('#nextPageNew').prop('disabled', currentPage >= totalPages);
+        }
+
+        // Gestionnaire d'événements pour le bouton Précédent
+        $('#previousPageNew').click(function () {
+            if (currentPage > 1) {
+                currentPage--;
+                loadData2New(currentPage, pageSize);
+            }
+        });
+
+        // Gestionnaire d'événements pour le bouton Suivant
+        $('#nextPageNew').click(function () {
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadData2New(currentPage, pageSize);
+            }
+        });
+
+        // Gestionnaire d'événements pour le sélecteur de taille de page
+        $('#pageSizeSelectNew').change(function () {
+            // Récupérer la nouvelle valeur sélectionnée
+            pageSize = $(this).val();
+            // Recharger les données avec la nouvelle taille de page
+            loadData2New(1, pageSize);
+        });
+
+        // Appel initial pour charger les données de la première page
+        loadData2New(currentPage, pageSize);
+    });
+
+    //------------------------------------------------------------------------------------------------Details
+
+    function getRubriquesByIdBsDetails(idBs) {
+        var idBs = $("#buId").val();
+
+        $.ajax({
+
+            type: "GET",
+            url: "/Home/GetRubriquesByIdBs",
+            data: { idBs: idBs },
+            // Dans la partie de succès de votre requête AJAX
+            success: function (response) {
+                response.forEach(function (rubrique) {
+                    if (rubrique.date) {
+                        rubrique.date = formatDate(rubrique.date);
+                    }
+                });
+
+                if (response && response.length > 0) {
+                    displayRubriquesWithoutDelete(response);
+                }
+            }, // Ajoutez une virgule ici pour séparer success de error
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des rubriques.");
+            }
+        });
+    }
+
+
+    // Fonction pour afficher les rubriques dans le tableau sans la colonne de suppression
+    function displayRubriquesWithoutDelete(rubriques) {
+        var tbody = $("#rubriquesBodyEdit");
+        tbody.empty();
+
+        rubriques.forEach(function (rubrique, index) {
+            var row = $("<tr>");
+
+            // Ajouter l'ID Rub1 (caché)
+            var idRub1Cell = $("<td>").text(rubrique.idRub1);
+            idRub1Cell.css("display", "none"); // Cacher la colonne
+            row.append(idRub1Cell);
+
+            // Ajouter les valeurs de désignation à la ligne du tableau
+            var designationCell = $("<td>").text(rubrique.codeNom + " - " + rubrique.nomSousFamille);
+            designationCell.css({
+                "padding": "10px",
+                "border": "1px solid #333"
+            });
+            row.append(designationCell);
+
+            // Ajouter les autres cellules avec les données de la rubrique
+            var dateMilliseconds = parseInt(rubrique.dateRub1.substr(6));
+            var date = new Date(dateMilliseconds);
+            var formattedDateRub1 = formatDate(date);
+
+            // Ajouter la cellule contenant le champ de date
+            var dateCell = $("<td>").append(formattedDateRub1);
+            row.append(dateCell);
+
+            // Ajouter les autres cellules
+            var honorairesCell = $("<td>").text(rubrique.honorairesRub1);
+            var deviseCell = $("<td>").text(rubrique.deviseRub1);
+            var montantConvertiCell = $("<td>").text(rubrique.montant_change);
+            var montantEstiméCell = $("<td>").text(rubrique.montant_estimé);
+
+            var matriculeCell = $("<td>").text(rubrique.matriculeFisacalRub1);
+
+            [honorairesCell, deviseCell, montantConvertiCell, montantEstiméCell, matriculeCell].forEach(function (cell) {
+                cell.css({
+                    "padding": "10px",
+                    "border": "1px solid #333"
+                });
+                row.append(cell);
+            });
+
+            tbody.append(row);
+        });
+
+        // Afficher le tableau une fois que toutes les lignes ont été ajoutées
+        $("#tableContainerEdit").show();
+    }
+
+    function getRubriques2ByIdBsDetails(idBs) {
+        var idBs = $("#buId").val();
+
+        $.ajax({
+
+            type: "GET",
+            url: "/Home/GetRubriques2ByIdBs",
+            data: { idBs: idBs },
+            // Dans la partie de succès de votre requête AJAX
+            success: function (response) {
+                if (response && response.length > 0) {
+                    response.forEach(function (rubrique2) {
+                        if (rubrique2.date) {
+                            rubrique2.date = formatDate(rubrique2.date);
+                        }
+                    });
+
+                    displayRubriquesEdit2WithoutDelete(response);
+                }
+            }, // Ajoutez une virgule ici pour séparer success de error
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des rubriques.");
+            }
+        });
+    } function formatDate(dateString) {
+        var date = new Date(dateString);
+        var day = String(date.getDate()).padStart(2, '0');
+        var month = String(date.getMonth() + 1).padStart(2, '0');
+        var year = date.getFullYear();
+        return day + '/' + month + '/' + year;
+    }
+
+
+    // Fonction pour afficher les rubriques dans le deuxième tableau d'édition sans la colonne de suppression
+    function displayRubriquesEdit2WithoutDelete(rubriques2) {
+        var tbody = $("#rubriquesBodyEdit2");
+        tbody.empty();
+
+        rubriques2.forEach(function (rubrique2, index) {
+            var row = $("<tr>");
+
+            // Ajouter l'ID Rub2 (caché)
+            var idRub2Cell = $("<td>").text(rubrique2.idRub2);
+            idRub2Cell.css("display", "none"); // Cacher la colonne
+            row.append(idRub2Cell);
+            // Ajouter les autres cellules avec les données de la rubrique
+            var dateMilliseconds = parseInt(rubrique2.DE.substr(6));
+            var date = new Date(dateMilliseconds);
+            var formattedDE = formatDate(date);
+
+            // Ajouter la cellule contenant le champ de date
+            var DECell = $("<td>").append(formattedDE);
+            row.append(DECell);
+
+            // Ajouter les autres cellules avec les données de la rubrique
+            var dateMilliseconds = parseInt(rubrique2.DS.substr(6));
+            var date = new Date(dateMilliseconds);
+            var formattedDS = formatDate(date);
+
+            // Ajouter la cellule contenant le champ de date
+            var DSCell = $("<td>").append(formattedDS);
+            row.append(DSCell);
+            var montantFraisCell = $("<td>").text(rubrique2.montantFrais);
+            var deviseCell = $("<td>").text(rubrique2.deviseRub2);
+            var montantConvertiCell = $("<td>").text(rubrique2.montant_change2);
+            var montantEstimé2Cell = $("<td>").text(rubrique2.montant_estimé2);
+
+            var matriculeCell = $("<td>").text(rubrique2.matriculeFiscalRub2);
+
+            [montantFraisCell, deviseCell, montantConvertiCell, montantEstimé2Cell, matriculeCell].forEach(function (cell) {
+                cell.css({
+                    "padding": "10px",
+                    "border": "1px solid #333"
+                });
+                row.append(cell);
+            });
+
+            tbody.append(row);
+        });
+
+        // Afficher le deuxième tableau une fois que toutes les lignes ont été ajoutées
+        $("#tableContainerEdit2").show();
+    }
+
+
+    function getRubriques3ByIdBsDetails(idBs) {
+        var idBs = $("#buId").val();
+
+        $.ajax({
+
+            type: "GET",
+            url: "/Home/GetRubriques3ByIdBs",
+            data: { idBs: idBs },
+            // Dans la partie de succès de votre requête AJAX
+            success: function (response) {
+                if (response && response.length > 0) {
+                    response.forEach(function (rubrique2) {
+                        if (rubrique2.date) {
+                            rubrique2.date = formatDate(rubrique2.date);
+                        }
+                    });
+
+                    displayRubriquesEdit3WithoutDelete(response);
+                }
+            }, // Ajoutez une virgule ici pour séparer success de error
+            error: function (xhr, status, error) {
+                alert("Une erreur s'est produite lors de la récupération des rubriques.");
+            }
+        });
+    }
+
+    // Fonction pour afficher les rubriques dans le troisième tableau d'édition sans la colonne de suppression
+    function displayRubriquesEdit3WithoutDelete(rubriques3) {
+        var tbody = $("#rubriquesBodyEdit3");
+        tbody.empty();
+
+        rubriques3.forEach(function (rubrique3, index) {
+            var row = $("<tr>");
+
+            var idRub3Cell = $("<td>").text(rubrique3.idRub3);
+            idRub3Cell.css("display", "none");
+            row.append(idRub3Cell);
+
+            // Ajouter les autres cellules avec les données de la rubrique
+            var dateMilliseconds = parseInt(rubrique3.dateRub3.substr(6));
+            var date = new Date(dateMilliseconds);
+            var formattedDateRub3 = formatDate(date);
+
+            // Ajouter la cellule contenant le champ de date
+            var dateCell = $("<td>").append(formattedDateRub3);
+            row.append(dateCell);
+
+            var dentsCell = $("<td>").text(rubrique3.dents);
+            var actMedicalCell = $("<td>").text(rubrique3.actMedical);
+            var honorairesCell = $("<td>").text(rubrique3.honorairesRub3);
+            var deviseCell = $("<td>").text(rubrique3.deviseRub3);
+            var montantConvertiCell = $("<td>").text(rubrique3.montant_change3);
+            var montantEstimé3Cell = $("<td>").text(rubrique3.montant_estimé3);
+            var matriculeCell = $("<td>").text(rubrique3.matriculeFiscalRub3);
+            var typeCell = $("<td>").text(rubrique3.type);
+
+            [dentsCell, actMedicalCell, honorairesCell, deviseCell, montantConvertiCell, montantEstimé3Cell, matriculeCell, typeCell].forEach(function (cell) {
+                cell.css({
+                    "padding": "10px",
+                    "border": "1px solid #333"
+                });
+                row.append(cell);
+            });
+
+            tbody.append(row);
+        });
+
+        // Afficher le troisième tableau une fois que toutes les lignes ont été ajoutées
+        $("#tableContainerEdit3").show();
+    }
+
+
+</script>
+
+
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-info">
+                    <h3>TUNISAIR</h3>
+                    <p>fondée en 1948, forte de plus <br />de 75 ans d'expérience dans <br />le secteur de l'aviation,<br /> est la compagnie aérienne <br />nationale de la Tunisie.</p>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About us</a></li>
+                        <li><a href="#services">Services</a></li>
+
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>
+                        <i class="bi bi-pin-map-fill"></i> Rue Aéroport Tunis-Carthage  <br>Charguia 2, Ariana <br>Siège Tunisair <br>
+                        <i class="bi bi-telephone-fill"></i> <strong>Phone:</strong> +216 1789 55488 55<br>
+                        <i class="bi bi-envelope-at-fill"></i><strong> Email:</strong> info@Tunisair.com.tn<br>
+                        <i class="bi bi-browser-chrome"></i> <strong>Site Officiel: </strong>www.tunisair.com <br />
+                    </p>
+
+
+                    <div class="social-links">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong>TUNISAIR</strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+            -->
+            Designed by <a href="https://bootstrapmade.com/">DCSI</a>
+        </div>
+    </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="~/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="~/assets/vendor/aos/aos.js"></script>
+<script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="~/assets/vendor/php-email-form/validate.js"></script>
+<!-- Template Main JS File -->
+<script src="~/assets/js/main.js"></script>
+
